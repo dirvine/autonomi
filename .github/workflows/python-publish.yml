@@ -27,15 +27,17 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Create dist directory
-        run: mkdir -p dist
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install maturin
       - name: Build wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          target: ${{ matrix.target }}
-          args: --release --out dist
-          sccache: 'true'
-          working-directory: ./autonomi
+        run: |
+          cd autonomi
+          maturin build --release --target ${{ matrix.target }} --out ../dist
+          cd ..
+          echo "Contents of dist directory:"
+          ls -la dist/
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -58,14 +60,17 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: ${{ matrix.target }}
-      - name: Create dist directory
-        run: mkdir dist
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install maturin
       - name: Build wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          args: --release --out dist
-          sccache: 'true'
-          working-directory: ./autonomi
+        run: |
+          cd autonomi
+          maturin build --release --out ../dist
+          cd ..
+          echo "Contents of dist directory:"
+          dir dist
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -87,20 +92,19 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Create dist directory
-        run: mkdir -p dist
-      - name: Install dependencies
+      - name: Install build dependencies
         run: |
+          python -m pip install --upgrade pip
+          python -m pip install maturin
           python -m pip install --user cffi
           python -m pip install --user patchelf
       - name: Build wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          target: ${{ matrix.target }}
-          manylinux: auto
-          args: --release --out dist
-          sccache: 'true'
-          working-directory: ./autonomi
+        run: |
+          cd autonomi
+          maturin build --release --target ${{ matrix.target }} --manylinux auto --out ../dist
+          cd ..
+          echo "Contents of dist directory:"
+          ls -la dist/
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -118,19 +122,16 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-      - name: Create dist directory
-        run: mkdir -p dist
-      - name: Build sdist
-        uses: PyO3/maturin-action@v1
-        with:
-          command: sdist
-          args: --out dist
-          working-directory: ./autonomi
-      - name: List dist contents
+      - name: Install build dependencies
         run: |
-          echo "Current directory:"
-          pwd
-          echo "Dist directory contents:"
+          python -m pip install --upgrade pip
+          python -m pip install maturin
+      - name: Build sdist
+        run: |
+          cd autonomi
+          maturin sdist --out ../dist
+          cd ..
+          echo "Contents of dist directory:"
           ls -la dist/
       - name: Upload sdist
         uses: actions/upload-artifact@v3
@@ -156,8 +157,8 @@ jobs:
         run: |
           find downloads -type f -name "*.whl" -exec cp {} dist/ \;
           find downloads -type f -name "*.tar.gz" -exec cp {} dist/ \;
-      - name: Display structure of downloaded files
-        run: ls -R dist
+          echo "Final contents of dist directory:"
+          ls -la dist/
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
