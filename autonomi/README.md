@@ -165,13 +165,13 @@ The Autonomi client API is also available as a Python package.
 ### Installation
 
 ```bash
-pip install autonomi
+pip install autonomi-client
 ```
 
 ### Basic Usage
 
 ```python
-from autonomi import Client, Wallet
+from autonomi-client import Client, Wallet
 
 # Connect to network
 client = Client(["/ip4/127.0.0.1/tcp/12000"]) # Change this to the address of a known node
@@ -247,7 +247,7 @@ retrieved = client.data_get(addr)
 
 #### Private Data Storage
 ```python
-from autonomi import Client, Wallet
+from autonomi-client import Client, Wallet
 
 client = Client(["/ip4/127.0.0.1/tcp/12000"])
 wallet = Wallet()
@@ -264,7 +264,7 @@ assert retrieved == secret
 
 #### Working with Archives
 ```python
-from autonomi import Client, Wallet, Archive, Metadata
+from autonomi-client import Client, Wallet, Archive, Metadata
 
 client = Client(["/ip4/127.0.0.1/tcp/12000"])
 wallet = Wallet()
@@ -286,7 +286,7 @@ for path, meta in retrieved.files():
 
 #### Vault and User Data
 ```python
-from autonomi import Client, Wallet, VaultSecretKey, UserData
+from autonomi-client import Client, Wallet, VaultSecretKey, UserData
 
 client = Client(["/ip4/127.0.0.1/tcp/12000"])
 wallet = Wallet()

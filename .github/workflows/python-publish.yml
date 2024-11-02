@@ -30,8 +30,8 @@ jobs:
           components: rustfmt
       - name: Create Python module structure
         run: |
-          mkdir -p autonomi/python/autonomi
-          cat > autonomi/python/autonomi/__init__.py << EOL
+          mkdir -p autonomi/python/autonomi_client
+          cat > autonomi/python/autonomi_client/__init__.py << EOL
           from ._autonomi import *
           __version__ = "0.2.33"
           EOL
@@ -71,9 +71,9 @@ jobs:
       - name: Create Python module structure
         shell: cmd
         run: |
-          mkdir autonomi\python\autonomi
-          echo from ._autonomi import * > autonomi\python\autonomi\__init__.py
-          echo __version__ = "0.2.33" >> autonomi\python\autonomi\__init__.py
+          mkdir autonomi\python\autonomi_client
+          echo from ._autonomi import * > autonomi\python\autonomi_client\__init__.py
+          echo __version__ = "0.2.33" >> autonomi\python\autonomi_client\__init__.py
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -113,8 +113,8 @@ jobs:
           rustup component add rustfmt
       - name: Create Python module structure
         run: |
-          mkdir -p autonomi/python/autonomi
-          cat > autonomi/python/autonomi/__init__.py << EOL
+          mkdir -p autonomi/python/autonomi_client
+          cat > autonomi/python/autonomi_client/__init__.py << EOL
           from ._autonomi import *
           __version__ = "0.2.33"
           EOL
@@ -150,8 +150,8 @@ jobs:
           components: rustfmt
       - name: Create Python module structure
         run: |
-          mkdir -p autonomi/python/autonomi
-          cat > autonomi/python/autonomi/__init__.py << EOL
+          mkdir -p autonomi/python/autonomi_client
+          cat > autonomi/python/autonomi_client/__init__.py << EOL
           from ._autonomi import *
           __version__ = "0.2.33"
           EOL

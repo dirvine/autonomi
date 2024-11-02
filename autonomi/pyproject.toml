@@ -5,18 +5,18 @@ build-backend = "maturin"
 [tool.maturin]
 features = ["pyo3/extension-module"]
 python-source = "python"
-module-name = "autonomi._autonomi"
+module-name = "autonomi_client._autonomi"
 bindings = "pyo3"
 sdist-include = ["Cargo.toml", "Cargo.lock", "src/**/*", "python/**/*"]
 
 [project]
-name = "autonomi"
+name = "autonomi-client"
 version = "0.2.33"
-description = "Autonomi client API"
+description = "Autonomi client API for the Safe Network"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "GPL-3.0"}
-keywords = ["safe", "network", "autonomi"]
+keywords = ["safe", "network", "autonomi", "client"]
 authors = [
     {name = "MaidSafe Developers", email = "dev@maidsafe.net"}
 ]
