@@ -3,7 +3,7 @@ authors = ["MaidSafe Developers <dev@maidsafe.net>"]
 description = "Autonomi client API"
 name = "autonomi"
 license = "GPL-3.0"
-version = "0.2.34"
+version = "0.2.35"
 edition = "2021"
 homepage = "https://maidsafe.net"
 readme = "README.md"
@@ -87,15 +87,3 @@ workspace = true
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
-
-[package.metadata.maturin]
-name = "autonomi"
-requires-python = ">=3.8"
-project-url = { Homepage = "https://maidsafe.net" }
-classifier = [
-    "Programming Language :: Python",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Rust",
-    "Development Status :: 4 - Beta",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-]
