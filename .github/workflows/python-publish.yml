@@ -124,7 +124,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
-          args: --release --out dist
+          args: --out dist
           working-directory: ./autonomi
       - name: List dist contents
         run: |

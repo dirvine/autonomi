@@ -2,15 +2,22 @@
 requires = ["maturin>=1.0,<2.0"]
 build-backend = "maturin"
 
+[tool.maturin]
+features = ["pyo3/extension-module"]
+python-source = "python"
+module-name = "autonomi._autonomi"
+
 [project]
 name = "autonomi"
+version = "0.2.33"
+description = "Autonomi client API"
+readme = "README.md"
 requires-python = ">=3.8"
+license = "GPL-3.0"
+keywords = ["safe", "network", "autonomi"]
 authors = [
     {name = "MaidSafe Developers", email = "dev@maidsafe.net"}
 ]
-description = "Autonomi client API"
-readme = "README.md"
-license = {text = "GPL-3.0"}
 classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: Implementation :: CPython",
@@ -19,7 +26,7 @@ classifiers = [
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
 
-[tool.maturin]
-features = ["pyo3/extension-module"]
-python-source = "python"
-module-name = "autonomi._autonomi"
+[project.urls]
+Homepage = "https://maidsafe.net"
+Repository = "https://github.com/maidsafe/safe_network"
+Documentation = "https://docs.rs/autonomi"
