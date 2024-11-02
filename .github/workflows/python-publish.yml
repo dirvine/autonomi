@@ -115,25 +115,38 @@ jobs:
         include:
           - target: x86_64
             target-name: x86_64-unknown-linux-gnu
+    container:
+      image: quay.io/pypa/manylinux2014_x86_64
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - name: Install Python
+        run: |
+          yum install -y python3-devel
+      - name: Set up Python
+        run: |
+          ln -sf /usr/bin/python3 /usr/bin/python
+          python -m ensurepip
+          python -m pip install --upgrade pip
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
         with:
-          python-version: ${{ matrix.python-version }}
+          targets: ${{ matrix.target-name }}
       - name: Install build dependencies
         run: |
-          python -m pip install --upgrade pip
           python -m pip install maturin
-          python -m pip install --user cffi
-          python -m pip install --user patchelf
+          python -m pip install cffi
+          python -m pip install patchelf
       - name: Create Python module structure
         run: |
           mkdir -p autonomi/python/autonomi
-          touch autonomi/python/autonomi/__init__.py
+          cat > autonomi/python/autonomi/__init__.py << EOL
+          from ._autonomi import *
+          __version__ = "0.2.33"
+          EOL
       - name: Build wheels
         run: |
           cd autonomi
-          maturin build --release --target ${{ matrix.target-name }} --compatibility manylinux2014 --out ../dist
+          maturin build --release --target ${{ matrix.target-name }} --out ../dist
           cd ..
           echo "Contents of dist directory:"
           ls -la dist/
