@@ -57,10 +57,5 @@ pub use libp2p::Multiaddr;
 
 pub use client::Client;
 
-use pyo3::prelude::*;
-
-#[pymodule]
-fn _autonomi(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
-    // Add your Python module bindings here
-    Ok(())
-}
+#[cfg(feature = "extension-module")]
+mod python;

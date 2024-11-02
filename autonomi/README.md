@@ -160,7 +160,7 @@ Genesis wallet balance: (tokens: 20000000000000000000000000, gas: 99989980113669
 
 ## Python Bindings
 
-The Autonomi client API is also available as a Python package.
+The Autonomi client library provides Python bindings for easy integration with Python applications.
 
 ### Installation
 
@@ -168,141 +168,181 @@ The Autonomi client API is also available as a Python package.
 pip install autonomi-client
 ```
 
-### Basic Usage
+### Quick Start
 
 ```python
-from autonomi-client import Client, Wallet
+from autonomi_client import Client, Wallet, PaymentOption
+
+# Initialize wallet with private key
+wallet = Wallet("your_private_key_here")
+print(f"Wallet address: {wallet.address()}")
+print(f"Balance: {wallet.balance()}")
 
 # Connect to network
-client = Client(["/ip4/127.0.0.1/tcp/12000"]) # Change this to the address of a known node
+client = Client.connect(["/ip4/127.0.0.1/tcp/12000"])
 
-# Create or load a wallet
-wallet = Wallet()  # Create new random wallet
-# Or load from existing key
-wallet = Wallet(secret_key="your-hex-key-here")
+# Create payment option
+payment = PaymentOption.wallet(wallet)
 
 # Upload data
-data = b"Hello World!"
-addr = client.data_put(data, wallet)
-print(f"Data stored at: {addr}")
+data = b"Hello, Safe Network!"
+addr = client.data_put(data, payment)
+print(f"Data uploaded to: {addr}")
 
-# Retrieve data
+# Download data
 retrieved = client.data_get(addr)
+print(f"Retrieved: {retrieved.decode()}")
 ```
 
-### Available Classes and Methods
+### Available Modules
 
-#### Client
-- `Client(peers: List[str])` - Connect to the network
-- Data Operations:
-  - `data_put(data: bytes, wallet: Wallet) -> str` - Store public data
-  - `data_get(addr: str) -> bytes` - Retrieve public data
-  - `data_cost(data: bytes) -> int` - Get cost to store data
-- Private Data:
-  - `private_data_put(data: bytes, wallet: Wallet) -> str` - Store private data
-  - `private_data_get(access: str) -> bytes` - Retrieve private data
-- File Operations:
-  - `file_upload(path: str, wallet: Wallet) -> str` - Upload file/directory
-  - `file_download(addr: str, path: str)` - Download file
-- Register Operations:
-  - `register_create(value: bytes, name: str, wallet: Wallet) -> str`
-  - `register_get(addr: str) -> List[bytes]`
-  - `register_update(addr: str, new_value: bytes, owner: RegisterSecretKey)`
-- Vault Operations:
-  - `vault_cost(owner: VaultSecretKey) -> int`
-  - `get_user_data_from_vault(secret_key: VaultSecretKey) -> UserData`
-  - `put_user_data_to_vault(secret_key: VaultSecretKey, wallet: Wallet, user_data: UserData) -> int`
+#### Core Components
 
-#### Wallet
-- `Wallet(secret_key: Optional[str] = None)` - Create new or from existing key
-- `to_hex() -> str` - Get hex-encoded secret key
-- `address() -> str` - Get wallet address
-- `random() -> Wallet` - Create new random wallet
-- `from_hex(hex: str) -> Wallet` - Create from hex key
-- `network() -> str` - Get network type (mainnet/testnet)
+- `Client`: Main interface to the Autonomi network
+  - `connect(peers: List[str])`: Connect to network nodes
+  - `data_put(data: bytes, payment: PaymentOption)`: Upload data
+  - `data_get(addr: str)`: Download data
+  - `private_data_put(data: bytes, payment: PaymentOption)`: Store private data
+  - `private_data_get(access: PrivateDataAccess)`: Retrieve private data
+  - `register_generate_key()`: Generate register key
 
-#### Archive and PrivateArchive
-- `Archive()` / `PrivateArchive()` - Create new archive
-- `add_file(path: str, addr: str, meta: Optional[Metadata])`
-- `add_new_file(path: str, addr: str)`
-- `files() -> List[Tuple[str, Metadata]]`
-- `addresses() -> List[str]` / `access_keys() -> List[str]`
-- `rename_file(old_path: str, new_path: str)`
+- `Wallet`: Ethereum wallet management
+  - `new(private_key: str)`: Create wallet from private key
+  - `address()`: Get wallet address
+  - `balance()`: Get current balance
 
-#### UserData
-- `UserData()` - Create new user data store
-- `register_sk() -> Optional[str]`
-- `registers() -> Dict[str, str]`
-- `file_archives() -> Dict[str, str]`
-- `private_file_archives() -> Dict[str, str]`
-- Archive Management:
-  - `add_file_archive(archive: str) -> Optional[str]`
-  - `add_file_archive_with_name(archive: str, name: str) -> Optional[str]`
-  - `add_private_file_archive(archive: str) -> Optional[str]`
-  - `add_private_file_archive_with_name(archive: str, name: str) -> Optional[str]`
-  - `remove_file_archive(archive: str) -> Optional[str]`
-  - `remove_private_file_archive(archive: str) -> Optional[str]`
+- `PaymentOption`: Payment configuration
+  - `wallet(wallet: Wallet)`: Create payment option from wallet
 
-### Examples
+#### Private Data
 
-#### Private Data Storage
+- `PrivateDataAccess`: Handle private data storage
+  - `from_hex(hex: str)`: Create from hex string
+  - `to_hex()`: Convert to hex string
+  - `address()`: Get short reference address
+
 ```python
-from autonomi-client import Client, Wallet
-
-client = Client(["/ip4/127.0.0.1/tcp/12000"])
-wallet = Wallet()
-
-# Store private data
-secret = b"My secret data"
-access_key = client.private_data_put(secret, wallet)
-print(f"Access key: {access_key}")
-
-# Retrieve private data
-retrieved = client.private_data_get(access_key)
-assert retrieved == secret
+# Private data example
+access = client.private_data_put(secret_data, payment)
+print(f"Private data stored at: {access.to_hex()}")
+retrieved = client.private_data_get(access)
 ```
 
-#### Working with Archives
+#### Registers
+
+- Register operations for mutable data
+  - `register_create(value: bytes, name: str, key: RegisterSecretKey, wallet: Wallet)`
+  - `register_get(address: str)`
+  - `register_update(register: Register, value: bytes, key: RegisterSecretKey)`
+
 ```python
-from autonomi-client import Client, Wallet, Archive, Metadata
-
-client = Client(["/ip4/127.0.0.1/tcp/12000"])
-wallet = Wallet()
-
-# Create and populate archive
-archive = Archive()
-data = b"File content"
-addr = client.data_put(data, wallet)
-archive.add_file("example.txt", addr, Metadata())
-
-# Store archive
-archive_addr = client.archive_put(archive, wallet)
-
-# Retrieve archive
-retrieved = client.archive_get(archive_addr)
-for path, meta in retrieved.files():
-    print(f"File: {path}, uploaded: {meta.uploaded}")
+# Register example
+key = client.register_generate_key()
+register = client.register_create(b"Initial value", "my_register", key, wallet)
+client.register_update(register, b"New value", key)
 ```
 
-#### Vault and User Data
+#### Vaults
+
+- `VaultSecretKey`: Manage vault access
+  - `new()`: Generate new key
+  - `from_hex(hex: str)`: Create from hex string
+  - `to_hex()`: Convert to hex string
+
+- `UserData`: User data management
+  - `new()`: Create new user data
+  - `add_file_archive(archive: str)`: Add file archive
+  - `add_private_file_archive(archive: str)`: Add private archive
+  - `file_archives()`: List archives
+  - `private_file_archives()`: List private archives
+
 ```python
-from autonomi-client import Client, Wallet, VaultSecretKey, UserData
-
-client = Client(["/ip4/127.0.0.1/tcp/12000"])
-wallet = Wallet()
-
-# Create vault
-vault_key = VaultSecretKey.generate()
+# Vault example
+vault_key = VaultSecretKey.new()
 cost = client.vault_cost(vault_key)
-print(f"Vault creation will cost: {cost}")
-
-# Store user data
-user_data = UserData()
-user_data.add_file_archive("some_archive_addr", "My Files")
-cost = client.put_user_data_to_vault(vault_key, wallet, user_data)
-
-# Retrieve user data
-retrieved = client.get_user_data_from_vault(vault_key)
-for addr, name in retrieved.file_archives().items():
-    print(f"Archive: {name} at {addr}")
+client.write_bytes_to_vault(data, payment, vault_key, content_type=1)
+data, content_type = client.fetch_and_decrypt_vault(vault_key)
 ```
+
+#### Utility Functions
+
+- `encrypt(data: bytes)`: Self-encrypt data
+- `hash_to_short_string(input: str)`: Generate short reference
+
+### Complete Examples
+
+#### Data Management
+
+```python
+def handle_data_operations(client, payment):
+    # Upload text
+    text_data = b"Hello, Safe Network!"
+    text_addr = client.data_put(text_data, payment)
+    
+    # Upload binary data
+    with open("image.jpg", "rb") as f:
+        image_data = f.read()
+        image_addr = client.data_put(image_data, payment)
+    
+    # Download and verify
+    downloaded = client.data_get(text_addr)
+    assert downloaded == text_data
+```
+
+#### Private Data and Encryption
+
+```python
+def handle_private_data(client, payment):
+    # Create and encrypt private data
+    secret = {"api_key": "secret_key"}
+    data = json.dumps(secret).encode()
+    
+    # Store privately
+    access = client.private_data_put(data, payment)
+    print(f"Access token: {access.to_hex()}")
+    
+    # Retrieve
+    retrieved = client.private_data_get(access)
+    secret = json.loads(retrieved.decode())
+```
+
+#### Vault Management
+
+```python
+def handle_vault(client, payment):
+    # Create vault
+    vault_key = VaultSecretKey.new()
+    
+    # Store user data
+    user_data = UserData()
+    user_data.add_file_archive("archive_address")
+    
+    # Save to vault
+    cost = client.put_user_data_to_vault(vault_key, payment, user_data)
+    
+    # Retrieve
+    retrieved = client.get_user_data_from_vault(vault_key)
+    archives = retrieved.file_archives()
+```
+
+### Error Handling
+
+All operations can raise exceptions. It's recommended to use try-except blocks:
+
+```python
+try:
+    client = Client.connect(peers)
+    # ... operations ...
+except Exception as e:
+    print(f"Error: {e}")
+```
+
+### Best Practices
+
+1. Always keep private keys secure
+2. Use error handling for all network operations
+3. Clean up resources when done
+4. Monitor wallet balance for payments
+5. Use appropriate content types for vault storage
+
+For more examples, see the `examples/` directory in the repository.

@@ -1,4 +1,4 @@
-from autonomi import Client, Wallet, RegisterSecretKey, VaultSecretKey, UserData
+from autonomi_client import Client, Wallet, RegisterSecretKey, VaultSecretKey, UserData
 
 def external_signer_example(client: Client, data: bytes):
     # Get quotes for storing data

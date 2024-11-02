@@ -3,7 +3,7 @@ authors = ["MaidSafe Developers <dev@maidsafe.net>"]
 description = "Autonomi client API"
 name = "autonomi"
 license = "GPL-3.0"
-version = "0.2.2"
+version = "0.2.1"
 edition = "2021"
 homepage = "https://maidsafe.net"
 readme = "README.md"
@@ -23,6 +23,7 @@ local = ["sn_networking/local", "sn_evm/local"]
 registers = ["data"]
 loud = []
 external-signer = ["sn_evm/external-signer", "data"]
+extension-module = ["pyo3/extension-module"]
 
 [dependencies]
 bip39 = "2.0.0"
