@@ -115,16 +115,23 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
       - name: Create dist directory
         run: mkdir -p dist
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
-          args: --out dist
+          args: --release --out dist
           working-directory: ./autonomi
       - name: List dist contents
-        run: ls -la dist/
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Dist directory contents:"
+          ls -la dist/
       - name: Upload sdist
         uses: actions/upload-artifact@v3
         with:
