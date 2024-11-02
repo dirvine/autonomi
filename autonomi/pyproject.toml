@@ -1,0 +1,28 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "autonomi"
+# Version will be read from Cargo.toml
+dynamic = ["version"]
+description = "Python bindings for the Autonomi network client"
+requires-python = ">=3.8"
+authors = [
+    { name = "MaidSafe Developers", email = "dev@maidsafe.net" }
+]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+    "maturin>=1.7.4",
+    "pip>=24.3.1",
+]
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+workspace = true
+manifest-path = "Cargo.toml"
+cargo-extra-args = ["--features", "pyo3"]

@@ -3,13 +3,14 @@ authors = ["MaidSafe Developers <dev@maidsafe.net>"]
 description = "Autonomi client API"
 name = "autonomi"
 license = "GPL-3.0"
-version = "0.2.2"
+version = "0.2.3"
 edition = "2021"
 homepage = "https://maidsafe.net"
 readme = "README.md"
 repository = "https://github.com/maidsafe/safe_network"
 
 [lib]
+name = "autonomi"
 crate-type = ["cdylib", "rlib"]
 
 [features]
@@ -55,6 +56,7 @@ serde-wasm-bindgen = "0.6.5"
 sha2 = "0.10.6"
 blst = "0.3.13"
 blstrs = "0.7.1"
+pyo3 = { version = "0.20", features = ["extension-module"] }
 
 [dev-dependencies]
 alloy = { version = "0.5.3", default-features = false, features = ["std", "reqwest-rustls-tls", "provider-anvil-node", "sol-types", "json", "signers", "contract", "signer-local", "network"] }

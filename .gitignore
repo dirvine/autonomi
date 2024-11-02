@@ -31,3 +31,5 @@ metrics/prometheus/prometheus.yml
 *.dot
 
 sn_node_manager/.vagrant
+.venv/
+uv.lock
