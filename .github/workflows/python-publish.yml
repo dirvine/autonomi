@@ -27,6 +27,11 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+          components: rustfmt
       - name: Create Python module structure
         run: |
           mkdir -p autonomi/python/autonomi
@@ -34,13 +39,21 @@ jobs:
           from ._autonomi import *
           __version__ = "0.2.33"
           EOL
+      - name: Create dist directory
+        run: mkdir -p dist
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.target }}
-          args: --release --out dist
+          args: --release --out ../dist
           sccache: 'true'
           working-directory: ./autonomi
+      - name: List dist contents
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Contents of dist directory:"
+          ls -la dist/
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -63,18 +76,27 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: ${{ matrix.target }}
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+          components: rustfmt
       - name: Create Python module structure
         shell: cmd
         run: |
           mkdir autonomi\python\autonomi
           echo from ._autonomi import * > autonomi\python\autonomi\__init__.py
           echo __version__ = "0.2.33" >> autonomi\python\autonomi\__init__.py
+      - name: Create dist directory
+        run: mkdir dist
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
-          args: --release --out dist
+          args: --release --out ../dist
           sccache: 'true'
           working-directory: ./autonomi
+      - name: List dist contents
+        run: dir dist
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -96,6 +118,11 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-unknown-linux-gnu
+          components: rustfmt
       - name: Install dependencies
         run: |
           python -m pip install --user cffi
@@ -107,14 +134,20 @@ jobs:
           from ._autonomi import *
           __version__ = "0.2.33"
           EOL
+      - name: Create dist directory
+        run: mkdir -p dist
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.target }}
           manylinux: auto
-          args: --release --out dist
+          args: --release --out ../dist
           sccache: 'true'
           working-directory: ./autonomi
+      - name: List dist contents
+        run: |
+          echo "Contents of dist directory:"
+          ls -la dist/
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -129,6 +162,13 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
       - name: Create Python module structure
         run: |
           mkdir -p autonomi/python/autonomi
@@ -136,12 +176,20 @@ jobs:
           from ._autonomi import *
           __version__ = "0.2.33"
           EOL
+      - name: Create dist directory
+        run: mkdir -p dist
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
-          args: --out dist
+          args: --release --out ../dist
           working-directory: ./autonomi
+      - name: List contents
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Contents of dist directory:"
+          ls -la dist/
       - name: Upload sdist
         uses: actions/upload-artifact@v3
         with:
@@ -157,12 +205,17 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: actions/download-artifact@v3
+      - name: Create dist directory
+        run: mkdir -p dist
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
         with:
           name: wheels
           path: dist
       - name: Display structure of downloaded files
-        run: ls -R dist
+        run: |
+          echo "Contents of dist directory:"
+          ls -la dist/
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
