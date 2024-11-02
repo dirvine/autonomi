@@ -112,30 +112,20 @@ jobs:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
         target: [x86_64]
-        include:
-          - target: x86_64
-            target-name: x86_64-unknown-linux-gnu
-    container:
-      image: quay.io/pypa/manylinux2014_x86_64
     steps:
       - uses: actions/checkout@v4
-      - name: Install Python
-        run: |
-          yum install -y python3-devel
       - name: Set up Python
-        run: |
-          ln -sf /usr/bin/python3 /usr/bin/python
-          python -m ensurepip
-          python -m pip install --upgrade pip
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: ${{ matrix.target-name }}
+          targets: x86_64-unknown-linux-gnu
       - name: Install build dependencies
         run: |
-          python -m pip install maturin
-          python -m pip install cffi
-          python -m pip install patchelf
+          python -m pip install --upgrade pip
+          python -m pip install cibuildwheel
       - name: Create Python module structure
         run: |
           mkdir -p autonomi/python/autonomi
@@ -144,9 +134,13 @@ jobs:
           __version__ = "0.2.33"
           EOL
       - name: Build wheels
+        env:
+          CIBW_BUILD: cp38-manylinux_x86_64 cp39-manylinux_x86_64 cp310-manylinux_x86_64 cp311-manylinux_x86_64 cp312-manylinux_x86_64
+          CIBW_BEFORE_BUILD: pip install maturin
+          CIBW_BUILD_VERBOSITY: 1
         run: |
           cd autonomi
-          maturin build --release --target ${{ matrix.target-name }} --out ../dist
+          python -m cibuildwheel --output-dir ../dist
           cd ..
           echo "Contents of dist directory:"
           ls -la dist/
