@@ -34,7 +34,7 @@ jobs:
           target: ${{ matrix.target }}
           args: --release --out dist
           sccache: 'true'
-          working-directory: ./autonomi-py
+          working-directory: ./autonomi
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -62,7 +62,7 @@ jobs:
         with:
           args: --release --out dist
           sccache: 'true'
-          working-directory: ./autonomi-py
+          working-directory: ./autonomi
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -95,7 +95,7 @@ jobs:
           manylinux: auto
           args: --release --out dist
           sccache: 'true'
-          working-directory: ./autonomi-py
+          working-directory: ./autonomi
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -115,7 +115,7 @@ jobs:
         with:
           command: sdist
           args: --out dist
-          working-directory: ./autonomi-py
+          working-directory: ./autonomi
       - name: Upload sdist
         uses: actions/upload-artifact@v3
         with:
