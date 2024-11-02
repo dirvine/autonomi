@@ -24,6 +24,10 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
       - name: Create Python module structure
         run: |
           mkdir -p autonomi/python/autonomi
@@ -60,6 +64,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: ${{ matrix.target }}
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
       - name: Create Python module structure
         shell: cmd
         run: |
@@ -93,6 +101,10 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
       - name: Install dependencies
         run: |
           python -m pip install --user cffi
@@ -126,6 +138,10 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
       - name: Create Python module structure
         run: |
           mkdir -p autonomi/python/autonomi
