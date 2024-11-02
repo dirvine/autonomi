@@ -39,7 +39,10 @@ jobs:
       - name: Create Python module structure
         run: |
           mkdir -p autonomi/python/autonomi
-          touch autonomi/python/autonomi/__init__.py
+          cat > autonomi/python/autonomi/__init__.py << EOL
+          from ._autonomi import *
+          __version__ = "0.2.33"
+          EOL
       - name: Build wheels
         run: |
           cd autonomi
@@ -77,9 +80,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install maturin
       - name: Create Python module structure
+        shell: cmd
         run: |
           mkdir autonomi\python\autonomi
-          echo. > autonomi\python\autonomi\__init__.py
+          echo from ._autonomi import * > autonomi\python\autonomi\__init__.py
+          echo __version__ = "0.2.33" >> autonomi\python\autonomi\__init__.py
       - name: Build wheels
         run: |
           cd autonomi
