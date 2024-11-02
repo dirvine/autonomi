@@ -1,15 +1,14 @@
-use pyo3::prelude::*;
 use crate::client::{
-    Client as RustClient, 
-    payment::PaymentOption as RustPaymentOption,
-    vault::{VaultSecretKey, UserData},
-    archive::{ArchiveAddr, Metadata},
+    archive::ArchiveAddr,
     archive_private::PrivateArchiveAccess,
-    data_private::PrivateDataAccess,
+    payment::PaymentOption as RustPaymentOption,
+    vault::{UserData, VaultSecretKey},
+    Client as RustClient,
 };
-use crate::{self_encryption, Wallet as RustWallet};
-use sn_evm::{EvmNetwork, AttoTokens};
-use bytes::Bytes;
+use crate::Wallet as RustWallet;
+use pyo3::prelude::*;
+use sn_evm::EvmNetwork;
+use xor_name::XorName;
 
 #[pyclass(name = "Client")]
 pub(crate) struct PyClient {
@@ -21,40 +20,55 @@ impl PyClient {
     #[staticmethod]
     fn connect(peers: Vec<String>) -> PyResult<Self> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let peers = peers.into_iter()
+        let peers = peers
+            .into_iter()
             .map(|addr| addr.parse())
             .collect::<Result<Vec<_>, _>>()
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Invalid multiaddr: {}", e)))?;
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!("Invalid multiaddr: {}", e))
+            })?;
 
-        let client = rt.block_on(RustClient::connect(&peers))
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to connect: {}", e)))?;
+        let client = rt.block_on(RustClient::connect(&peers)).map_err(|e| {
+            pyo3::exceptions::PyValueError::new_err(format!("Failed to connect: {}", e))
+        })?;
 
         Ok(Self { inner: client })
     }
 
     fn data_put(&self, data: Vec<u8>, payment: &PyPaymentOption) -> PyResult<String> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let addr = rt.block_on(self.inner.data_put(bytes::Bytes::from(data), payment.inner.clone()))
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to put data: {}", e)))?;
-        
+        let addr = rt
+            .block_on(
+                self.inner
+                    .data_put(bytes::Bytes::from(data), payment.inner.clone()),
+            )
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!("Failed to put data: {}", e))
+            })?;
+
         Ok(crate::client::address::addr_to_str(addr))
     }
 
     fn data_get(&self, addr: &str) -> PyResult<Vec<u8>> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let addr = crate::client::address::str_to_addr(addr)
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Invalid address: {}", e)))?;
+        let addr = crate::client::address::str_to_addr(addr).map_err(|e| {
+            pyo3::exceptions::PyValueError::new_err(format!("Invalid address: {}", e))
+        })?;
 
-        let data = rt.block_on(self.inner.data_get(addr))
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to get data: {}", e)))?;
+        let data = rt.block_on(self.inner.data_get(addr)).map_err(|e| {
+            pyo3::exceptions::PyValueError::new_err(format!("Failed to get data: {}", e))
+        })?;
 
         Ok(data.to_vec())
     }
 
     fn vault_cost(&self, key: &PyVaultSecretKey) -> PyResult<String> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let cost = rt.block_on(self.inner.vault_cost(&key.inner))
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to get vault cost: {}", e)))?;
+        let cost = rt
+            .block_on(self.inner.vault_cost(&key.inner))
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!("Failed to get vault cost: {}", e))
+            })?;
         Ok(cost.to_string())
     }
 
@@ -66,33 +80,36 @@ impl PyClient {
         content_type: u64,
     ) -> PyResult<String> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let cost = rt.block_on(self.inner.write_bytes_to_vault(
-            bytes::Bytes::from(data),
-            payment.inner.clone(),
-            &key.inner,
-            content_type,
-        ))
-        .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to write to vault: {}", e)))?;
+        let cost = rt
+            .block_on(self.inner.write_bytes_to_vault(
+                bytes::Bytes::from(data),
+                payment.inner.clone(),
+                &key.inner,
+                content_type,
+            ))
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!("Failed to write to vault: {}", e))
+            })?;
         Ok(cost.to_string())
     }
 
-    fn fetch_and_decrypt_vault(
-        &self,
-        key: &PyVaultSecretKey,
-    ) -> PyResult<(Vec<u8>, u64)> {
+    fn fetch_and_decrypt_vault(&self, key: &PyVaultSecretKey) -> PyResult<(Vec<u8>, u64)> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let (data, content_type) = rt.block_on(self.inner.fetch_and_decrypt_vault(&key.inner))
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to fetch vault: {}", e)))?;
+        let (data, content_type) = rt
+            .block_on(self.inner.fetch_and_decrypt_vault(&key.inner))
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!("Failed to fetch vault: {}", e))
+            })?;
         Ok((data.to_vec(), content_type))
     }
 
-    fn get_user_data_from_vault(
-        &self,
-        key: &PyVaultSecretKey,
-    ) -> PyResult<PyUserData> {
+    fn get_user_data_from_vault(&self, key: &PyVaultSecretKey) -> PyResult<PyUserData> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let user_data = rt.block_on(self.inner.get_user_data_from_vault(&key.inner))
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to get user data: {}", e)))?;
+        let user_data = rt
+            .block_on(self.inner.get_user_data_from_vault(&key.inner))
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!("Failed to get user data: {}", e))
+            })?;
         Ok(PyUserData { inner: user_data })
     }
 
@@ -103,26 +120,48 @@ impl PyClient {
         user_data: &PyUserData,
     ) -> PyResult<String> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let cost = rt.block_on(self.inner.put_user_data_to_vault(
-            &key.inner,
-            payment.inner.clone(),
-            user_data.inner.clone(),
-        ))
-        .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to put user data: {}", e)))?;
+        let cost = rt
+            .block_on(self.inner.put_user_data_to_vault(
+                &key.inner,
+                payment.inner.clone(),
+                user_data.inner.clone(),
+            ))
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!("Failed to put user data: {}", e))
+            })?;
         Ok(cost.to_string())
     }
 
     fn private_data_get(&self, data_map: &PyPrivateDataAccess) -> PyResult<Vec<u8>> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let data = rt.block_on(self.inner.private_data_get(data_map.inner.clone()))
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to get private data: {}", e)))?;
+        let data = rt
+            .block_on(self.inner.private_data_get(data_map.inner.clone()))
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!(
+                    "Failed to get private data: {}",
+                    e
+                ))
+            })?;
         Ok(data.to_vec())
     }
 
-    fn private_data_put(&self, data: Vec<u8>, payment: &PyPaymentOption) -> PyResult<PyPrivateDataAccess> {
+    fn private_data_put(
+        &self,
+        data: Vec<u8>,
+        payment: &PyPaymentOption,
+    ) -> PyResult<PyPrivateDataAccess> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let access = rt.block_on(self.inner.private_data_put(Bytes::from(data), payment.inner.clone()))
-            .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to put private data: {}", e)))?;
+        let access = rt
+            .block_on(
+                self.inner
+                    .private_data_put(Bytes::from(data), payment.inner.clone()),
+            )
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!(
+                    "Failed to put private data: {}",
+                    e
+                ))
+            })?;
         Ok(PyPrivateDataAccess { inner: access })
     }
 }
@@ -138,9 +177,11 @@ impl PyWallet {
     fn new(private_key: String) -> PyResult<Self> {
         let wallet = RustWallet::new_from_private_key(
             EvmNetwork::ArbitrumOne, // TODO: Make this configurable
-            &private_key
+            &private_key,
         )
-        .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Invalid private key: {}", e)))?;
+        .map_err(|e| {
+            pyo3::exceptions::PyValueError::new_err(format!("Invalid private key: {}", e))
+        })?;
 
         Ok(Self { inner: wallet })
     }
@@ -151,23 +192,25 @@ impl PyWallet {
 
     fn balance(&self) -> PyResult<String> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let balance = rt.block_on(async {
-            self.inner.balance_of_tokens().await
-        })
-        .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to get balance: {}", e)))?;
+        let balance = rt
+            .block_on(async { self.inner.balance_of_tokens().await })
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!("Failed to get balance: {}", e))
+            })?;
 
         Ok(balance.to_string())
     }
 
-   fn balance_of_gas(&self) -> PyResult<String> {
+    fn balance_of_gas(&self) -> PyResult<String> {
         let rt = tokio::runtime::Runtime::new().unwrap();
-        let balance = rt.block_on(async {
-            self.inner.balance_of_gas_tokens().await
-        })
-        .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Failed to get balance: {}", e)))?;
+        let balance = rt
+            .block_on(async { self.inner.balance_of_gas_tokens().await })
+            .map_err(|e| {
+                pyo3::exceptions::PyValueError::new_err(format!("Failed to get balance: {}", e))
+            })?;
 
         Ok(balance.to_string())
-    } 
+    }
 }
 
 #[pyclass(name = "PaymentOption")]
@@ -180,7 +223,7 @@ impl PyPaymentOption {
     #[staticmethod]
     fn wallet(wallet: &PyWallet) -> Self {
         Self {
-            inner: RustPaymentOption::Wallet(wallet.inner.clone())
+            inner: RustPaymentOption::Wallet(wallet.inner.clone()),
         }
     }
 }
@@ -195,7 +238,7 @@ impl PyVaultSecretKey {
     #[new]
     fn new() -> PyResult<Self> {
         Ok(Self {
-            inner: VaultSecretKey::random()
+            inner: VaultSecretKey::random(),
         })
     }
 
@@ -221,27 +264,40 @@ impl PyUserData {
     #[new]
     fn new() -> Self {
         Self {
-            inner: UserData::new()
+            inner: UserData::new(),
         }
     }
 
     fn add_file_archive(&mut self, archive: &str) -> Option<String> {
-        self.inner.add_file_archive(ArchiveAddr::from_hex(archive).unwrap())
+        let addr = XorName::from_content(archive.as_bytes());
+        self.inner.add_file_archive(ArchiveAddr(addr))
     }
 
     fn add_private_file_archive(&mut self, archive: &str) -> Option<String> {
-        self.inner.add_private_file_archive(PrivateArchiveAccess::from_hex(archive).unwrap())
+        let addr = XorName::from_content(archive.as_bytes());
+        self.inner
+            .add_private_file_archive(PrivateArchiveAccess(addr))
     }
 
     fn file_archives(&self) -> Vec<(String, String)> {
-        self.inner.file_archives.iter()
-            .map(|(addr, name)| (addr.to_hex(), name.clone()))
+        self.inner
+            .file_archives
+            .iter()
+            .map(|(addr, name)| {
+                let hex = format!("{:x}", addr.0);
+                (hex, name.clone())
+            })
             .collect()
     }
 
     fn private_file_archives(&self) -> Vec<(String, String)> {
-        self.inner.private_file_archives.iter()
-            .map(|(addr, name)| (addr.to_hex(), name.clone()))
+        self.inner
+            .private_file_archives
+            .iter()
+            .map(|(addr, name)| {
+                let hex = format!("{:x}", addr.0);
+                (hex, name.clone())
+            })
             .collect()
     }
 }
@@ -271,21 +327,23 @@ impl PyPrivateDataAccess {
 
 #[pyfunction]
 fn encrypt(data: Vec<u8>) -> PyResult<(Vec<u8>, Vec<Vec<u8>>)> {
-    let (data_map, chunks) = self_encryption::encrypt(Bytes::from(data))
-        .map_err(|e| pyo3::exceptions::PyValueError::new_err(format!("Encryption failed: {}", e)))?;
-    
-    let chunks_vec: Vec<Vec<u8>> = chunks.into_iter()
+    let (data_map, chunks) = self_encryption::encrypt(Bytes::from(data)).map_err(|e| {
+        pyo3::exceptions::PyValueError::new_err(format!("Encryption failed: {}", e))
+    })?;
+
+    let chunks_vec: Vec<Vec<u8>> = chunks
+        .into_iter()
         .map(|chunk| chunk.value().to_vec())
         .collect();
-    
+
     Ok((data_map.value().to_vec(), chunks_vec))
 }
 
 #[pyfunction]
 fn hash_to_short_string(input: &str) -> String {
-    use std::hash::{Hash, Hasher};
     use std::collections::hash_map::DefaultHasher;
-    
+    use std::hash::{Hash, Hasher};
+
     let mut hasher = DefaultHasher::new();
     input.hash(&mut hasher);
     hasher.finish().to_string()
@@ -302,4 +360,4 @@ fn _autonomi(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(encrypt, m)?)?;
     m.add_function(wrap_pyfunction!(hash_to_short_string, m)?)?;
     Ok(())
-} 
+}
