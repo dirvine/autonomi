@@ -32,6 +32,10 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target-name }}
       - name: Install build dependencies
         run: |
           python -m pip install --upgrade pip
