@@ -8,7 +8,6 @@ on:
       - 'autonomi/**'
       - '.github/workflows/python-publish.yml'
 
-# Add top-level permissions block
 permissions:
   id-token: write
   contents: read
@@ -28,6 +27,8 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Create dist directory
+        run: mkdir -p dist
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -38,7 +39,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
-          name: wheels
+          name: wheels-macos-${{ matrix.python-version }}-${{ matrix.target }}
           path: dist/*.whl
           if-no-files-found: error
 
@@ -57,6 +58,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: ${{ matrix.target }}
+      - name: Create dist directory
+        run: mkdir dist
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -66,7 +69,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
-          name: wheels
+          name: wheels-windows-${{ matrix.python-version }}
           path: dist/*.whl
           if-no-files-found: error
 
@@ -84,6 +87,8 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Create dist directory
+        run: mkdir -p dist
       - name: Install dependencies
         run: |
           python -m pip install --user cffi
@@ -99,7 +104,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
-          name: wheels
+          name: wheels-linux-${{ matrix.python-version }}
           path: dist/*.whl
           if-no-files-found: error
 
@@ -110,16 +115,20 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - name: Create dist directory
+        run: mkdir -p dist
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
           args: --out dist
           working-directory: ./autonomi
+      - name: List dist contents
+        run: ls -la dist/
       - name: Upload sdist
         uses: actions/upload-artifact@v3
         with:
-          name: wheels
+          name: sdist
           path: dist/*.tar.gz
           if-no-files-found: error
 
@@ -131,10 +140,15 @@ jobs:
       id-token: write
       contents: read
     steps:
+      - name: Create dist directory
+        run: mkdir -p dist
       - uses: actions/download-artifact@v3
         with:
-          name: wheels
-          path: dist
+          path: downloads
+      - name: Consolidate artifacts
+        run: |
+          find downloads -type f -name "*.whl" -exec cp {} dist/ \;
+          find downloads -type f -name "*.tar.gz" -exec cp {} dist/ \;
       - name: Display structure of downloaded files
         run: ls -R dist
       - name: Publish to PyPI
