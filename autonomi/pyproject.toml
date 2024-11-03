@@ -11,7 +11,7 @@ target-dir = "target/wheels"
 
 [project]
 name = "autonomi-client"
-version = "0.2.33"
+dynamic = ["version"]
 description = "Autonomi client API"
 readme = "README.md"
 requires-python = ">=3.8"
