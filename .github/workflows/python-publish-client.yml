@@ -39,7 +39,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.target }}
-          args: --release --out dist --find-interpreter
+          args: --release --out dist --find-interpreter --compatibility manylinux2014
           sccache: 'true'
           working-directory: ./autonomi
       - name: Upload wheels
@@ -84,7 +84,7 @@ jobs:
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
-          args: --release --out dist --find-interpreter
+          args: --release --out dist --find-interpreter --compatibility manylinux2014
           sccache: 'true'
           working-directory: ./autonomi
       - name: Upload wheels
