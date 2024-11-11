@@ -3,7 +3,7 @@ name: Build and Publish Python Client Package
 on:
   push:
     tags:
-      - 'XXX*'
+      - 'XXX'
 
 permissions:
   id-token: write
@@ -32,7 +32,7 @@ jobs:
         run: |
           mkdir -p autonomi/python/autonomi_client
           cat > autonomi/python/autonomi_client/__init__.py << EOL
-          from ._autonomi import *
+          from .autonomi_client import *
           __version__ = "${{ github.ref_name }}"
           EOL
       - name: Build wheels
@@ -79,7 +79,7 @@ jobs:
         shell: cmd
         run: |
           if not exist "autonomi\python\autonomi_client" mkdir autonomi\python\autonomi_client
-          echo from ._autonomi import * > autonomi\python\autonomi_client\__init__.py
+          echo from .autonomi_client import * > autonomi\python\autonomi_client\__init__.py
           echo __version__ = "${{ github.ref_name }}" >> autonomi\python\autonomi_client\__init__.py
       - name: Build wheels
         uses: PyO3/maturin-action@v1
@@ -129,7 +129,7 @@ jobs:
         run: |
           mkdir -p autonomi/python/autonomi_client
           cat > autonomi/python/autonomi_client/__init__.py << EOL
-          from ._autonomi import *
+          from .autonomi_client import *
           __version__ = "${{ github.ref_name }}"
           EOL
       - name: Build wheels
@@ -173,7 +173,7 @@ jobs:
         run: |
           mkdir -p autonomi/python/autonomi_client
           cat > autonomi/python/autonomi_client/__init__.py << EOL
-          from ._autonomi import *
+          from .autonomi_client import *
           __version__ = "${{ github.ref_name }}"
           EOL
       - name: Build sdist
