@@ -124,6 +124,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Build wheels
         uses: messense/maturin-action@v1
+        env:
+          PYO3_CROSS_PYTHON_VERSION: ${{ matrix.python-version }}
+          PYO3_CROSS: "1"
         with:
           target: ${{ matrix.target }}
           manylinux: auto
@@ -182,7 +185,7 @@ jobs:
         with:
           target: ${{ matrix.target }}
           manylinux: musllinux_1_2
-          args: --release --out dist
+          args: --release --out dist -i python${{ matrix.python-version }}
       - name: Install built wheel
         if: matrix.target == 'x86_64-unknown-linux-musl'
         uses: addnab/docker-run-action@v3
@@ -190,7 +193,7 @@ jobs:
           image: alpine:latest
           options: -v ${{ github.workspace }}:/io -w /io
           run: |
-            apk add py3-pip
+            apk add py3-pip python3
             pip3 install -U pip pytest
             pip3 install ${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`-*.whl --no-index --find-links /io/dist/ --force-reinstall
             python3 -m pytest
@@ -217,10 +220,13 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Build wheels
         uses: messense/maturin-action@v1
+        env:
+          PYO3_CROSS_PYTHON_VERSION: ${{ matrix.python-version }}
+          PYO3_CROSS: "1"
         with:
           target: ${{ matrix.platform.target }}
           manylinux: musllinux_1_2
-          args: --release --out dist
+          args: --release --out dist -i python${{ matrix.python-version }}
           maturin-version: "v0.13.0"
       - uses: uraimo/run-on-arch-action@master
         name: Install built wheel
