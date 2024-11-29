@@ -98,9 +98,9 @@ jobs:
           echo "Available wheels:"
           ls -la dist/
           
-          pip install pytest click>=8.0.0
+          pip install -U pip pytest click>=8.0.0
           # Install using pip's find-links
-          pip install --no-index --find-links dist/ ${{ env.PACKAGE_NAME }} --force-reinstall
+          pip install --find-links dist/ ${{ env.PACKAGE_NAME }} --force-reinstall
           pytest -v
       - name: Upload wheels
         uses: actions/upload-artifact@v4
@@ -147,7 +147,7 @@ jobs:
             ls -la dist/
             
             # Install using pip's find-links
-            pip3 install --no-index --find-links dist/ ${{ env.PACKAGE_NAME }} --force-reinstall
+            pip3 install --find-links dist/ ${{ env.PACKAGE_NAME }} --force-reinstall
             pytest -v
       - name: Upload wheels
         uses: actions/upload-artifact@v4
