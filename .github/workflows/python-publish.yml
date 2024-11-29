@@ -92,7 +92,7 @@ jobs:
       - name: Install built wheel
         if: matrix.target == 'x86_64'
         run: |
-          pip install dist/${{ env.PACKAGE_NAME }}-*.whl --force-reinstall
+          pip install dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`-*.whl --force-reinstall
           pip install pytest
           pytest -v
       - name: Upload wheels
@@ -128,10 +128,10 @@ jobs:
           githubToken: ${{ github.token }}
           install: |
             apt-get update
-            apt-get install -y --no-install-recommends python3 python3-pip
+            apt-get install -y --no-install-recommends python${{ matrix.python-version }} python${{ matrix.python-version }}-pip
             pip3 install -U pip
           run: |
-            pip3 install ${{ env.PACKAGE_NAME }} --no-index --find-links dist/ --force-reinstall
+            pip3 install ${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`-*.whl --no-index --find-links dist/ --force-reinstall
             pip install pytest
             pytest -v
       - name: Upload wheels
@@ -172,7 +172,7 @@ jobs:
           run: |
             apk add py3-pip
             pip3 install -U pip pytest
-            pip3 install ${{ env.PACKAGE_NAME }} --no-index --find-links /io/dist/ --force-reinstall
+            pip3 install ${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`-*.whl --no-index --find-links /io/dist/ --force-reinstall
             python3 -m pytest
       - name: Upload wheels
         uses: actions/upload-artifact@v4
@@ -212,7 +212,7 @@ jobs:
             apk add py3-pip
             pip3 install -U pip pytest
           run: |
-            pip3 install ${{ env.PACKAGE_NAME }} --no-index --find-links dist/ --force-reinstall
+            pip3 install ${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`-*.whl --no-index --find-links dist/ --force-reinstall
             python3 -m pytest
       - name: Upload wheels
         uses: actions/upload-artifact@v4
