@@ -12,8 +12,14 @@ use crate::{
 // Make DataMap usable from Python
 #[pyclass]
 #[derive(Clone)]
-struct PyDataMap {
+pub struct PyDataMap {
     inner: DataMap,
+}
+
+impl PyDataMap {
+    pub fn new(inner: DataMap) -> Self {
+        PyDataMap { inner }
+    }
 }
 
 #[pymethods]
@@ -39,8 +45,14 @@ impl From<DataMap> for PyDataMap {
 // Make XorName usable from Python
 #[pyclass]
 #[derive(Clone)]
-struct PyXorName {
+pub struct PyXorName {
     inner: XorName,
+}
+
+impl PyXorName {
+    pub fn new(inner: XorName) -> Self {
+        PyXorName { inner }
+    }
 }
 
 #[pymethods]
@@ -72,7 +84,7 @@ impl From<XorName> for PyXorName {
 
 // Create a Python tuple type for our return value
 #[pyclass]
-struct EncryptResult {
+pub struct EncryptResult {
     #[pyo3(get)]
     data_map: PyDataMap,
     #[pyo3(get)]
