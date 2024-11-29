@@ -85,10 +85,12 @@ jobs:
           architecture: x64
       - name: Build wheels
         uses: PyO3/maturin-action@v1
+        env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
         with:
           target: ${{ matrix.target }}
           manylinux: auto
-          args: --release --out dist
+          args: --release --out dist --python python${{ matrix.python-version }}
       - name: Install built wheel
         if: matrix.target == 'x86_64'
         run: |
@@ -127,10 +129,11 @@ jobs:
         env:
           PYO3_CROSS_PYTHON_VERSION: ${{ matrix.python-version }}
           PYO3_CROSS: "1"
+          PYTHON_VERSION: ${{ matrix.python-version }}
         with:
           target: ${{ matrix.target }}
           manylinux: auto
-          args: --release --out dist
+          args: --release --out dist --python python${{ matrix.python-version }}
           maturin-version: "v0.13.0"
       - uses: uraimo/run-on-arch-action@v2.0.5
         if: matrix.target != 'ppc64'
