@@ -92,7 +92,16 @@ jobs:
       - name: Install built wheel
         if: matrix.target == 'x86_64'
         run: |
-          WHEEL_FILE=$(ls dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`*.whl)
+          # List all wheels to debug
+          echo "Available wheels:"
+          ls -la dist/
+          
+          # Try to find the wheel file
+          WHEEL_FILE=$(ls dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`*.whl || true)
+          if [ -z "$WHEEL_FILE" ]; then
+            echo "No matching wheel found for Python ${{ matrix.python-version }}"
+            exit 1
+          fi
           pip install $WHEEL_FILE --force-reinstall
           pip install pytest
           pytest -v
@@ -129,10 +138,20 @@ jobs:
           githubToken: ${{ github.token }}
           install: |
             apt-get update
-            apt-get install -y --no-install-recommends python${{ matrix.python-version }} python${{ matrix.python-version }}-pip
+            apt-get install -y --no-install-recommends python3 python3-pip
             pip3 install -U pip
           run: |
-            pip3 install ${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`-*.whl --no-index --find-links dist/ --force-reinstall
+            # List all wheels to debug
+            echo "Available wheels:"
+            ls -la dist/
+            
+            # Try to find the wheel file
+            WHEEL_FILE=$(ls dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`*.whl || true)
+            if [ -z "$WHEEL_FILE" ]; then
+              echo "No matching wheel found for Python ${{ matrix.python-version }}"
+              exit 1
+            fi
+            pip3 install $WHEEL_FILE --force-reinstall
             pip install pytest
             pytest -v
       - name: Upload wheels
