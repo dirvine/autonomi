@@ -30,7 +30,6 @@ module-name = "self_encryption._self_encryption"
 python-packages = ["self_encryption"]
 include = ["self_encryption/**/*"]
 manifest-path = "Cargo.toml"
-develop = true
 
 [project.scripts]
 self-encryption = "self_encryption.cli:cli"
