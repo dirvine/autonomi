@@ -33,7 +33,7 @@ jobs:
           args: --release --out dist
           sccache: 'true'
       - name: Upload wheels
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: wheels
           path: dist/*.whl
@@ -61,7 +61,7 @@ jobs:
           args: --release --out dist
           sccache: 'true'
       - name: Upload wheels
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: wheels
           path: dist/*.whl
@@ -92,7 +92,7 @@ jobs:
           pip install pytest
           pytest -v
       - name: Upload wheels
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: wheels
           path: dist
@@ -130,7 +130,7 @@ jobs:
             pip install pytest
             pytest -v
       - name: Upload wheels
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: wheels
           path: dist
@@ -167,7 +167,7 @@ jobs:
             pip3 install ${{ env.PACKAGE_NAME }} --no-index --find-links /io/dist/ --force-reinstall
             python3 -m pytest
       - name: Upload wheels
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: wheels
           path: dist
@@ -206,7 +206,7 @@ jobs:
             pip3 install ${{ env.PACKAGE_NAME }} --no-index --find-links dist/ --force-reinstall
             python3 -m pytest
       - name: Upload wheels
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: wheels
           path: dist
@@ -226,7 +226,7 @@ jobs:
           command: sdist
           args: --out dist
       - name: Upload sdist
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: wheels
           path: dist/*.tar.gz
