@@ -98,13 +98,8 @@ jobs:
           echo "Available wheels:"
           ls -la dist/
           
-          # Try to find the wheel file
-          WHEEL_FILE=$(ls dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`*.whl || true)
-          if [ -z "$WHEEL_FILE" ]; then
-            echo "No matching wheel found for Python ${{ matrix.python-version }}"
-            exit 1
-          fi
-          pip install $WHEEL_FILE --force-reinstall
+          # Install using pip's find-links
+          pip install --no-index --find-links dist/ ${{ env.PACKAGE_NAME }} --force-reinstall
           pip install pytest
           pytest -v
       - name: Upload wheels
@@ -151,13 +146,8 @@ jobs:
             echo "Available wheels:"
             ls -la dist/
             
-            # Try to find the wheel file
-            WHEEL_FILE=$(ls dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`*.whl || true)
-            if [ -z "$WHEEL_FILE" ]; then
-              echo "No matching wheel found for Python ${{ matrix.python-version }}"
-              exit 1
-            fi
-            pip3 install $WHEEL_FILE --force-reinstall
+            # Install using pip's find-links
+            pip3 install --no-index --find-links dist/ ${{ env.PACKAGE_NAME }} --force-reinstall
             pip install pytest
             pytest -v
       - name: Upload wheels
