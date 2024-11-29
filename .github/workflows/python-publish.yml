@@ -39,7 +39,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ matrix.target }}-py${{ matrix.python-version }}
           path: dist/*.whl
           if-no-files-found: error
 
@@ -67,7 +67,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ matrix.target }}-py${{ matrix.python-version }}
           path: dist/*.whl
           if-no-files-found: error
 
@@ -76,11 +76,12 @@ jobs:
     strategy:
       matrix:
         target: [x86_64, i686]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: ${{ matrix.python-version }}
           architecture: x64
       - name: Build wheels
         uses: PyO3/maturin-action@v1
@@ -97,7 +98,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ matrix.target }}-py${{ matrix.python-version }}
           path: dist
 
   linux-cross:
@@ -105,11 +106,12 @@ jobs:
     strategy:
       matrix:
         target: [aarch64, armv7, s390x, ppc64le, ppc64]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: ${{ matrix.python-version }}
       - name: Build wheels
         uses: messense/maturin-action@v1
         with:
@@ -135,7 +137,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ matrix.target }}-py${{ matrix.python-version }}
           path: dist
 
   musllinux:
@@ -145,19 +147,22 @@ jobs:
         target:
           - x86_64-unknown-linux-musl
           - i686-unknown-linux-musl
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: ${{ matrix.python-version }}
           architecture: x64
       - name: Build wheels
-        uses: messense/maturin-action@v1
+        uses: PyO3/maturin-action@v1
+        env:
+          PYO3_CROSS_PYTHON_VERSION: ${{ matrix.python-version }}
+          PYO3_CROSS: "1"
         with:
           target: ${{ matrix.target }}
           manylinux: musllinux_1_2
           args: --release --out dist
-          maturin-version: "v0.13.0"
       - name: Install built wheel
         if: matrix.target == 'x86_64-unknown-linux-musl'
         uses: addnab/docker-run-action@v3
@@ -172,7 +177,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ matrix.target }}-py${{ matrix.python-version }}
           path: dist
 
   musllinux-cross:
@@ -184,11 +189,12 @@ jobs:
             arch: aarch64
           - target: armv7-unknown-linux-musleabihf
             arch: armv7
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: ${{ matrix.python-version }}
       - name: Build wheels
         uses: messense/maturin-action@v1
         with:
@@ -211,7 +217,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ matrix.platform.target }}-py${{ matrix.python-version }}
           path: dist
 
 
@@ -231,7 +237,7 @@ jobs:
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-sdist-py${{ env.PYTHON_VERSION }}
           path: dist/*.tar.gz
           if-no-files-found: error
 
@@ -246,8 +252,18 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: wheels
+          name: wheels-*
           path: dist
+
+      # Add additional steps to download each artifact type
+      - uses: actions/download-artifact@v3
+        with:
+          name: wheels-sdist-py${{ env.PYTHON_VERSION }}
+          path: dist
+
+      # We might need multiple download steps or a different approach
+      # to combine all artifacts
+
       - name: Display structure of downloaded files
         run: ls -R dist
       - name: Publish to PyPI
