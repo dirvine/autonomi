@@ -20,7 +20,13 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
+dependencies = [
+    "click>=8.0.0",
+]
 
 [tool.maturin]
 features = ["python"]
 module-name = "self_encryption"
+
+[project.scripts]
+self-encryption = "self_encryption.cli:cli"

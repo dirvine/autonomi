@@ -92,7 +92,8 @@ jobs:
       - name: Install built wheel
         if: matrix.target == 'x86_64'
         run: |
-          pip install dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`-*.whl --force-reinstall
+          WHEEL_FILE=$(ls dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`*.whl)
+          pip install $WHEEL_FILE --force-reinstall
           pip install pytest
           pytest -v
       - name: Upload wheels
