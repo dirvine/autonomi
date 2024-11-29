@@ -99,12 +99,9 @@ jobs:
           ls -la dist/
           
           pip install -U pip pytest click>=8.0.0
-          # Install package in editable mode for testing
-          pip install -e .
-          # Install using pip's find-links
-          pip install --find-links dist/ ${{ env.PACKAGE_NAME }} --force-reinstall
-          # Add current directory to PYTHONPATH
-          export PYTHONPATH=$PWD:$PYTHONPATH
+          # Install the wheel directly
+          WHEEL_FILE=$(ls dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`*.whl)
+          pip install $WHEEL_FILE
           pytest -v
       - name: Upload wheels
         uses: actions/upload-artifact@v4

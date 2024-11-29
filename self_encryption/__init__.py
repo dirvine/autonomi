@@ -1,4 +1,9 @@
-from ._self_encryption import *
-from .cli import cli  # Make sure CLI is available
+try:
+    from ._self_encryption import *
+    from .cli import cli
+except ImportError as e:
+    import sys
+    print(f"Error importing self_encryption: {e}", file=sys.stderr)
+    raise
 
-__all__ = ['cli']  # Add other exports as needed
+__all__ = ['cli']
