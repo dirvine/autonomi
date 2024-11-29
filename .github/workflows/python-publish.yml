@@ -99,9 +99,8 @@ jobs:
           ls -la dist/
           
           pip install -U pip pytest click>=8.0.0
-          # Install the wheel directly
-          WHEEL_FILE=$(ls dist/${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`*.whl)
-          pip install $WHEEL_FILE
+          # Install using find-links to handle platform tags correctly
+          pip install --find-links dist/ ${{ env.PACKAGE_NAME }}
           pytest -v
       - name: Upload wheels
         uses: actions/upload-artifact@v4
@@ -147,8 +146,8 @@ jobs:
             echo "Available wheels:"
             ls -la dist/
             
-            # Install using pip's find-links
-            pip3 install --find-links dist/ ${{ env.PACKAGE_NAME }} --force-reinstall
+            # Install using find-links to handle platform tags correctly
+            pip3 install --find-links dist/ ${{ env.PACKAGE_NAME }}
             pytest -v
       - name: Upload wheels
         uses: actions/upload-artifact@v4
@@ -188,7 +187,7 @@ jobs:
           run: |
             apk add py3-pip python3
             pip3 install -U pip pytest click>=8.0.0
-            pip3 install ${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`-*.whl --no-index --find-links /io/dist/ --force-reinstall
+            pip3 install --find-links /io/dist/ ${{ env.PACKAGE_NAME }}
             python3 -m pytest
       - name: Upload wheels
         uses: actions/upload-artifact@v4
@@ -231,7 +230,7 @@ jobs:
             apk add py3-pip
             pip3 install -U pip pytest click>=8.0.0
           run: |
-            pip3 install ${{ env.PACKAGE_NAME }}-cp`echo ${{ matrix.python-version }} | tr -d '.'`-*.whl --no-index --find-links dist/ --force-reinstall
+            pip3 install --find-links dist/ ${{ env.PACKAGE_NAME }}
             python3 -m pytest
       - name: Upload wheels
         uses: actions/upload-artifact@v4
