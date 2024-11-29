@@ -26,7 +26,7 @@ dependencies = [
 
 [tool.maturin]
 features = ["python"]
-module-name = "self_encryption"
+module-name = "_self_encryption"
 
 [project.scripts]
 self-encryption = "self_encryption.cli:cli"
