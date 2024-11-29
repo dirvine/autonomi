@@ -99,7 +99,6 @@ jobs:
           ls -la dist/
           
           pip install -U pip pytest click>=8.0.0
-          # Install using find-links to handle platform tags correctly
           pip install --find-links dist/ ${{ env.PACKAGE_NAME }}
           pytest -v
       - name: Upload wheels

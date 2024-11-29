@@ -1,5 +1,6 @@
 try:
-    from ._self_encryption import *
+    from . import _self_encryption
+    from _self_encryption import *
     from .cli import cli
 except ImportError as e:
     import sys

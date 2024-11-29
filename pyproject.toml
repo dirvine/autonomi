@@ -26,7 +26,7 @@ dependencies = [
 
 [tool.maturin]
 features = ["python"]
-module-name = "_self_encryption"
+module-name = "self_encryption._self_encryption"
 python-packages = ["self_encryption"]
 include = ["self_encryption/**/*"]
 manifest-path = "Cargo.toml"
