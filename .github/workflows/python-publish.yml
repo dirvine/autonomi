@@ -5,6 +5,10 @@ on:
     tags:
       - 'v*'
 
+env:
+  PYTHON_VERSION: "3.10"
+  PACKAGE_NAME: "self_encryption"
+
 # Add top-level permissions block
 permissions:
   id-token: write
@@ -79,12 +83,11 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: x64
       - name: Build wheels
-        uses: messense/maturin-action@v1
+        uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.target }}
           manylinux: auto
           args: --release --out dist
-          maturin-version: "v0.13.0"
       - name: Install built wheel
         if: matrix.target == 'x86_64'
         run: |
