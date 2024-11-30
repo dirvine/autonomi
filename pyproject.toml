@@ -31,7 +31,6 @@ module-name = "self_encryption._self_encryption"
 python-packages = ["self_encryption"]
 include = ["self_encryption/**/*"]
 manifest-path = "Cargo.toml"
-python-source = "python"
 bindings = "pyo3"
 strip = true
 sdist-include = ["LICENSE", "README.md"]
