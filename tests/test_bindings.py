@@ -23,16 +23,12 @@ def test_file_encryption_decryption():
         chunk_dir.mkdir()
         
         # Encrypt file
-        data_map, chunk_names = encrypt_from_file(str(input_path), str(chunk_dir))
-        
-        # Create chunk retrieval function
-        def get_chunk(hash_hex: str) -> bytes:
-            chunk_path = chunk_dir / hash_hex
-            return chunk_path.read_bytes()
+        result = encrypt_from_file(str(input_path), str(chunk_dir))
+        data_map = result.data_map
         
         # Decrypt to new file
         output_path = Path(temp_dir) / "output.dat"
-        decrypt_from_storage(data_map, str(output_path), get_chunk)
+        decrypt_from_storage(data_map, str(output_path), str(chunk_dir))
         
         # Verify
         assert input_path.read_bytes() == output_path.read_bytes()
@@ -49,18 +45,12 @@ def test_streaming_decryption():
         chunk_dir.mkdir()
         
         # Encrypt file
-        data_map, chunk_names = encrypt_from_file(str(input_path), str(chunk_dir))
-        
-        # Create parallel chunk retrieval function
-        def get_chunks(hash_hexes: List[str]) -> List[bytes]:
-            return [
-                (chunk_dir / hash_hex).read_bytes()
-                for hash_hex in hash_hexes
-            ]
+        result = encrypt_from_file(str(input_path), str(chunk_dir))
+        data_map = result.data_map
         
         # Decrypt using streaming
         output_path = Path(temp_dir) / "output.dat"
-        streaming_decrypt_from_storage(data_map, str(output_path), get_chunks)
+        streaming_decrypt_from_storage(data_map, str(output_path), str(chunk_dir))
         
         # Verify
         assert input_path.read_bytes() == output_path.read_bytes()
