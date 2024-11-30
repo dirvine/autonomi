@@ -115,11 +115,15 @@ jobs:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Build wheels
-        uses: messense/maturin-action@v1
+        uses: PyO3/maturin-action@v1
         env:
           PYO3_CROSS_PYTHON_VERSION: ${{ matrix.python-version }}
           PYO3_CROSS: "1"
@@ -128,7 +132,8 @@ jobs:
           target: ${{ matrix.target }}
           manylinux: auto
           args: --release --out dist -i python${{ matrix.python-version }}
-          maturin-version: "v0.13.0"
+          sccache: 'true'
+          docker-options: "--platform linux/${{ matrix.target }}"
       - uses: uraimo/run-on-arch-action@v2.7.0
         if: matrix.target != 'ppc64'
         name: Install built wheel
@@ -184,15 +189,30 @@ jobs:
           image: alpine:latest
           options: -v ${{ github.workspace }}:/io -w /io
           run: |
-            # Install Python and dependencies
-            apk add --no-cache python3 py3-pip gcc musl-dev python3-dev
+            # Install system dependencies
+            apk add --no-cache \
+              python3 \
+              py3-pip \
+              gcc \
+              musl-dev \
+              python3-dev \
+              rust \
+              cargo \
+              openssl-dev \
+              pkgconfig
+
+            # Create and activate virtual environment
             python3 -m venv /venv
-            source /venv/bin/activate
-            pip install --upgrade pip
+            . /venv/bin/activate
+
+            # Install Python dependencies
+            pip install --upgrade pip wheel setuptools
             pip install pytest click>=8.0.0
-            # Install in development mode
-            cd /io
-            pip install -e .
+
+            # Install the package
+            pip install --find-links /io/dist/ ${{ env.PACKAGE_NAME }}
+
+            # Run tests
             python -m pytest -v
       - name: Upload wheels
         uses: actions/upload-artifact@v4
@@ -212,11 +232,15 @@ jobs:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Build wheels
-        uses: messense/maturin-action@v1
+        uses: PyO3/maturin-action@v1
         env:
           PYO3_CROSS_PYTHON_VERSION: ${{ matrix.python-version }}
           PYO3_CROSS: "1"
@@ -224,7 +248,8 @@ jobs:
           target: ${{ matrix.platform.target }}
           manylinux: musllinux_1_2
           args: --release --out dist -i python${{ matrix.python-version }}
-          maturin-version: "v0.13.0"
+          sccache: 'true'
+          docker-options: "--platform linux/${{ matrix.platform.arch }}"
       - uses: uraimo/run-on-arch-action@master
         name: Install built wheel
         with:
@@ -232,15 +257,29 @@ jobs:
           distro: alpine_latest
           githubToken: ${{ github.token }}
           install: |
-            apk add --no-cache python3 py3-pip gcc musl-dev python3-dev
+            apk add --no-cache \
+              python3 \
+              py3-pip \
+              gcc \
+              musl-dev \
+              python3-dev \
+              rust \
+              cargo \
+              openssl-dev \
+              pkgconfig
           run: |
-            pip3 install --find-links dist/ ${{ env.PACKAGE_NAME }}
+            # Create and activate virtual environment
             python3 -m venv /venv
-            source /venv/bin/activate
-            pip install --upgrade pip
+            . /venv/bin/activate
+
+            # Install Python dependencies
+            pip install --upgrade pip wheel setuptools
             pip install pytest click>=8.0.0
-            cd /io
-            pip install -e .
+
+            # Install the package
+            pip install --find-links dist/ ${{ env.PACKAGE_NAME }}
+
+            # Run tests
             python -m pytest -v
       - name: Upload wheels
         uses: actions/upload-artifact@v4
