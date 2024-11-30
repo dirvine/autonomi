@@ -133,7 +133,12 @@ jobs:
           manylinux: auto
           args: --release --out dist -i python${{ matrix.python-version }}
           sccache: 'true'
-          docker-options: "--platform linux/${{ matrix.target }}"
+          docker-options: >-
+            --platform ${{ matrix.target == 'armv7' && 'linux/arm/v7' || 
+                          matrix.target == 'aarch64' && 'linux/arm64' || 
+                          matrix.target == 's390x' && 'linux/s390x' || 
+                          matrix.target == 'ppc64le' && 'linux/ppc64le' || 
+                          'linux/amd64' }}
       - uses: uraimo/run-on-arch-action@v2.7.0
         if: matrix.target != 'ppc64'
         name: Install built wheel
@@ -209,8 +214,9 @@ jobs:
             pip install --upgrade pip wheel setuptools
             pip install pytest click>=8.0.0
 
-            # Install the package
-            pip install --find-links /io/dist/ ${{ env.PACKAGE_NAME }}
+            # Install in development mode
+            cd /io
+            pip install -e .
 
             # Run tests
             python -m pytest -v
@@ -227,8 +233,10 @@ jobs:
         platform:
           - target: aarch64-unknown-linux-musl
             arch: aarch64
+            platform: linux/arm64
           - target: armv7-unknown-linux-musleabihf
             arch: armv7
+            platform: linux/arm/v7
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v3
@@ -249,7 +257,7 @@ jobs:
           manylinux: musllinux_1_2
           args: --release --out dist -i python${{ matrix.python-version }}
           sccache: 'true'
-          docker-options: "--platform linux/${{ matrix.platform.arch }}"
+          docker-options: "--platform ${{ matrix.platform.platform }}"
       - uses: uraimo/run-on-arch-action@master
         name: Install built wheel
         with:
@@ -276,8 +284,9 @@ jobs:
             pip install --upgrade pip wheel setuptools
             pip install pytest click>=8.0.0
 
-            # Install the package
-            pip install --find-links dist/ ${{ env.PACKAGE_NAME }}
+            # Install in development mode
+            cd /io
+            pip install -e .
 
             # Run tests
             python -m pytest -v
