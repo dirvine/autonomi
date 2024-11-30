@@ -69,7 +69,6 @@
     unused_features,
     unused_parens,
     while_true,
-    warnings
 )]
 #![warn(
     trivial_casts,
