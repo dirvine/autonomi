@@ -70,6 +70,7 @@
     unused_parens,
     while_true,
 )]
+#![cfg_attr(not(feature = "python"), deny(warnings))]
 #![warn(
     trivial_casts,
     trivial_numeric_casts,
