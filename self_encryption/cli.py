@@ -12,17 +12,12 @@ from pathlib import Path
 from typing import Optional
 import sys
 
-from self_encryption import (
-    DataMap,
-    EncryptedChunk,
-    XorName,
-    encrypt,
+from ._self_encryption import (
+    PyDataMap as DataMap,
+    PyXorName as XorName,
     encrypt_from_file,
-    decrypt,
     decrypt_from_storage,
-    shrink_data_map,
     streaming_decrypt_from_storage,
-    verify_chunk,
 )
 
 def print_error(message: str):
