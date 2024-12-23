@@ -6,16 +6,37 @@ build-backend = "maturin"
 name = "antnode"
 dynamic = ["version"]
 description = "The Autonomi node binary"
+authors = [{ name = "MaidSafe Developers", email = "dev@maidsafe.net" }]
+dependencies = ["maturin>=1.7.4", "pip>=24.3.1"]
+readme = "README.md"
 requires-python = ">=3.8"
-dependencies = [
-    "maturin>=1.7.4",
-    "pip>=24.3.1",
+license = { text = "GPL-3.0" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Rust",
 ]
+
+[project.urls]
+Homepage = "https://maidsafe.net"
+Repository = "https://github.com/maidsafe/autonomi"
 
 [tool.maturin]
 features = ["extension-module"]
 module-name = "antnode._antnode"
 python-source = "python"
 bindings = "pyo3"
+include = ["Cargo.toml"]
 manifest-path = "Cargo.toml"
 sdist-include = ["python/antnode/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
