@@ -152,11 +152,17 @@ jobs:
         run: |
           mkdir -p build/ant-node
           cp -r ant-node/* build/ant-node/
-          # Create a standalone Cargo.toml without workspace
+          # Copy all workspace dependencies locally
+          for dir in ant-*; do
+            if [ -d "$dir" ]; then
+              cp -r "$dir" "build/$dir"
+            fi
+          done
+          # Remove workspace configuration and update paths
           cd build/ant-node
-          sed -i 's|^workspace = .*|workspace = false|' Cargo.toml
-          # Update dependency paths to be absolute
-          find . -name "Cargo.toml" -exec sed -i 's|path = "\.\./|path = "/home/runner/work/autonomi/autonomi/|g' {} \;
+          sed -i '/^workspace/d' Cargo.toml
+          # Update dependency paths to be relative to the build directory
+          find . -name "Cargo.toml" -exec sed -i 's|path = "\.\./|path = "../|g' {} \;
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
