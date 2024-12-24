@@ -154,21 +154,25 @@ jobs:
           mkdir -p build/ant-node
           cp -r ant-node/* build/ant-node/
           
-          # First, copy all workspace members
+          # First, copy all workspace members to a deps directory
+          mkdir -p build/deps
           for dir in ant-* test-utils evmlib autonomi; do
-            if [ -d "$dir" ]; then
-              echo "Copying $dir to build directory"
-              cp -r "$dir" "build/$dir"
+            if [ -d "$dir" ] && [ "$dir" != "ant-node" ]; then
+              echo "Copying $dir to deps directory"
+              cp -r "$dir" "build/deps/$dir"
             fi
           done
           
-          # Create a minimal workspace Cargo.toml in the build directory
-          cat > build/Cargo.toml << EOL
-          [workspace]
-          resolver = "2"
-          members = ["ant-node"]
+          # Update the package's Cargo.toml to be standalone
+          cd build/ant-node
+          
+          # Remove workspace references
+          sed -i '/^workspace/d' Cargo.toml
+          
+          # Add lints directly to the package
+          cat >> Cargo.toml << EOL
 
-          [workspace.lints.rust]
+          [lints.rust]
           arithmetic_overflow = "forbid"
           mutable_transmutes = "forbid"
           no_mangle_const_items = "forbid"
@@ -179,32 +183,20 @@ jobs:
           unused_extern_crates = "warn"
           unused_import_braces = "warn"
 
-          [workspace.lints.clippy]
+          [lints.clippy]
           clone_on_ref_ptr = "warn"
           unicode_not_nfc = "warn"
           uninlined_format_args = "warn"
           unused_async = "warn"
           unwrap_used = "warn"
-
-          [workspace.dependencies]
-          backtrace = "=0.3.71"
           EOL
           
-          # Remove workspace references from the package's Cargo.toml
-          cd build/ant-node
-          sed -i '/^workspace/d' Cargo.toml
-          cd ../..
+          # Update dependency paths to point to deps directory
+          sed -i 's|path = "\.\./|path = "../deps/|g' Cargo.toml
           
-          # Update all dependency paths to be absolute
-          find ./build -name "Cargo.toml" -exec sed -i "s|path = \"\.\./|path = \"/home/runner/work/autonomi/autonomi/build/|g" {} \;
-          
-          # Display directory structure for debugging
-          echo "Contents of build directory:"
-          ls -la ./build/
-          echo "Contents of workspace Cargo.toml:"
-          cat ./build/Cargo.toml
+          # Display final Cargo.toml for debugging
           echo "Contents of ant-node Cargo.toml:"
-          cat ./build/ant-node/Cargo.toml
+          cat Cargo.toml
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
