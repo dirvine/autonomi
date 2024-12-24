@@ -32,7 +32,7 @@ Repository = "https://github.com/maidsafe/autonomi"
 [tool.maturin]
 features = ["extension-module"]
 module-name = "autonomi_client"
-python-source = "."
+python-source = "python"
 bindings = "pyo3"
 include = ["Cargo.toml"]
 manifest-path = "Cargo.toml"
