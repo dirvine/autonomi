@@ -152,7 +152,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
-          args: --out dist --sdist-include README_PYTHON.md,Cargo.toml,src/*,python/*,pyproject.toml
+          args: --out dist
           working-directory: ./ant-node
       - name: Upload sdist
         uses: actions/upload-artifact@v4
