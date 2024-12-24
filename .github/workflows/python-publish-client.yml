@@ -158,9 +158,10 @@ jobs:
               cp -r "$dir" "build/$dir"
             fi
           done
-          # Remove workspace configuration and update paths
+          # Remove workspace configuration and add empty workspace table
           cd build/autonomi
           sed -i '/^workspace/d' Cargo.toml
+          echo -e "\n[workspace]" >> Cargo.toml
           # Update dependency paths to be relative to the build directory
           find . -name "Cargo.toml" -exec sed -i 's|path = "\.\./|path = "../|g' {} \;
       - name: Build sdist
