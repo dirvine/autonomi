@@ -151,35 +151,17 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
-      - name: Create Python module structure
-        run: |
-          # First, copy all necessary files
-          cp -r ant-node/* .
-          
-          # Then create the Python module structure
-          mkdir -p python/antnode
-          cat > python/antnode/__init__.py << EOL
-          from ._antnode import *
-          __version__ = "${{ github.ref_name }}"
-          EOL
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
-          args: --out dist
+          args: --out dist --manifest-path ./ant-node/Cargo.toml
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
           name: sdist
           path: dist/*.tar.gz
           if-no-files-found: error
-          retention-days: 1
-          compression-level: 9
-        continue-on-error: true
-        timeout-minutes: 10
-        env:
-          ACTIONS_STEP_DEBUG: true
-          ACTIONS_RUNNER_DEBUG: true
 
   release:
     name: Release

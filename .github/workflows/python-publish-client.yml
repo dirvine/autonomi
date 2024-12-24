@@ -3,7 +3,7 @@ name: Build and Publish Python Client Package
 on:
   push:
     tags:
-      - 'v*'
+      - 'autonomi-v*'
 
 # Add top-level permissions block
 permissions:
