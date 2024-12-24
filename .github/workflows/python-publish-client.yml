@@ -152,8 +152,8 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
-          args: --manifest-path ./autonomi/Cargo.toml --out dist
-          working-directory: .
+          args: --manifest-path Cargo.toml --out dist
+          working-directory: ./autonomi
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
