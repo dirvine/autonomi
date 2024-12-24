@@ -162,29 +162,11 @@ jobs:
             fi
           done
           
-          # Create a new workspace Cargo.toml in the build directory
+          # Create a minimal workspace Cargo.toml in the build directory
           cat > build/Cargo.toml << EOL
           [workspace]
           resolver = "2"
-          members = [
-              "ant-bootstrap",
-              "ant-build-info",
-              "ant-cli",
-              "ant-evm",
-              "ant-logging",
-              "ant-metrics",
-              "ant-networking",
-              "ant-node",
-              "ant-node-manager",
-              "ant-node-rpc-client",
-              "ant-protocol",
-              "ant-registers",
-              "ant-service-management",
-              "ant-token-supplies",
-              "autonomi",
-              "evmlib",
-              "test-utils"
-          ]
+          members = ["ant-node"]
 
           [workspace.lints.rust]
           arithmetic_overflow = "forbid"
@@ -204,19 +186,13 @@ jobs:
           unused_async = "warn"
           unwrap_used = "warn"
 
-          [profile.dev]
-          debug = 0
-          strip = "debuginfo"
-
-          [workspace.metadata.release]
-          pre-release-commit-message = "chore(release): release commit, tags, deps and changelog updates"
-          publish = false
-          push = false
-          tag = false
-
           [workspace.dependencies]
           backtrace = "=0.3.71"
           EOL
+          
+          # Remove workspace references from the package's Cargo.toml
+          cd build/ant-node
+          sed -i '/^workspace/d' Cargo.toml
           
           # Update all dependency paths to be absolute
           find build -name "Cargo.toml" -exec sed -i "s|path = \"\.\./|path = \"/home/runner/work/autonomi/autonomi/build/|g" {} \;
@@ -226,6 +202,8 @@ jobs:
           ls -la build/
           echo "Contents of workspace Cargo.toml:"
           cat build/Cargo.toml
+          echo "Contents of ant-node Cargo.toml:"
+          cat build/ant-node/Cargo.toml
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
