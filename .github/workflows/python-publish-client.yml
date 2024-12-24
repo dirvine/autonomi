@@ -150,23 +150,53 @@ jobs:
       - uses: actions/checkout@v4
       - name: Prepare standalone package
         run: |
+          # Create build directory structure
           mkdir -p build/autonomi
           cp -r autonomi/* build/autonomi/
-          # Copy all possible workspace dependencies locally
+          
+          # First, copy all workspace members
           for dir in ant-* test-utils evmlib; do
             if [ -d "$dir" ]; then
+              echo "Copying $dir to build directory"
               cp -r "$dir" "build/$dir"
             fi
           done
-          # Remove workspace configuration and add empty workspace table
-          cd build/autonomi
-          sed -i '/^workspace/d' Cargo.toml
-          echo -e "\n[workspace]" >> Cargo.toml
-          # Update dependency paths to be relative to the build directory
-          find . -name "Cargo.toml" -exec sed -i 's|path = "\.\./|path = "../|g' {} \;
-          # Display copied directories for debugging
+          
+          # Create a new workspace Cargo.toml in the build directory
+          cat > build/Cargo.toml << EOL
+          [workspace]
+          members = [
+              "ant-bootstrap",
+              "ant-build-info",
+              "ant-cli",
+              "ant-evm",
+              "ant-logging",
+              "ant-metrics",
+              "ant-networking",
+              "ant-node",
+              "ant-node-manager",
+              "ant-node-rpc-client",
+              "ant-protocol",
+              "ant-registers",
+              "ant-service-management",
+              "ant-token-supplies",
+              "autonomi",
+              "evmlib",
+              "test-utils"
+          ]
+          
+          [workspace.dependencies]
+          backtrace = "=0.3.71"
+          EOL
+          
+          # Update all dependency paths to be absolute
+          find build -name "Cargo.toml" -exec sed -i "s|path = \"\.\./|path = \"/home/runner/work/autonomi/autonomi/build/|g" {} \;
+          
+          # Display directory structure for debugging
           echo "Contents of build directory:"
-          ls -la ../
+          ls -la build/
+          echo "Contents of workspace Cargo.toml:"
+          cat build/Cargo.toml
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
