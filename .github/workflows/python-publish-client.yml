@@ -84,11 +84,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: stable
-          components: rustfmt
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         env:
@@ -96,6 +91,9 @@ jobs:
         with:
           target: ${{ matrix.target }}
           manylinux: auto
+          before-script-linux: |
+            rustup default stable
+            rustup component add rustfmt
           args: --release --out dist -i python${{ matrix.python-version }}
           sccache: 'true'
           working-directory: ./autonomi
