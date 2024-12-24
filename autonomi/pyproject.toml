@@ -34,14 +34,16 @@ features = ["extension-module"]
 module-name = "autonomi_client"
 python-source = "python"
 bindings = "pyo3"
-include = [
-    "README_PYTHON.md",
-    "Cargo.toml",
-    "src/*",
-    "python/*",
-    "pyproject.toml",
-]
+include = ["README_PYTHON.md", "src/*", "python/*", "pyproject.toml"]
 manifest-path = "Cargo.toml"
+sdist-include = [
+    "README_PYTHON.md",
+    "src/**/*",
+    "python/**/*",
+    "pyproject.toml",
+    "Cargo.toml",
+]
+workspace = false
 
 [tool.pytest.ini_options]
 testpaths = ["tests/python"]

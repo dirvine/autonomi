@@ -148,17 +148,23 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - name: Copy workspace files
+        run: |
+          mkdir -p build/ant-node
+          cp -r ant-node/* build/ant-node/
+          cp Cargo.toml build/
+          cp Cargo.lock build/
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
           args: --out dist
-          working-directory: ./ant-node
+          working-directory: build/ant-node
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
           name: wheels
-          path: ./ant-node/dist/*.tar.gz
+          path: build/ant-node/dist/*.tar.gz
           if-no-files-found: error
 
   release:

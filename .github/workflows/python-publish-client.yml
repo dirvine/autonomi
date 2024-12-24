@@ -148,17 +148,23 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - name: Copy workspace files
+        run: |
+          mkdir -p build/autonomi
+          cp -r autonomi/* build/autonomi/
+          cp Cargo.toml build/
+          cp Cargo.lock build/
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
           args: --out dist
-          working-directory: ./autonomi
+          working-directory: build/autonomi
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
           name: wheels
-          path: ./autonomi/dist/*.tar.gz
+          path: build/autonomi/dist/*.tar.gz
           if-no-files-found: error
 
   release:
