@@ -148,12 +148,15 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Copy workspace files
+      - name: Prepare standalone package
         run: |
           mkdir -p build/ant-node
           cp -r ant-node/* build/ant-node/
-          cp Cargo.toml build/
-          cp Cargo.lock build/
+          # Create a standalone Cargo.toml without workspace
+          cd build/ant-node
+          sed -i 's|^workspace = .*|workspace = false|' Cargo.toml
+          # Update dependency paths to be absolute
+          find . -name "Cargo.toml" -exec sed -i 's|path = "\.\./|path = "/home/runner/work/autonomi/autonomi/|g' {} \;
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
