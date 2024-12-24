@@ -230,13 +230,13 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
-          args: --out dist
-          working-directory: build/ant-node
+          args: --out dist --manifest-path ../ant-node/Cargo.toml
+          working-directory: build
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
           name: wheels
-          path: build/ant-node/dist/*.tar.gz
+          path: build/dist/*.tar.gz
           if-no-files-found: error
 
   release:
