@@ -154,7 +154,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
-          args: --release --manifest-path ./ant-node/Cargo.toml --out dist
+          args: --manifest-path ./ant-node/Cargo.toml --out dist
           working-directory: .
       - name: Upload sdist
         uses: actions/upload-artifact@v4
