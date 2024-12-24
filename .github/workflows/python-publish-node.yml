@@ -95,7 +95,7 @@ jobs:
             rustup default stable
             rustup component add rustfmt
           args: --release --out dist -i python${{ matrix.python-version }}
-          sccache: 'true'
+          sccache: false
           working-directory: ./ant-node
       - name: Upload wheels
         uses: actions/upload-artifact@v4
@@ -131,7 +131,7 @@ jobs:
           target: ${{ matrix.target }}
           manylinux: musllinux_1_2
           args: --release --out dist -i python${{ matrix.python-version }}
-          sccache: 'true'
+          sccache: false
           working-directory: ./ant-node
       - name: Upload wheels
         uses: actions/upload-artifact@v4
@@ -150,28 +150,31 @@ jobs:
       - uses: actions/checkout@v4
       - name: Prepare standalone package
         run: |
-          # Create build directory structure
-          mkdir -p build/ant-node
-          cp -r ant-node/* build/ant-node/
+          # Create a completely isolated build environment
+          ISOLATED_DIR="/tmp/ant-node-build"
+          mkdir -p "$ISOLATED_DIR/ant-node"
+          mkdir -p "$ISOLATED_DIR/deps"
           
-          # First, copy all workspace members to a deps directory
-          mkdir -p build/deps
+          # Copy the main package
+          cp -r ant-node/* "$ISOLATED_DIR/ant-node/"
+          
+          # Copy dependencies
           for dir in ant-* test-utils evmlib autonomi; do
             if [ -d "$dir" ] && [ "$dir" != "ant-node" ]; then
               echo "Copying $dir to deps directory"
-              cp -r "$dir" "build/deps/$dir"
+              cp -r "$dir" "$ISOLATED_DIR/deps/$dir"
             fi
           done
           
           # Update the package's Cargo.toml to be standalone
-          cd build/ant-node
+          cd "$ISOLATED_DIR/ant-node"
           
-          # Remove workspace references
+          # Remove workspace references and add empty workspace table
           sed -i '/^workspace/d' Cargo.toml
+          echo -e "\n[workspace]\n" >> Cargo.toml
           
           # Add lints directly to the package
           cat >> Cargo.toml << EOL
-
           [lints.rust]
           arithmetic_overflow = "forbid"
           mutable_transmutes = "forbid"
@@ -197,17 +200,20 @@ jobs:
           # Display final Cargo.toml for debugging
           echo "Contents of ant-node Cargo.toml:"
           cat Cargo.toml
+          
+          # Create dist directory
+          mkdir -p dist
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
           command: sdist
           args: --out dist
-          working-directory: build/ant-node
+          working-directory: /tmp/ant-node-build/ant-node
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
           name: wheels
-          path: build/ant-node/dist/*.tar.gz
+          path: /tmp/ant-node-build/ant-node/dist/*.tar.gz
           if-no-files-found: error
 
   release:
