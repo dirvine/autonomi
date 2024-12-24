@@ -165,6 +165,7 @@ jobs:
           # Create a new workspace Cargo.toml in the build directory
           cat > build/Cargo.toml << EOL
           [workspace]
+          resolver = "2"
           members = [
               "ant-bootstrap",
               "ant-build-info",
@@ -184,7 +185,35 @@ jobs:
               "evmlib",
               "test-utils"
           ]
-          
+
+          [workspace.lints.rust]
+          arithmetic_overflow = "forbid"
+          mutable_transmutes = "forbid"
+          no_mangle_const_items = "forbid"
+          trivial_casts = "warn"
+          trivial_numeric_casts = "warn"
+          unsafe_code = "warn"
+          unknown_crate_types = "forbid"
+          unused_extern_crates = "warn"
+          unused_import_braces = "warn"
+
+          [workspace.lints.clippy]
+          clone_on_ref_ptr = "warn"
+          unicode_not_nfc = "warn"
+          uninlined_format_args = "warn"
+          unused_async = "warn"
+          unwrap_used = "warn"
+
+          [profile.dev]
+          debug = 0
+          strip = "debuginfo"
+
+          [workspace.metadata.release]
+          pre-release-commit-message = "chore(release): release commit, tags, deps and changelog updates"
+          publish = false
+          push = false
+          tag = false
+
           [workspace.dependencies]
           backtrace = "=0.3.71"
           EOL
