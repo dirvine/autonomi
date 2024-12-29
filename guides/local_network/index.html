@@ -1,115 +1,1349 @@
-<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Documentation for Autonomi - The Alternative Future of the Cloud"><meta name=author content="Autonomi Team"><link href=https://docs.autonomi.com/guides/local_network/ rel=canonical><link href=../../getting-started/quickstart/ rel=prev><link href=../local_development/ rel=next><link rel=icon href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.6.1, mkdocs-material-9.5.49"><title>Local Network - Autonomi Documentation</title><link rel=stylesheet href=../../assets/stylesheets/main.6f8fc17f.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.06af60db.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback"><style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style><link rel=stylesheet href=../../stylesheets/extra.css><script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script><script id=__analytics>function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script><script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=green data-md-color-accent=green> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#local-network-setup-guide class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../.. title="Autonomi Documentation" class="md-header__button md-logo" aria-label="Autonomi Documentation" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Autonomi Documentation </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Local Network </span> </div> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg> </label> <nav class=md-search__options aria-label=Search> <button type=reset class="md-search__icon md-icon" title=Clear aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg> </button> </nav> <div class=md-search__suggest data-md-component=search-suggest></div> </form> <div class=md-search__output> <div class=md-search__scrollwrap tabindex=0 data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list role=presentation></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <a href=https://github.com/dirvine/autonomi title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg> </div> <div class=md-source__repository> dirvine/autonomi </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <nav class=md-tabs aria-label=Tabs data-md-component=tabs> <div class=md-grid> <ul class=md-tabs__list> <li class=md-tabs__item> <a href=../.. class=md-tabs__link> Home </a> </li> <li class="md-tabs__item md-tabs__item--active"> <a href=../../getting-started/installation/ class=md-tabs__link> Getting Started </a> </li> <li class=md-tabs__item> <a href=../data_types/ class=md-tabs__link> Core Concepts </a> </li> <li class=md-tabs__item> <a href=../web_development/ class=md-tabs__link> Development Guides </a> </li> <li class=md-tabs__item> <a href=../../api/ class=md-tabs__link> API Reference </a> </li> <li class=md-tabs__item> <a href=../../libraries/self_encryption/ class=md-tabs__link> Libraries </a> </li> </ul> </div> </nav> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary md-nav--lifted" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../.. title="Autonomi Documentation" class="md-nav__button md-logo" aria-label="Autonomi Documentation" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg> </a> Autonomi Documentation </label> <div class=md-nav__source> <a href=https://github.com/dirvine/autonomi title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg> </div> <div class=md-source__repository> dirvine/autonomi </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> <span class=md-ellipsis> Home </span> </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_2 checked> <label class=md-nav__link for=__nav_2 id=__nav_2_label tabindex> <span class=md-ellipsis> Getting Started </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_2_label aria-expanded=true> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Getting Started </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../getting-started/installation/ class=md-nav__link> <span class=md-ellipsis> Installation </span> </a> </li> <li class=md-nav__item> <a href=../../getting-started/quickstart/ class=md-nav__link> <span class=md-ellipsis> Quick Start </span> </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> <span class=md-ellipsis> Local Network </span> <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> <span class=md-ellipsis> Local Network </span> </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#prerequisites class=md-nav__link> <span class=md-ellipsis> Prerequisites </span> </a> </li> <li class=md-nav__item> <a href=#quick-start class=md-nav__link> <span class=md-ellipsis> Quick Start </span> </a> </li> <li class=md-nav__item> <a href=#network-components class=md-nav__link> <span class=md-ellipsis> Network Components </span> </a> </li> <li class=md-nav__item> <a href=#testing-with-evm-networks class=md-nav__link> <span class=md-ellipsis> Testing with EVM Networks </span> </a> <nav class=md-nav aria-label="Testing with EVM Networks"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#pre-deployed-contracts class=md-nav__link> <span class=md-ellipsis> Pre-deployed Contracts </span> </a> </li> <li class=md-nav__item> <a href=#test-accounts class=md-nav__link> <span class=md-ellipsis> Test Accounts </span> </a> </li> <li class=md-nav__item> <a href=#rpc-endpoint class=md-nav__link> <span class=md-ellipsis> RPC Endpoint </span> </a> </li> <li class=md-nav__item> <a href=#interacting-with-the-network class=md-nav__link> <span class=md-ellipsis> Interacting with the Network </span> </a> <nav class=md-nav aria-label="Interacting with the Network"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#javascripttypescript class=md-nav__link> <span class=md-ellipsis> JavaScript/TypeScript </span> </a> </li> <li class=md-nav__item> <a href=#python class=md-nav__link> <span class=md-ellipsis> Python </span> </a> </li> <li class=md-nav__item> <a href=#rust class=md-nav__link> <span class=md-ellipsis> Rust </span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#environment-variables class=md-nav__link> <span class=md-ellipsis> Environment Variables </span> </a> </li> <li class=md-nav__item> <a href=#monitoring-and-debugging class=md-nav__link> <span class=md-ellipsis> Monitoring and Debugging </span> </a> <nav class=md-nav aria-label="Monitoring and Debugging"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#logging class=md-nav__link> <span class=md-ellipsis> Logging </span> </a> <nav class=md-nav aria-label=Logging> <ul class=md-nav__list> <li class=md-nav__item> <a href=#node-logs class=md-nav__link> <span class=md-ellipsis> Node Logs </span> </a> </li> <li class=md-nav__item> <a href=#log-levels class=md-nav__link> <span class=md-ellipsis> Log Levels </span> </a> </li> <li class=md-nav__item> <a href=#following-logs class=md-nav__link> <span class=md-ellipsis> Following Logs </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#debugging class=md-nav__link> <span class=md-ellipsis> Debugging </span> </a> <nav class=md-nav aria-label=Debugging> <ul class=md-nav__list> <li class=md-nav__item> <a href=#node-debugging class=md-nav__link> <span class=md-ellipsis> Node Debugging </span> </a> </li> <li class=md-nav__item> <a href=#network-monitoring class=md-nav__link> <span class=md-ellipsis> Network Monitoring </span> </a> </li> <li class=md-nav__item> <a href=#contract-debugging class=md-nav__link> <span class=md-ellipsis> Contract Debugging </span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#common-issues-and-solutions class=md-nav__link> <span class=md-ellipsis> Common Issues and Solutions </span> </a> <nav class=md-nav aria-label="Common Issues and Solutions"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#port-conflicts class=md-nav__link> <span class=md-ellipsis> Port Conflicts </span> </a> </li> <li class=md-nav__item> <a href=#build-issues class=md-nav__link> <span class=md-ellipsis> Build Issues </span> </a> </li> <li class=md-nav__item> <a href=#network-issues class=md-nav__link> <span class=md-ellipsis> Network Issues </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#advanced-usage class=md-nav__link> <span class=md-ellipsis> Advanced Usage </span> </a> <nav class=md-nav aria-label="Advanced Usage"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#custom-configuration class=md-nav__link> <span class=md-ellipsis> Custom Configuration </span> </a> </li> <li class=md-nav__item> <a href=#multiple-nodes class=md-nav__link> <span class=md-ellipsis> Multiple Nodes </span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../local_development/ class=md-nav__link> <span class=md-ellipsis> Local Development </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3 id=__nav_3_label tabindex=0> <span class=md-ellipsis> Core Concepts </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_3_label aria-expanded=false> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Core Concepts </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../data_types/ class=md-nav__link> <span class=md-ellipsis> Data Types </span> </a> </li> <li class=md-nav__item> <a href=../data_storage/ class=md-nav__link> <span class=md-ellipsis> Data Storage </span> </a> </li> <li class=md-nav__item> <a href=../client_modes/ class=md-nav__link> <span class=md-ellipsis> Client Modes </span> </a> </li> <li class=md-nav__item> <a href=../payments/ class=md-nav__link> <span class=md-ellipsis> Payments </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4 id=__nav_4_label tabindex=0> <span class=md-ellipsis> Development Guides </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_4_label aria-expanded=false> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Development Guides </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../web_development/ class=md-nav__link> <span class=md-ellipsis> Web Development </span> </a> </li> <li class=md-nav__item> <a href=../quantum_security/ class=md-nav__link> <span class=md-ellipsis> Quantum Security </span> </a> </li> <li class=md-nav__item> <a href=../error_handling/ class=md-nav__link> <span class=md-ellipsis> Error Handling </span> </a> </li> <li class=md-nav__item> <a href=../data_science/ class=md-nav__link> <span class=md-ellipsis> Data Science </span> </a> </li> <li class=md-nav__item> <a href=../rust_performance/ class=md-nav__link> <span class=md-ellipsis> Rust Performance </span> </a> </li> <li class=md-nav__item> <a href=../evm_integration/ class=md-nav__link> <span class=md-ellipsis> EVM Integration </span> </a> </li> <li class=md-nav__item> <a href=../testing_guide/ class=md-nav__link> <span class=md-ellipsis> Testing Guide </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5 id=__nav_5_label tabindex=0> <span class=md-ellipsis> API Reference </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_5_label aria-expanded=false> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> API Reference </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../api/ class=md-nav__link> <span class=md-ellipsis> Overview </span> </a> </li> <li class=md-nav__item> <a href=../../api/rust/README.md class=md-nav__link> <span class=md-ellipsis> Rust </span> </a> </li> <li class=md-nav__item> <a href=../../api/python/README.md class=md-nav__link> <span class=md-ellipsis> Python </span> </a> </li> <li class=md-nav__item> <a href=../../api/nodejs/README.md class=md-nav__link> <span class=md-ellipsis> TypeScript </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6 id=__nav_6_label tabindex=0> <span class=md-ellipsis> Libraries </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_6_label aria-expanded=false> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Libraries </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../libraries/self_encryption/ class=md-nav__link> <span class=md-ellipsis> Self-Encryption </span> </a> </li> <li class=md-nav__item> <a href=../../libraries/antnode/ class=md-nav__link> <span class=md-ellipsis> Antnode </span> </a> </li> <li class=md-nav__item> <a href=../../libraries/blsttc/ class=md-nav__link> <span class=md-ellipsis> BLS Threshold Cryptography </span> </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#prerequisites class=md-nav__link> <span class=md-ellipsis> Prerequisites </span> </a> </li> <li class=md-nav__item> <a href=#quick-start class=md-nav__link> <span class=md-ellipsis> Quick Start </span> </a> </li> <li class=md-nav__item> <a href=#network-components class=md-nav__link> <span class=md-ellipsis> Network Components </span> </a> </li> <li class=md-nav__item> <a href=#testing-with-evm-networks class=md-nav__link> <span class=md-ellipsis> Testing with EVM Networks </span> </a> <nav class=md-nav aria-label="Testing with EVM Networks"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#pre-deployed-contracts class=md-nav__link> <span class=md-ellipsis> Pre-deployed Contracts </span> </a> </li> <li class=md-nav__item> <a href=#test-accounts class=md-nav__link> <span class=md-ellipsis> Test Accounts </span> </a> </li> <li class=md-nav__item> <a href=#rpc-endpoint class=md-nav__link> <span class=md-ellipsis> RPC Endpoint </span> </a> </li> <li class=md-nav__item> <a href=#interacting-with-the-network class=md-nav__link> <span class=md-ellipsis> Interacting with the Network </span> </a> <nav class=md-nav aria-label="Interacting with the Network"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#javascripttypescript class=md-nav__link> <span class=md-ellipsis> JavaScript/TypeScript </span> </a> </li> <li class=md-nav__item> <a href=#python class=md-nav__link> <span class=md-ellipsis> Python </span> </a> </li> <li class=md-nav__item> <a href=#rust class=md-nav__link> <span class=md-ellipsis> Rust </span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#environment-variables class=md-nav__link> <span class=md-ellipsis> Environment Variables </span> </a> </li> <li class=md-nav__item> <a href=#monitoring-and-debugging class=md-nav__link> <span class=md-ellipsis> Monitoring and Debugging </span> </a> <nav class=md-nav aria-label="Monitoring and Debugging"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#logging class=md-nav__link> <span class=md-ellipsis> Logging </span> </a> <nav class=md-nav aria-label=Logging> <ul class=md-nav__list> <li class=md-nav__item> <a href=#node-logs class=md-nav__link> <span class=md-ellipsis> Node Logs </span> </a> </li> <li class=md-nav__item> <a href=#log-levels class=md-nav__link> <span class=md-ellipsis> Log Levels </span> </a> </li> <li class=md-nav__item> <a href=#following-logs class=md-nav__link> <span class=md-ellipsis> Following Logs </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#debugging class=md-nav__link> <span class=md-ellipsis> Debugging </span> </a> <nav class=md-nav aria-label=Debugging> <ul class=md-nav__list> <li class=md-nav__item> <a href=#node-debugging class=md-nav__link> <span class=md-ellipsis> Node Debugging </span> </a> </li> <li class=md-nav__item> <a href=#network-monitoring class=md-nav__link> <span class=md-ellipsis> Network Monitoring </span> </a> </li> <li class=md-nav__item> <a href=#contract-debugging class=md-nav__link> <span class=md-ellipsis> Contract Debugging </span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#common-issues-and-solutions class=md-nav__link> <span class=md-ellipsis> Common Issues and Solutions </span> </a> <nav class=md-nav aria-label="Common Issues and Solutions"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#port-conflicts class=md-nav__link> <span class=md-ellipsis> Port Conflicts </span> </a> </li> <li class=md-nav__item> <a href=#build-issues class=md-nav__link> <span class=md-ellipsis> Build Issues </span> </a> </li> <li class=md-nav__item> <a href=#network-issues class=md-nav__link> <span class=md-ellipsis> Network Issues </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#advanced-usage class=md-nav__link> <span class=md-ellipsis> Advanced Usage </span> </a> <nav class=md-nav aria-label="Advanced Usage"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#custom-configuration class=md-nav__link> <span class=md-ellipsis> Custom Configuration </span> </a> </li> <li class=md-nav__item> <a href=#multiple-nodes class=md-nav__link> <span class=md-ellipsis> Multiple Nodes </span> </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1 id=local-network-setup-guide>Local Network Setup Guide<a class=headerlink href=#local-network-setup-guide title="Permanent link">&para;</a></h1> <p>This guide explains how to set up and run a local Autonomi network for development and testing purposes.</p> <h2 id=prerequisites>Prerequisites<a class=headerlink href=#prerequisites title="Permanent link">&para;</a></h2> <ul> <li>Rust toolchain (with <code>cargo</code> installed)</li> <li>Git (for cloning the repository)</li> </ul> <p>That's it! Everything else needed will be built from source.</p> <h2 id=quick-start>Quick Start<a class=headerlink href=#quick-start title="Permanent link">&para;</a></h2> <ol> <li>Clone the repository:</li> </ol> <div class=highlight><pre><span></span><code>git<span class=w> </span>clone<span class=w> </span>https://github.com/dirvine/autonomi
-<span class=nb>cd</span><span class=w> </span>autonomi
-</code></pre></div> <ol> <li>Start the local network:</li> </ol> <div class=highlight><pre><span></span><code>./test-local.sh
-</code></pre></div> <p>This script will:</p> <ul> <li>Build all necessary components</li> <li>Start a local EVM testnet</li> <li>Start a local Autonomi node</li> <li>Set up the development environment</li> </ul> <h2 id=network-components>Network Components<a class=headerlink href=#network-components title="Permanent link">&para;</a></h2> <p>The local network consists of:</p> <ul> <li>An Autonomi node running in local mode</li> <li>A local EVM test network with pre-funded accounts</li> <li>Test wallets for development</li> </ul> <h2 id=testing-with-evm-networks>Testing with EVM Networks<a class=headerlink href=#testing-with-evm-networks title="Permanent link">&para;</a></h2> <p>The local EVM network provides a complete testing environment for blockchain interactions:</p> <h3 id=pre-deployed-contracts>Pre-deployed Contracts<a class=headerlink href=#pre-deployed-contracts title="Permanent link">&para;</a></h3> <p>The following contracts are automatically deployed:</p> <ul> <li>Payment Vault Contract (<code>PaymentVaultNoProxy</code>)</li> <li>Handles data storage payments</li> <li>Manages token approvals and transfers</li> <li>Verifies payment proofs</li> <li>Test Token Contract (<code>TestToken</code>)</li> <li>ERC20 token for testing payments</li> <li>Pre-minted supply for test accounts</li> <li>Automatic approval for test wallets</li> </ul> <h3 id=test-accounts>Test Accounts<a class=headerlink href=#test-accounts title="Permanent link">&para;</a></h3> <p>Several accounts are pre-funded and ready to use:</p> <div class=highlight><pre><span></span><code>Primary Test Account:
-Address: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
-Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-Balance: 10000 TEST tokens
 
-Secondary Test Account:
-Address: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
-Private Key: 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
-Balance: 1000 TEST tokens
-</code></pre></div> <h3 id=rpc-endpoint>RPC Endpoint<a class=headerlink href=#rpc-endpoint title="Permanent link">&para;</a></h3> <p>The local EVM network exposes an RPC endpoint at <code>http://localhost:8545</code> with:</p> <ul> <li>Full JSON-RPC API support</li> <li>WebSocket subscriptions</li> <li>Low block time (1 second)</li> <li>Zero gas costs</li> <li>Instant transaction confirmations</li> </ul> <h3 id=interacting-with-the-network>Interacting with the Network<a class=headerlink href=#interacting-with-the-network title="Permanent link">&para;</a></h3> <h4 id=javascripttypescript>JavaScript/TypeScript<a class=headerlink href=#javascripttypescript title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>ethers</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;ethers&#39;</span><span class=p>;</span>
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../client_modes/">
+      
+      
+        <link rel="next" href="../data_storage/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Local Network Setup - Autonomi Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
 
-<span class=c1>// Connect to local network</span>
-<span class=kd>const</span><span class=w> </span><span class=nx>provider</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=ow>new</span><span class=w> </span><span class=nx>ethers</span><span class=p>.</span><span class=nx>JsonRpcProvider</span><span class=p>(</span><span class=s1>&#39;http://localhost:8545&#39;</span><span class=p>);</span>
-<span class=kd>const</span><span class=w> </span><span class=nx>wallet</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=ow>new</span><span class=w> </span><span class=nx>ethers</span><span class=p>.</span><span class=nx>Wallet</span><span class=p>(</span><span class=nx>PRIVATE_KEY</span><span class=p>,</span><span class=w> </span><span class=nx>provider</span><span class=p>);</span>
 
-<span class=c1>// Get contract instances</span>
-<span class=kd>const</span><span class=w> </span><span class=nx>paymentVault</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=ow>new</span><span class=w> </span><span class=nx>ethers</span><span class=p>.</span><span class=nx>Contract</span><span class=p>(</span>
-<span class=w>  </span><span class=nx>PAYMENT_VAULT_ADDRESS</span><span class=p>,</span>
-<span class=w>  </span><span class=nx>PAYMENT_VAULT_ABI</span><span class=p>,</span>
-<span class=w>  </span><span class=nx>wallet</span>
-<span class=p>);</span>
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
-<span class=c1>// Interact with contracts</span>
-<span class=k>await</span><span class=w> </span><span class=nx>paymentVault</span><span class=p>.</span><span class=nx>getQuote</span><span class=p>([</span><span class=nx>metrics</span><span class=p>]);</span>
-<span class=k>await</span><span class=w> </span><span class=nx>paymentVault</span><span class=p>.</span><span class=nx>payForQuotes</span><span class=p>(</span><span class=nx>payments</span><span class=p>);</span>
-</code></pre></div> <h4 id=python>Python<a class=headerlink href=#python title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=kn>from</span> <span class=nn>web3</span> <span class=kn>import</span> <span class=n>Web3</span>
-<span class=kn>from</span> <span class=nn>eth_account</span> <span class=kn>import</span> <span class=n>Account</span>
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#local-network-setup-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
 
-<span class=c1># Connect to local network</span>
-<span class=n>w3</span> <span class=o>=</span> <span class=n>Web3</span><span class=p>(</span><span class=n>Web3</span><span class=o>.</span><span class=n>HTTPProvider</span><span class=p>(</span><span class=s1>&#39;http://localhost:8545&#39;</span><span class=p>))</span>
-<span class=n>account</span> <span class=o>=</span> <span class=n>Account</span><span class=o>.</span><span class=n>from_key</span><span class=p>(</span><span class=n>PRIVATE_KEY</span><span class=p>)</span>
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Autonomi Documentation" class="md-header__button md-logo" aria-label="Autonomi Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
-<span class=c1># Get contract instances</span>
-<span class=n>payment_vault</span> <span class=o>=</span> <span class=n>w3</span><span class=o>.</span><span class=n>eth</span><span class=o>.</span><span class=n>contract</span><span class=p>(</span>
-    <span class=n>address</span><span class=o>=</span><span class=n>PAYMENT_VAULT_ADDRESS</span><span class=p>,</span>
-    <span class=n>abi</span><span class=o>=</span><span class=n>PAYMENT_VAULT_ABI</span>
-<span class=p>)</span>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Autonomi Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Local Network Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
 
-<span class=c1># Interact with contracts</span>
-<span class=n>payment_vault</span><span class=o>.</span><span class=n>functions</span><span class=o>.</span><span class=n>getQuote</span><span class=p>([</span><span class=n>metrics</span><span class=p>])</span><span class=o>.</span><span class=n>call</span><span class=p>()</span>
-<span class=n>payment_vault</span><span class=o>.</span><span class=n>functions</span><span class=o>.</span><span class=n>payForQuotes</span><span class=p>(</span><span class=n>payments</span><span class=p>)</span><span class=o>.</span><span class=n>transact</span><span class=p>()</span>
-</code></pre></div> <h4 id=rust>Rust<a class=headerlink href=#rust title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=k>use</span><span class=w> </span><span class=n>ethers</span><span class=p>::</span><span class=n>prelude</span><span class=p>::</span><span class=o>*</span><span class=p>;</span>
+      </a>
+    </li>
+  
 
-<span class=c1>// Connect to local network</span>
-<span class=kd>let</span><span class=w> </span><span class=n>provider</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>Provider</span><span class=p>::</span><span class=o>&lt;</span><span class=n>Http</span><span class=o>&gt;</span><span class=p>::</span><span class=n>try_from</span><span class=p>(</span><span class=s>&quot;http://localhost:8545&quot;</span><span class=p>)</span><span class=o>?</span><span class=p>;</span>
-<span class=kd>let</span><span class=w> </span><span class=n>wallet</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>LocalWallet</span><span class=p>::</span><span class=n>from_bytes</span><span class=p>(</span><span class=o>&amp;</span><span class=n>PRIVATE_KEY</span><span class=p>)</span><span class=o>?</span><span class=p>;</span>
-<span class=kd>let</span><span class=w> </span><span class=n>client</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>SignerMiddleware</span><span class=p>::</span><span class=n>new</span><span class=p>(</span><span class=n>provider</span><span class=p>,</span><span class=w> </span><span class=n>wallet</span><span class=p>);</span>
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../data_types/" class="md-tabs__link">
+          
+  
+    
+  
+  Core Concepts
 
-<span class=c1>// Get contract instances</span>
-<span class=kd>let</span><span class=w> </span><span class=n>payment_vault</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>PaymentVault</span><span class=p>::</span><span class=n>new</span><span class=p>(</span>
-<span class=w>    </span><span class=n>PAYMENT_VAULT_ADDRESS</span><span class=p>,</span>
-<span class=w>    </span><span class=n>Arc</span><span class=p>::</span><span class=n>new</span><span class=p>(</span><span class=n>client</span><span class=p>)</span>
-<span class=p>);</span>
+        </a>
+      </li>
+    
+  
 
-<span class=c1>// Interact with contracts</span>
-<span class=n>payment_vault</span><span class=p>.</span><span class=n>get_quote</span><span class=p>(</span><span class=n>metrics</span><span class=p>).</span><span class=n>call</span><span class=p>().</span><span class=k>await</span><span class=o>?</span><span class=p>;</span>
-<span class=n>payment_vault</span><span class=p>.</span><span class=n>pay_for_quotes</span><span class=p>(</span><span class=n>payments</span><span class=p>).</span><span class=n>send</span><span class=p>().</span><span class=k>await</span><span class=o>?</span><span class=p>;</span>
-</code></pre></div> <h2 id=environment-variables>Environment Variables<a class=headerlink href=#environment-variables title="Permanent link">&para;</a></h2> <p>The following environment variables are set up automatically:</p> <ul> <li><code>ANT_PEERS</code> - Local node endpoint</li> <li><code>ANT_LOG</code> - Logging level</li> <li><code>CLIENT_DATA_PATH</code> - Client data directory</li> </ul> <h2 id=monitoring-and-debugging>Monitoring and Debugging<a class=headerlink href=#monitoring-and-debugging title="Permanent link">&para;</a></h2> <h3 id=logging>Logging<a class=headerlink href=#logging title="Permanent link">&para;</a></h3> <h4 id=node-logs>Node Logs<a class=headerlink href=#node-logs title="Permanent link">&para;</a></h4> <p>The Autonomi node generates detailed logs that can be controlled via <code>RUST_LOG</code>:</p> <div class=highlight><pre><span></span><code><span class=c1># Trace level for maximum detail</span>
-<span class=nv>RUST_LOG</span><span class=o>=</span>trace<span class=w> </span>./test-local.sh
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  Developer Guides
 
-<span class=c1># Focus on specific modules</span>
-<span class=nv>RUST_LOG</span><span class=o>=</span><span class=nv>autonomi</span><span class=o>=</span>debug,ant_node<span class=o>=</span>trace<span class=w> </span>./test-local.sh
+        </a>
+      </li>
+    
+  
 
-<span class=c1># Log locations:</span>
--<span class=w> </span>Node<span class=w> </span>logs:<span class=w> </span><span class=nv>$NODE_DATA_DIR</span>/node.log
--<span class=w> </span>EVM<span class=w> </span>logs:<span class=w> </span><span class=nv>$NODE_DATA_DIR</span>/evm.log
-</code></pre></div> <h4 id=log-levels>Log Levels<a class=headerlink href=#log-levels title="Permanent link">&para;</a></h4> <ul> <li><code>error</code>: Critical issues that need immediate attention</li> <li><code>warn</code>: Important events that aren't failures</li> <li><code>info</code>: General operational information</li> <li><code>debug</code>: Detailed information for debugging</li> <li><code>trace</code>: Very detailed protocol-level information</li> </ul> <h4 id=following-logs>Following Logs<a class=headerlink href=#following-logs title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Follow node logs</span>
-tail<span class=w> </span>-f<span class=w> </span><span class=s2>&quot;</span><span class=nv>$NODE_DATA_DIR</span><span class=s2>/node.log&quot;</span>
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+    
+  
+  API Reference
 
-<span class=c1># Follow EVM logs</span>
-tail<span class=w> </span>-f<span class=w> </span><span class=s2>&quot;</span><span class=nv>$NODE_DATA_DIR</span><span class=s2>/evm.log&quot;</span>
+        </a>
+      </li>
+    
+  
 
-<span class=c1># Filter for specific events</span>
-tail<span class=w> </span>-f<span class=w> </span><span class=s2>&quot;</span><span class=nv>$NODE_DATA_DIR</span><span class=s2>/node.log&quot;</span><span class=w> </span><span class=p>|</span><span class=w> </span>grep<span class=w> </span><span class=s2>&quot;payment&quot;</span>
-</code></pre></div> <h3 id=debugging>Debugging<a class=headerlink href=#debugging title="Permanent link">&para;</a></h3> <h4 id=node-debugging>Node Debugging<a class=headerlink href=#node-debugging title="Permanent link">&para;</a></h4> <p>Using <code>rust-lldb</code>:</p> <div class=highlight><pre><span></span><code><span class=c1># Start node with debugger</span>
-rust-lldb<span class=w> </span>target/debug/antnode<span class=w> </span>--<span class=w> </span>--features<span class=w> </span><span class=nb>test</span>
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
 
-<span class=c1># Common commands:</span>
-b<span class=w> </span>autonomi::client::payment::pay<span class=w>  </span><span class=c1># Set breakpoint</span>
-r<span class=w>                                </span><span class=c1># Run</span>
-bt<span class=w>                              </span><span class=c1># Backtrace</span>
-p<span class=w> </span>variable<span class=w>                      </span><span class=c1># Print variable</span>
-c<span class=w>                              </span><span class=c1># Continue</span>
-</code></pre></div> <p>Using <code>rust-gdb</code>:</p> <div class=highlight><pre><span></span><code><span class=c1># Start node with debugger</span>
-rust-gdb<span class=w> </span>target/debug/antnode<span class=w> </span>--<span class=w> </span>--features<span class=w> </span><span class=nb>test</span>
 
-<span class=c1># Common commands:</span>
-<span class=k>break</span><span class=w> </span>autonomi::client::payment::pay<span class=w>  </span><span class=c1># Set breakpoint</span>
-run<span class=w>                                  </span><span class=c1># Run</span>
-backtrace<span class=w>                           </span><span class=c1># Show backtrace</span>
-print<span class=w> </span>variable<span class=w>                      </span><span class=c1># Examine variable</span>
-<span class=k>continue</span><span class=w>                            </span><span class=c1># Continue execution</span>
-</code></pre></div> <h4 id=network-monitoring>Network Monitoring<a class=headerlink href=#network-monitoring title="Permanent link">&para;</a></h4> <p>Monitor network activity:</p> <div class=highlight><pre><span></span><code><span class=c1># Watch network connections</span>
-netstat<span class=w> </span>-an<span class=w> </span><span class=p>|</span><span class=w> </span>grep<span class=w> </span><span class=m>5000</span><span class=w>  </span><span class=c1># Default node port</span>
+  
 
-<span class=c1># Monitor network traffic</span>
-sudo<span class=w> </span>tcpdump<span class=w> </span>-i<span class=w> </span>lo0<span class=w> </span>port<span class=w> </span><span class=m>5000</span>
 
-<span class=c1># Check EVM network</span>
-curl<span class=w> </span>-X<span class=w> </span>POST<span class=w> </span>-H<span class=w> </span><span class=s2>&quot;Content-Type: application/json&quot;</span><span class=w> </span><span class=se>\</span>
-<span class=w>  </span>--data<span class=w> </span><span class=s1>&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;eth_blockNumber&quot;,&quot;params&quot;:[],&quot;id&quot;:1}&#39;</span><span class=w> </span><span class=se>\</span>
-<span class=w>  </span>http://localhost:8545
-</code></pre></div> <h4 id=contract-debugging>Contract Debugging<a class=headerlink href=#contract-debugging title="Permanent link">&para;</a></h4> <p>Debug contract interactions:</p> <div class=highlight><pre><span></span><code><span class=c1># Get payment vault state</span>
-cast<span class=w> </span>call<span class=w> </span><span class=nv>$PAYMENT_VAULT_ADDRESS</span><span class=w> </span><span class=se>\</span>
-<span class=w>  </span><span class=s2>&quot;payments(bytes32)&quot;</span><span class=w> </span><span class=se>\</span>
-<span class=w>  </span><span class=nv>$QUOTE_HASH</span><span class=w> </span><span class=se>\</span>
-<span class=w>  </span>--rpc-url<span class=w> </span>http://localhost:8545
+  
 
-<span class=c1># Watch for payment events</span>
-cast<span class=w> </span>events<span class=w> </span><span class=nv>$PAYMENT_VAULT_ADDRESS</span><span class=w> </span><span class=se>\</span>
-<span class=w>  </span>--rpc-url<span class=w> </span>http://localhost:8545
-</code></pre></div> <h2 id=common-issues-and-solutions>Common Issues and Solutions<a class=headerlink href=#common-issues-and-solutions title="Permanent link">&para;</a></h2> <h3 id=port-conflicts>Port Conflicts<a class=headerlink href=#port-conflicts title="Permanent link">&para;</a></h3> <p>If you see port-in-use errors:</p> <ol> <li>Check if another instance is running</li> <li>Use different ports in the script</li> <li>Kill existing processes if needed</li> </ol> <h3 id=build-issues>Build Issues<a class=headerlink href=#build-issues title="Permanent link">&para;</a></h3> <ol> <li>Make sure Rust toolchain is up to date</li> <li>Clean and rebuild: <code>cargo clean &amp;&amp; cargo build</code></li> <li>Check for missing dependencies</li> </ol> <h3 id=network-issues>Network Issues<a class=headerlink href=#network-issues title="Permanent link">&para;</a></h3> <ol> <li>Verify the node is running</li> <li>Check log output for errors</li> <li>Ensure EVM testnet is accessible</li> </ol> <h2 id=advanced-usage>Advanced Usage<a class=headerlink href=#advanced-usage title="Permanent link">&para;</a></h2> <h3 id=custom-configuration>Custom Configuration<a class=headerlink href=#custom-configuration title="Permanent link">&para;</a></h3> <p>You can modify the test script to:</p> <ul> <li>Change ports</li> <li>Adjust logging levels</li> <li>Configure node parameters</li> </ul> <h3 id=multiple-nodes>Multiple Nodes<a class=headerlink href=#multiple-nodes title="Permanent link">&para;</a></h3> <p>To run multiple nodes:</p> <ol> <li>Copy the script</li> <li>Modify ports and directories</li> <li>Run each instance separately</li> </ol> <aside class=md-source-file> <span class=md-source-file__fact> <span class=md-icon title="Last update"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg> </span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 29, 2024</span> </span> </aside> </article> </div> <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script> </div> <button type=button class="md-top md-icon" data-md-component=top hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg> Back to top </button> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-copyright> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> <div class=md-social> <a href=https://github.com/dirvine/autonomi target=_blank rel=noopener title=github.com class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg> </a> <a href=https://discord.gg/autonomi target=_blank rel=noopener title=discord.gg class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 640 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"/></svg> </a> <a href=https://twitter.com/autonomi target=_blank rel=noopener title=twitter.com class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 512 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg> </a> <a href=https://linkedin.com/company/autonomi target=_blank rel=noopener title=linkedin.com class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg> </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <div class=md-consent data-md-component=consent id=__consent hidden> <div class=md-consent__overlay></div> <aside class=md-consent__inner> <form class="md-consent__form md-grid md-typeset" name=consent> <h4>Cookie consent</h4> <p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better. </p> <input class=md-toggle type=checkbox id=__settings> <div class=md-consent__settings> <ul class=task-list> <li class=task-list-item> <label class=task-list-control> <input type=checkbox name=analytics checked> <span class=task-list-indicator></span> Google Analytics </label> </li> <li class=task-list-item> <label class=task-list-control> <input type=checkbox name=github checked> <span class=task-list-indicator></span> GitHub </label> </li> </ul> </div> <div class=md-consent__controls> <button class="md-button md-button--primary">Accept</button> <label class=md-button for=__settings>Manage settings</label> </div> </form> </aside> </div> <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script> <script id=__config type=application/json>{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script> <script src=../../assets/javascripts/bundle.88dd0f4e.min.js></script> </body> </html>
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Autonomi Documentation" class="md-nav__button md-logo" aria-label="Autonomi Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Autonomi Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Core Concepts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Core Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client_modes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Client Modes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Developer Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Local Network Setup
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Local Network Setup
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-with-evm-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing with EVM Networks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing with EVM Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-deployed-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-deployed Contracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Accounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpc-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      RPC Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interacting-with-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interacting with the Network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interacting with the Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#javascripttypescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      JavaScript/TypeScript
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rust
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Node Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Levels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#following-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Following Logs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Node Debugging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contract-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contract Debugging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues and Solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Conflicts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple Nodes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_storage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Storage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../api/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/nodejs/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Node.js
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/python/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rust/README.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rust
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="local-network-setup-guide">Local Network Setup Guide</h1>
+<p>This guide explains how to set up and run a local Autonomi network for development and testing purposes.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Rust toolchain (with <code>cargo</code> installed)</li>
+<li>Git (for cloning the repository)</li>
+</ul>
+<p>That's it! Everything else needed will be built from source.</p>
+<h2 id="quick-start">Quick Start</h2>
+<ol>
+<li>Clone the repository:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/dirvine/autonomi
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>autonomi
+</code></pre></div>
+<ol>
+<li>Start the local network:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./test-local.sh
+</code></pre></div>
+<p>This script will:</p>
+<ul>
+<li>Build all necessary components</li>
+<li>Start a local EVM testnet</li>
+<li>Start a local Autonomi node</li>
+<li>Set up the development environment</li>
+</ul>
+<h2 id="network-components">Network Components</h2>
+<p>The local network consists of:</p>
+<ul>
+<li>An Autonomi node running in local mode</li>
+<li>A local EVM test network with pre-funded accounts</li>
+<li>Test wallets for development</li>
+</ul>
+<h2 id="testing-with-evm-networks">Testing with EVM Networks</h2>
+<p>The local EVM network provides a complete testing environment for blockchain interactions:</p>
+<h3 id="pre-deployed-contracts">Pre-deployed Contracts</h3>
+<p>The following contracts are automatically deployed:</p>
+<ul>
+<li>Payment Vault Contract (<code>PaymentVaultNoProxy</code>)</li>
+<li>Handles data storage payments</li>
+<li>Manages token approvals and transfers</li>
+<li>Verifies payment proofs</li>
+<li>Test Token Contract (<code>TestToken</code>)</li>
+<li>ERC20 token for testing payments</li>
+<li>Pre-minted supply for test accounts</li>
+<li>Automatic approval for test wallets</li>
+</ul>
+<h3 id="test-accounts">Test Accounts</h3>
+<p>Several accounts are pre-funded and ready to use:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Primary Test Account:
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Address: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Balance: 10000 TEST tokens
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Secondary Test Account:
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Address: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>Private Key: 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>Balance: 1000 TEST tokens
+</code></pre></div>
+<h3 id="rpc-endpoint">RPC Endpoint</h3>
+<p>The local EVM network exposes an RPC endpoint at <code>http://localhost:8545</code> with:</p>
+<ul>
+<li>Full JSON-RPC API support</li>
+<li>WebSocket subscriptions</li>
+<li>Low block time (1 second)</li>
+<li>Zero gas costs</li>
+<li>Instant transaction confirmations</li>
+</ul>
+<h3 id="interacting-with-the-network">Interacting with the Network</h3>
+<h4 id="javascripttypescript">JavaScript/TypeScript</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ethers</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">// Connect to local network</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="s1">&#39;http://localhost:8545&#39;</span><span class="p">);</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kd">const</span><span class="w"> </span><span class="nx">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">PRIVATE_KEY</span><span class="p">,</span><span class="w"> </span><span class="nx">provider</span><span class="p">);</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1">// Get contract instances</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">paymentVault</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nx">PAYMENT_VAULT_ADDRESS</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nx">PAYMENT_VAULT_ABI</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nx">wallet</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">);</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="c1">// Interact with contracts</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">await</span><span class="w"> </span><span class="nx">paymentVault</span><span class="p">.</span><span class="nx">getQuote</span><span class="p">([</span><span class="nx">metrics</span><span class="p">]);</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">await</span><span class="w"> </span><span class="nx">paymentVault</span><span class="p">.</span><span class="nx">payForQuotes</span><span class="p">(</span><span class="nx">payments</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="python">Python</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">web3</span> <span class="kn">import</span> <span class="n">Web3</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span> <span class="nn">eth_account</span> <span class="kn">import</span> <span class="n">Account</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Connect to local network</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">w3</span> <span class="o">=</span> <span class="n">Web3</span><span class="p">(</span><span class="n">Web3</span><span class="o">.</span><span class="n">HTTPProvider</span><span class="p">(</span><span class="s1">&#39;http://localhost:8545&#39;</span><span class="p">))</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">account</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_key</span><span class="p">(</span><span class="n">PRIVATE_KEY</span><span class="p">)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># Get contract instances</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">payment_vault</span> <span class="o">=</span> <span class="n">w3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">contract</span><span class="p">(</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">address</span><span class="o">=</span><span class="n">PAYMENT_VAULT_ADDRESS</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">abi</span><span class="o">=</span><span class="n">PAYMENT_VAULT_ABI</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="c1"># Interact with contracts</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="n">payment_vault</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">getQuote</span><span class="p">([</span><span class="n">metrics</span><span class="p">])</span><span class="o">.</span><span class="n">call</span><span class="p">()</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="n">payment_vault</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">payForQuotes</span><span class="p">(</span><span class="n">payments</span><span class="p">)</span><span class="o">.</span><span class="n">transact</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="rust">Rust</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span><span class="w"> </span><span class="n">ethers</span><span class="p">::</span><span class="n">prelude</span><span class="p">::</span><span class="o">*</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">// Connect to local network</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="kd">let</span><span class="w"> </span><span class="n">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Provider</span><span class="p">::</span><span class="o">&lt;</span><span class="n">Http</span><span class="o">&gt;</span><span class="p">::</span><span class="n">try_from</span><span class="p">(</span><span class="s">&quot;http://localhost:8545&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kd">let</span><span class="w"> </span><span class="n">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalWallet</span><span class="p">::</span><span class="n">from_bytes</span><span class="p">(</span><span class="o">&amp;</span><span class="n">PRIVATE_KEY</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kd">let</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SignerMiddleware</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span><span class="w"> </span><span class="n">wallet</span><span class="p">);</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1">// Get contract instances</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="kd">let</span><span class="w"> </span><span class="n">payment_vault</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaymentVault</span><span class="p">::</span><span class="n">new</span><span class="p">(</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="n">PAYMENT_VAULT_ADDRESS</span><span class="p">,</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="n">Arc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">);</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1">// Interact with contracts</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="n">payment_vault</span><span class="p">.</span><span class="n">get_quote</span><span class="p">(</span><span class="n">metrics</span><span class="p">).</span><span class="n">call</span><span class="p">().</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="n">payment_vault</span><span class="p">.</span><span class="n">pay_for_quotes</span><span class="p">(</span><span class="n">payments</span><span class="p">).</span><span class="n">send</span><span class="p">().</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>The following environment variables are set up automatically:</p>
+<ul>
+<li><code>ANT_PEERS</code> - Local node endpoint</li>
+<li><code>ANT_LOG</code> - Logging level</li>
+<li><code>CLIENT_DATA_PATH</code> - Client data directory</li>
+</ul>
+<h2 id="monitoring-and-debugging">Monitoring and Debugging</h2>
+<h3 id="logging">Logging</h3>
+<h4 id="node-logs">Node Logs</h4>
+<p>The Autonomi node generates detailed logs that can be controlled via <code>RUST_LOG</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Trace level for maximum detail</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nv">RUST_LOG</span><span class="o">=</span>trace<span class="w"> </span>./test-local.sh
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Focus on specific modules</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nv">RUST_LOG</span><span class="o">=</span><span class="nv">autonomi</span><span class="o">=</span>debug,ant_node<span class="o">=</span>trace<span class="w"> </span>./test-local.sh
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Log locations:</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>-<span class="w"> </span>Node<span class="w"> </span>logs:<span class="w"> </span><span class="nv">$NODE_DATA_DIR</span>/node.log
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>-<span class="w"> </span>EVM<span class="w"> </span>logs:<span class="w"> </span><span class="nv">$NODE_DATA_DIR</span>/evm.log
+</code></pre></div>
+<h4 id="log-levels">Log Levels</h4>
+<ul>
+<li><code>error</code>: Critical issues that need immediate attention</li>
+<li><code>warn</code>: Important events that aren't failures</li>
+<li><code>info</code>: General operational information</li>
+<li><code>debug</code>: Detailed information for debugging</li>
+<li><code>trace</code>: Very detailed protocol-level information</li>
+</ul>
+<h4 id="following-logs">Following Logs</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Follow node logs</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>tail<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NODE_DATA_DIR</span><span class="s2">/node.log&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Follow EVM logs</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>tail<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NODE_DATA_DIR</span><span class="s2">/evm.log&quot;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Filter for specific events</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>tail<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$NODE_DATA_DIR</span><span class="s2">/node.log&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;payment&quot;</span>
+</code></pre></div>
+<h3 id="debugging">Debugging</h3>
+<h4 id="node-debugging">Node Debugging</h4>
+<p>Using <code>rust-lldb</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Start node with debugger</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>rust-lldb<span class="w"> </span>target/debug/antnode<span class="w"> </span>--<span class="w"> </span>--features<span class="w"> </span><span class="nb">test</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Common commands:</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>b<span class="w"> </span>autonomi::client::payment::pay<span class="w">  </span><span class="c1"># Set breakpoint</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>r<span class="w">                                </span><span class="c1"># Run</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>bt<span class="w">                              </span><span class="c1"># Backtrace</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>p<span class="w"> </span>variable<span class="w">                      </span><span class="c1"># Print variable</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>c<span class="w">                              </span><span class="c1"># Continue</span>
+</code></pre></div>
+<p>Using <code>rust-gdb</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Start node with debugger</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>rust-gdb<span class="w"> </span>target/debug/antnode<span class="w"> </span>--<span class="w"> </span>--features<span class="w"> </span><span class="nb">test</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Common commands:</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">break</span><span class="w"> </span>autonomi::client::payment::pay<span class="w">  </span><span class="c1"># Set breakpoint</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>run<span class="w">                                  </span><span class="c1"># Run</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>backtrace<span class="w">                           </span><span class="c1"># Show backtrace</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>print<span class="w"> </span>variable<span class="w">                      </span><span class="c1"># Examine variable</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="k">continue</span><span class="w">                            </span><span class="c1"># Continue execution</span>
+</code></pre></div>
+<h4 id="network-monitoring">Network Monitoring</h4>
+<p>Monitor network activity:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Watch network connections</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>netstat<span class="w"> </span>-an<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">5000</span><span class="w">  </span><span class="c1"># Default node port</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Monitor network traffic</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>sudo<span class="w"> </span>tcpdump<span class="w"> </span>-i<span class="w"> </span>lo0<span class="w"> </span>port<span class="w"> </span><span class="m">5000</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Check EVM network</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;eth_blockNumber&quot;,&quot;params&quot;:[],&quot;id&quot;:1}&#39;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">  </span>http://localhost:8545
+</code></pre></div>
+<h4 id="contract-debugging">Contract Debugging</h4>
+<p>Debug contract interactions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Get payment vault state</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>cast<span class="w"> </span>call<span class="w"> </span><span class="nv">$PAYMENT_VAULT_ADDRESS</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="s2">&quot;payments(bytes32)&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="nv">$QUOTE_HASH</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span>--rpc-url<span class="w"> </span>http://localhost:8545
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Watch for payment events</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>cast<span class="w"> </span>events<span class="w"> </span><span class="nv">$PAYMENT_VAULT_ADDRESS</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span>--rpc-url<span class="w"> </span>http://localhost:8545
+</code></pre></div>
+<h2 id="common-issues-and-solutions">Common Issues and Solutions</h2>
+<h3 id="port-conflicts">Port Conflicts</h3>
+<p>If you see port-in-use errors:</p>
+<ol>
+<li>Check if another instance is running</li>
+<li>Use different ports in the script</li>
+<li>Kill existing processes if needed</li>
+</ol>
+<h3 id="build-issues">Build Issues</h3>
+<ol>
+<li>Make sure Rust toolchain is up to date</li>
+<li>Clean and rebuild: <code>cargo clean &amp;&amp; cargo build</code></li>
+<li>Check for missing dependencies</li>
+</ol>
+<h3 id="network-issues">Network Issues</h3>
+<ol>
+<li>Verify the node is running</li>
+<li>Check log output for errors</li>
+<li>Ensure EVM testnet is accessible</li>
+</ol>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="custom-configuration">Custom Configuration</h3>
+<p>You can modify the test script to:</p>
+<ul>
+<li>Change ports</li>
+<li>Adjust logging levels</li>
+<li>Configure node parameters</li>
+</ul>
+<h3 id="multiple-nodes">Multiple Nodes</h3>
+<p>To run multiple nodes:</p>
+<ol>
+<li>Copy the script</li>
+<li>Modify ports and directories</li>
+<li>Run each instance separately</li>
+</ol>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 29, 2024</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 29, 2024</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

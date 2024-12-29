@@ -11,19 +11,19 @@
       
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
-        <title>Autonomi Documentation</title>
+        <title>Pointer Data Type Design Document - Autonomi Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.6f8fc17f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +67,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#pointer-data-type-design-document" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -77,7 +82,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Autonomi Documentation" class="md-header__button md-logo" aria-label="Autonomi Documentation" data-md-component="logo">
+    <a href=".." title="Autonomi Documentation" class="md-header__button md-logo" aria-label="Autonomi Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -97,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Pointer Data Type Design Document
             
           </span>
         </div>
@@ -194,7 +199,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/." class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         
   
     
@@ -213,7 +218,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/guides/data_types/" class="md-tabs__link">
+        <a href="../guides/data_types/" class="md-tabs__link">
           
   
     
@@ -233,7 +238,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/guides/local_network/" class="md-tabs__link">
+        <a href="../guides/local_network/" class="md-tabs__link">
           
   
     
@@ -253,7 +258,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/api/" class="md-tabs__link">
+        <a href="../api/" class="md-tabs__link">
           
   
     
@@ -290,7 +295,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Autonomi Documentation" class="md-nav__button md-logo" aria-label="Autonomi Documentation" data-md-component="logo">
+    <a href=".." title="Autonomi Documentation" class="md-nav__button md-logo" aria-label="Autonomi Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -308,7 +313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -376,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guides/data_types/" class="md-nav__link">
+      <a href="../guides/data_types/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -397,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guides/client_modes/" class="md-nav__link">
+      <a href="../guides/client_modes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -473,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guides/local_network/" class="md-nav__link">
+      <a href="../guides/local_network/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -494,7 +499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/guides/data_storage/" class="md-nav__link">
+      <a href="../guides/data_storage/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -553,7 +558,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="/api/" class="md-nav__link ">
+            <a href="../api/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -586,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/nodejs/README.md" class="md-nav__link">
+      <a href="../api/nodejs/README.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -607,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/python/README.md" class="md-nav__link">
+      <a href="../api/python/README.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -628,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/api/rust/README.md" class="md-nav__link">
+      <a href="../api/rust/README.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -661,8 +666,139 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+<h1 id="pointer-data-type-design-document">Pointer Data Type Design Document</h1>
+<h2 id="overview">Overview</h2>
+<p>The <code>Pointer</code> data type is designed to represent a reference to a <code>LinkedList</code> in the system. It will include metadata such as the owner, a counter, and a signature to ensure data integrity and authenticity.</p>
+<h2 id="structure">Structure</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Pointer</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">owner</span><span class="p">:</span><span class="w"> </span><span class="nc">PubKey</span><span class="p">,</span><span class="w"> </span><span class="c1">// This is the address of this data type</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">counter</span><span class="p">:</span><span class="w"> </span><span class="nc">U32</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">target</span><span class="p">:</span><span class="w"> </span><span class="nc">PointerTarget</span><span class="p">,</span><span class="w"> </span><span class="c1">// Can be PointerAddress, LinkedListAddress, ChunksAddress, or ScratchpadAddress</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">signature</span><span class="p">:</span><span class="w"> </span><span class="nc">Sig</span><span class="p">,</span><span class="w"> </span><span class="c1">// Signature of counter and pointer (and target)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="pointer-target">Pointer Target</h2>
+<p>The <code>PointerTarget</code> enum will define the possible target types for a <code>Pointer</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">enum</span><span class="w"> </span><span class="nc">PointerTarget</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">PointerAddress</span><span class="p">(</span><span class="n">PointerAddress</span><span class="p">),</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">LinkedListAddress</span><span class="p">(</span><span class="n">LinkedListAddress</span><span class="p">),</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">ChunkAddress</span><span class="p">(</span><span class="n">ChunkAddress</span><span class="p">),</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">ScratchpadAddress</span><span class="p">(</span><span class="n">ScratchpadAddress</span><span class="p">),</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="detailed-implementation-and-testing-strategy">Detailed Implementation and Testing Strategy</h2>
+<ol>
+<li><strong>Define the <code>Pointer</code> Struct</strong>:</li>
+<li>Implement the <code>Pointer</code> struct in a new Rust file alongside <code>linked_list.rs</code>.</li>
+<li>
+<p><strong>Testing</strong>: Write unit tests to ensure the struct is correctly defined and can be instantiated.</p>
+</li>
+<li>
+<p><strong>Address Handling</strong>:</p>
+</li>
+<li>Implement address handling similar to <code>LinkedListAddress</code>.</li>
+<li>
+<p><strong>Testing</strong>: Verify address conversion and serialization through unit tests.</p>
+</li>
+<li>
+<p><strong>Integration with <code>record_store.rs</code></strong>:</p>
+</li>
+<li>Ensure that the <code>Pointer</code> type is properly integrated into the <code>record_store.rs</code> to handle storage and retrieval operations.</li>
+<li>
+<p><strong>Testing</strong>: Use integration tests to confirm that <code>Pointer</code> records can be stored and retrieved correctly.</p>
+</li>
+<li>
+<p><strong>Signature Verification</strong>:</p>
+</li>
+<li>Implement methods to sign and verify the <code>Pointer</code> data using the owner's private key.</li>
+<li>
+<p><strong>Testing</strong>: Write tests to validate the signature creation and verification process.</p>
+</li>
+<li>
+<p><strong>Output Handling</strong>:</p>
+</li>
+<li>The <code>Pointer</code> will point to a <code>LinkedList</code>, and the <code>LinkedList</code> output will be used as the value. If there is more than one output, the return will be a vector of possible values.</li>
+<li>
+<p><strong>Testing</strong>: Test the output handling logic to ensure it returns the correct values.</p>
+</li>
+<li>
+<p><strong>Integration with ant-networking</strong>:</p>
+</li>
+<li>Implement methods to serialize and deserialize <code>Pointer</code> records, similar to how <code>LinkedList</code> records are handled.</li>
+<li>Ensure that the <code>Pointer</code> type is supported in the <code>NodeRecordStore</code> for storage and retrieval operations.</li>
+<li>
+<p><strong>Testing</strong>: Conduct end-to-end tests to verify the integration with <code>ant-networking</code>.</p>
+</li>
+<li>
+<p><strong>Payment Handling</strong>:</p>
+</li>
+<li>Introduce <code>RecordKind::PointerWithPayment</code> to handle <code>Pointer</code> records with payments.</li>
+<li>Implement logic to process <code>Pointer</code> records with payments, similar to <code>LinkedListWithPayment</code>.</li>
+<li>
+<p><strong>Testing</strong>: Test the payment processing logic to ensure it handles payments correctly.</p>
+</li>
+<li>
+<p><strong>Documentation and Review</strong>:</p>
+</li>
+<li>Update documentation to reflect the new <code>Pointer</code> type and its usage.</li>
+<li>Conduct code reviews to ensure quality and adherence to best practices.</li>
+</ol>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Develop a detailed implementation plan for each component.</li>
+<li>Identify any additional dependencies or libraries required.</li>
+<li>Plan for testing and validation of the <code>Pointer</code> data type.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>The <code>Pointer</code> data type will enhance the system's ability to reference and manage <code>LinkedList</code> structures efficiently. Further details will be added as the implementation progresses.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 29, 2024</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 21, 2024</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -698,10 +834,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "/assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>
