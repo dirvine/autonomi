@@ -5,10 +5,6 @@
          <lastmod>2024-12-29</lastmod>
     </url>
     <url>
-         <loc>https://docs.autonomi.com/pointer_design_doc/</loc>
-         <lastmod>2024-12-29</lastmod>
-    </url>
-    <url>
          <loc>https://docs.autonomi.com/api/</loc>
          <lastmod>2024-12-29</lastmod>
     </url>
@@ -37,11 +33,19 @@
          <lastmod>2024-12-29</lastmod>
     </url>
     <url>
+         <loc>https://docs.autonomi.com/guides/data_science/</loc>
+         <lastmod>2024-12-29</lastmod>
+    </url>
+    <url>
          <loc>https://docs.autonomi.com/guides/data_storage/</loc>
          <lastmod>2024-12-29</lastmod>
     </url>
     <url>
          <loc>https://docs.autonomi.com/guides/data_types/</loc>
+         <lastmod>2024-12-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.autonomi.com/guides/error_handling/</loc>
          <lastmod>2024-12-29</lastmod>
     </url>
     <url>
@@ -61,7 +65,19 @@
          <lastmod>2024-12-29</lastmod>
     </url>
     <url>
+         <loc>https://docs.autonomi.com/guides/quantum_security/</loc>
+         <lastmod>2024-12-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.autonomi.com/guides/rust_performance/</loc>
+         <lastmod>2024-12-29</lastmod>
+    </url>
+    <url>
          <loc>https://docs.autonomi.com/guides/testing_guide/</loc>
+         <lastmod>2024-12-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.autonomi.com/guides/web_development/</loc>
          <lastmod>2024-12-29</lastmod>
     </url>
     <url>
