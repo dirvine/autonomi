@@ -279,19 +279,16 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="api/autonomi-client/" class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="api/README.md" class="md-tabs__link">
+        
   
     
   
   API Reference
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -833,136 +830,16 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="api/README.md" class="md-nav__link">
         
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
-        
-          
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="api/autonomi-client/" class="md-nav__link ">
-              
   
   <span class="md-ellipsis">
     API Reference
   </span>
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            API Reference
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/ant-node/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Ant Node
-  </span>
-  
-
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/blsttc/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    BLS Threshold Crypto
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="api/self-encryption/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Self Encryption
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -996,7 +873,7 @@
 <ul>
 <li><a href="getting-started/installation/">Installation Guide</a></li>
 <li><a href="getting-started/quickstart/">Quick Start Guide</a></li>
-<li><a href="api/README.md">API Reference</a></li>
+<li><a href="api/autonomi-client/">API Reference</a></li>
 <li><a href="guides/local_network/">Local Network Setup</a></li>
 </ul>
 <h2 id="language-support">Language Support</h2>
@@ -1030,7 +907,7 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Install build dependencies</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>&lt;https://astral.sh/uv/install.sh&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>maturin
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Clone the repository</span>
@@ -1070,7 +947,7 @@
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Clone the repository</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/dirvine/autonomi.git
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>clone<span class="w"> </span>&lt;https://github.com/dirvine/autonomi.git&gt;
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">cd</span><span class="w"> </span>autonomi
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># Build the project</span>
@@ -1097,7 +974,7 @@
 <h2 id="getting-help">Getting Help</h2>
 <ul>
 <li><a href="https://github.com/dirvine/autonomi/issues">GitHub Issues</a></li>
-<li><a href="api/README.md">API Reference</a></li>
+<li><a href="api/autonomi-client/">API Reference</a></li>
 <li><a href="guides/testing_guide/">Testing Guide</a></li>
 </ul>
 
