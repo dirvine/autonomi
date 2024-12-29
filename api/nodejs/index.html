@@ -1,1222 +1,283 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Documentation for Autonomi - The Alternative Future of the Cloud"><meta name=author content="Autonomi Team"><link href=https://docs.autonomi.com/api/nodejs/ rel=canonical><link href=../python/ rel=prev><link href=../../libraries/self_encryption/ rel=next><link rel=icon href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.6.1, mkdocs-material-9.5.49"><title>TypeScript - Autonomi Documentation</title><link rel=stylesheet href=../../assets/stylesheets/main.6f8fc17f.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.06af60db.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback"><style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style><link rel=stylesheet href=../../stylesheets/extra.css><script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script><script id=__analytics>function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script><script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-purple data-md-color-accent=purple> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#nodejstypescript-api-documentation class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../.. title="Autonomi Documentation" class="md-header__button md-logo" aria-label="Autonomi Documentation" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Autonomi Documentation </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> TypeScript </span> </div> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg> </label> <nav class=md-search__options aria-label=Search> <button type=reset class="md-search__icon md-icon" title=Clear aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg> </button> </nav> <div class=md-search__suggest data-md-component=search-suggest></div> </form> <div class=md-search__output> <div class=md-search__scrollwrap tabindex=0 data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list role=presentation></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <a href=https://github.com/dirvine/autonomi title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg> </div> <div class=md-source__repository> dirvine/autonomi </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <nav class=md-tabs aria-label=Tabs data-md-component=tabs> <div class=md-grid> <ul class=md-tabs__list> <li class=md-tabs__item> <a href=../.. class=md-tabs__link> Home </a> </li> <li class=md-tabs__item> <a href=../../guides/local_network/ class=md-tabs__link> Getting Started </a> </li> <li class=md-tabs__item> <a href=../../guides/data_types/ class=md-tabs__link> Core Concepts </a> </li> <li class="md-tabs__item md-tabs__item--active"> <a href=../ class=md-tabs__link> API Reference </a> </li> <li class=md-tabs__item> <a href=../../libraries/self_encryption/ class=md-tabs__link> Libraries </a> </li> </ul> </div> </nav> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary md-nav--lifted" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../.. title="Autonomi Documentation" class="md-nav__button md-logo" aria-label="Autonomi Documentation" data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg> </a> Autonomi Documentation </label> <div class=md-nav__source> <a href=https://github.com/dirvine/autonomi title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg> </div> <div class=md-source__repository> dirvine/autonomi </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> <span class=md-ellipsis> Home </span> </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2 id=__nav_2_label tabindex=0> <span class=md-ellipsis> Getting Started </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_2_label aria-expanded=false> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Getting Started </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../guides/local_network/ class=md-nav__link> <span class=md-ellipsis> Local Network </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3 id=__nav_3_label tabindex=0> <span class=md-ellipsis> Core Concepts </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_3_label aria-expanded=false> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Core Concepts </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../guides/data_types/ class=md-nav__link> <span class=md-ellipsis> Data Types </span> </a> </li> <li class=md-nav__item> <a href=../../guides/client_modes/ class=md-nav__link> <span class=md-ellipsis> Client Modes </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_4 checked> <label class=md-nav__link for=__nav_4 id=__nav_4_label tabindex> <span class=md-ellipsis> API Reference </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_4_label aria-expanded=true> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> API Reference </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ class=md-nav__link> <span class=md-ellipsis> Overview </span> </a> </li> <li class=md-nav__item> <a href=../rust/ class=md-nav__link> <span class=md-ellipsis> Rust </span> </a> </li> <li class=md-nav__item> <a href=../python/ class=md-nav__link> <span class=md-ellipsis> Python </span> </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> <span class=md-ellipsis> TypeScript </span> <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> <span class=md-ellipsis> TypeScript </span> </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#installation class=md-nav__link> <span class=md-ellipsis> Installation </span> </a> </li> <li class=md-nav__item> <a href=#client-initialization class=md-nav__link> <span class=md-ellipsis> Client Initialization </span> </a> </li> <li class=md-nav__item> <a href=#core-data-types class=md-nav__link> <span class=md-ellipsis> Core Data Types </span> </a> <nav class=md-nav aria-label="Core Data Types"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#chunk-quantum-secure-storage class=md-nav__link> <span class=md-ellipsis> Chunk - Quantum-Secure Storage </span> </a> </li> <li class=md-nav__item> <a href=#pointer-mutable-references class=md-nav__link> <span class=md-ellipsis> Pointer - Mutable References </span> </a> </li> <li class=md-nav__item> <a href=#linkedlist-transaction-chains class=md-nav__link> <span class=md-ellipsis> LinkedList - Transaction Chains </span> </a> </li> <li class=md-nav__item> <a href=#scratchpad-temporary-workspace class=md-nav__link> <span class=md-ellipsis> ScratchPad - Temporary Workspace </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#file-system-operations class=md-nav__link> <span class=md-ellipsis> File System Operations </span> </a> </li> <li class=md-nav__item> <a href=#error-handling class=md-nav__link> <span class=md-ellipsis> Error Handling </span> </a> </li> <li class=md-nav__item> <a href=#advanced-usage class=md-nav__link> <span class=md-ellipsis> Advanced Usage </span> </a> <nav class=md-nav aria-label="Advanced Usage"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#web-integration class=md-nav__link> <span class=md-ellipsis> Web Integration </span> </a> </li> <li class=md-nav__item> <a href=#custom-types-with-zod class=md-nav__link> <span class=md-ellipsis> Custom Types with Zod </span> </a> </li> <li class=md-nav__item> <a href=#quantum-secure-encryption class=md-nav__link> <span class=md-ellipsis> Quantum-Secure Encryption </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#performance-optimization class=md-nav__link> <span class=md-ellipsis> Performance Optimization </span> </a> <nav class=md-nav aria-label="Performance Optimization"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#connection-pooling class=md-nav__link> <span class=md-ellipsis> Connection Pooling </span> </a> </li> <li class=md-nav__item> <a href=#batch-operations class=md-nav__link> <span class=md-ellipsis> Batch Operations </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#best-practices class=md-nav__link> <span class=md-ellipsis> Best Practices </span> </a> </li> <li class=md-nav__item> <a href=#typescript-types class=md-nav__link> <span class=md-ellipsis> TypeScript Types </span> </a> </li> <li class=md-nav__item> <a href=#further-reading class=md-nav__link> <span class=md-ellipsis> Further Reading </span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5 id=__nav_5_label tabindex=0> <span class=md-ellipsis> Libraries </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_5_label aria-expanded=false> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Libraries </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../libraries/self_encryption/ class=md-nav__link> <span class=md-ellipsis> Self-Encryption </span> </a> </li> <li class=md-nav__item> <a href=../../libraries/antnode/ class=md-nav__link> <span class=md-ellipsis> Antnode </span> </a> </li> <li class=md-nav__item> <a href=../../libraries/blsttc/ class=md-nav__link> <span class=md-ellipsis> BLS Threshold Cryptography </span> </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#installation class=md-nav__link> <span class=md-ellipsis> Installation </span> </a> </li> <li class=md-nav__item> <a href=#client-initialization class=md-nav__link> <span class=md-ellipsis> Client Initialization </span> </a> </li> <li class=md-nav__item> <a href=#core-data-types class=md-nav__link> <span class=md-ellipsis> Core Data Types </span> </a> <nav class=md-nav aria-label="Core Data Types"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#chunk-quantum-secure-storage class=md-nav__link> <span class=md-ellipsis> Chunk - Quantum-Secure Storage </span> </a> </li> <li class=md-nav__item> <a href=#pointer-mutable-references class=md-nav__link> <span class=md-ellipsis> Pointer - Mutable References </span> </a> </li> <li class=md-nav__item> <a href=#linkedlist-transaction-chains class=md-nav__link> <span class=md-ellipsis> LinkedList - Transaction Chains </span> </a> </li> <li class=md-nav__item> <a href=#scratchpad-temporary-workspace class=md-nav__link> <span class=md-ellipsis> ScratchPad - Temporary Workspace </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#file-system-operations class=md-nav__link> <span class=md-ellipsis> File System Operations </span> </a> </li> <li class=md-nav__item> <a href=#error-handling class=md-nav__link> <span class=md-ellipsis> Error Handling </span> </a> </li> <li class=md-nav__item> <a href=#advanced-usage class=md-nav__link> <span class=md-ellipsis> Advanced Usage </span> </a> <nav class=md-nav aria-label="Advanced Usage"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#web-integration class=md-nav__link> <span class=md-ellipsis> Web Integration </span> </a> </li> <li class=md-nav__item> <a href=#custom-types-with-zod class=md-nav__link> <span class=md-ellipsis> Custom Types with Zod </span> </a> </li> <li class=md-nav__item> <a href=#quantum-secure-encryption class=md-nav__link> <span class=md-ellipsis> Quantum-Secure Encryption </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#performance-optimization class=md-nav__link> <span class=md-ellipsis> Performance Optimization </span> </a> <nav class=md-nav aria-label="Performance Optimization"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#connection-pooling class=md-nav__link> <span class=md-ellipsis> Connection Pooling </span> </a> </li> <li class=md-nav__item> <a href=#batch-operations class=md-nav__link> <span class=md-ellipsis> Batch Operations </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#best-practices class=md-nav__link> <span class=md-ellipsis> Best Practices </span> </a> </li> <li class=md-nav__item> <a href=#typescript-types class=md-nav__link> <span class=md-ellipsis> TypeScript Types </span> </a> </li> <li class=md-nav__item> <a href=#further-reading class=md-nav__link> <span class=md-ellipsis> Further Reading </span> </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1 id=nodejstypescript-api-documentation>Node.js/TypeScript API Documentation<a class=headerlink href=#nodejstypescript-api-documentation title="Permanent link">&para;</a></h1> <p>The TypeScript/Node.js implementation of Autonomi provides a modern, type-safe interface for web and server applications. It's ideal for:</p> <ul> <li>Building decentralized web applications</li> <li>Creating secure backend services</li> <li>Developing real-time applications</li> <li>Integration with modern web frameworks</li> </ul> <h2 id=installation>Installation<a class=headerlink href=#installation title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code><span class=c1># Install with npm</span>
+npm<span class=w> </span>install<span class=w> </span>autonomi
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-      
-      
-        <link rel="prev" href="../">
-      
-      
-        <link rel="next" href="../python/">
-      
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
-    
-    
-      
-        <title>Node.js - Autonomi Documentation</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
-      
-      
+<span class=c1># Or with specific features</span>
+npm<span class=w> </span>install<span class=w> </span>autonomi@latest<span class=w> </span>quantum-secure<span class=w> </span>compression
 
+<span class=c1># For web applications</span>
+npm<span class=w> </span>install<span class=w> </span>autonomi@latest<span class=w> </span>web
+</code></pre></div> <h2 id=client-initialization>Client Initialization<a class=headerlink href=#client-initialization title="Permanent link">&para;</a></h2> <p>The client provides flexible initialization options to match your application needs:</p> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>Client</span><span class=p>,</span><span class=w> </span><span class=nx>ClientConfig</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi&#39;</span><span class=p>;</span>
 
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
+<span class=c1>// Initialize a read-only client for browsing</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>client</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>Client</span><span class=p>.</span><span class=nx>initReadOnly</span><span class=p>();</span>
 
-    
-    
-    
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#nodejs-api-reference" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
+<span class=c1>// Initialize with write capabilities and custom configuration</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>config</span><span class=o>:</span><span class=w> </span><span class=kt>ClientConfig</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>quantumSecurity</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>compression</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>cacheSize</span><span class=o>:</span><span class=w> </span><span class=s1>&#39;1GB&#39;</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>webSocket</span><span class=o>:</span><span class=w> </span><span class=kt>true</span>
+<span class=p>};</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>client</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>Client</span><span class=p>.</span><span class=nx>initWithWalletAndConfig</span><span class=p>(</span><span class=nx>wallet</span><span class=p>,</span><span class=w> </span><span class=nx>config</span><span class=p>);</span>
 
-<header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Autonomi Documentation" class="md-header__button md-logo" aria-label="Autonomi Documentation" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+<span class=c1>// Upgrade a read-only client to read-write</span>
+<span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>upgradeToReadWrite</span><span class=p>(</span><span class=nx>wallet</span><span class=p>);</span>
+</code></pre></div> <h2 id=core-data-types>Core Data Types<a class=headerlink href=#core-data-types title="Permanent link">&para;</a></h2> <h3 id=chunk-quantum-secure-storage>Chunk - Quantum-Secure Storage<a class=headerlink href=#chunk-quantum-secure-storage title="Permanent link">&para;</a></h3> <p>Store and retrieve immutable, quantum-secure encrypted data with streaming support:</p> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>Chunk</span><span class=p>,</span><span class=w> </span><span class=nx>ChunkOptions</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi&#39;</span><span class=p>;</span>
 
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            Autonomi Documentation
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            
-              Node.js
-            
-          </span>
-        </div>
-      </div>
-    </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
-      </label>
-    
-  
-</form>
-      
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-    
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-    
-  </nav>
-  
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
-  
-    
-  
-  Home
+<span class=c1>// Store raw data as a chunk</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>data</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=nx>Buffer</span><span class=p>.</span><span class=kr>from</span><span class=p>(</span><span class=s1>&#39;Hello, World!&#39;</span><span class=p>);</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>chunk</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>storeChunk</span><span class=p>(</span><span class=nx>data</span><span class=p>);</span>
 
-      </a>
-    </li>
-  
+<span class=c1>// Store large file with streaming</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>stream</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=nx>createReadStream</span><span class=p>(</span><span class=s1>&#39;large-file.dat&#39;</span><span class=p>);</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>chunk</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>storeChunkStream</span><span class=p>(</span><span class=nx>stream</span><span class=p>,</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>compression</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>chunkSize</span><span class=o>:</span><span class=w> </span><span class=s1>&#39;1MB&#39;</span>
+<span class=p>});</span>
 
-      
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../guides/data_types/" class="md-tabs__link">
-          
-  
-    
-  
-  Core Concepts
+<span class=c1>// Retrieve chunk data with streaming</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>retrieved</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>getChunk</span><span class=p>(</span><span class=nx>chunk</span><span class=p>.</span><span class=nx>address</span><span class=p>);</span>
+<span class=nx>assert</span><span class=p>(</span><span class=nx>Buffer</span><span class=p>.</span><span class=nx>compare</span><span class=p>(</span><span class=nx>data</span><span class=p>,</span><span class=w> </span><span class=nx>retrieved</span><span class=p>)</span><span class=w> </span><span class=o>===</span><span class=w> </span><span class=mf>0</span><span class=p>);</span>
 
-        </a>
-      </li>
-    
-  
+<span class=c1>// Stream large chunks</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>stream</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>getChunkStream</span><span class=p>(</span><span class=nx>chunk</span><span class=p>.</span><span class=nx>address</span><span class=p>);</span>
+<span class=nx>stream</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>createWriteStream</span><span class=p>(</span><span class=s1>&#39;output.dat&#39;</span><span class=p>));</span>
 
-      
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../guides/local_network/" class="md-tabs__link">
-          
-  
-    
-  
-  Developer Guides
+<span class=c1>// Get chunk metadata including storage metrics</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>metadata</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>getChunkMetadata</span><span class=p>(</span><span class=nx>chunk</span><span class=p>.</span><span class=nx>address</span><span class=p>);</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Size: </span><span class=si>${</span><span class=nx>metadata</span><span class=p>.</span><span class=nx>size</span><span class=si>}</span><span class=sb>, Replicas: </span><span class=si>${</span><span class=nx>metadata</span><span class=p>.</span><span class=nx>replicas</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
 
-        </a>
-      </li>
-    
-  
+<span class=c1>// Store multiple chunks efficiently</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>chunks</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>storeChunks</span><span class=p>(</span><span class=nx>dataList</span><span class=p>);</span>
+</code></pre></div> <h3 id=pointer-mutable-references>Pointer - Mutable References<a class=headerlink href=#pointer-mutable-references title="Permanent link">&para;</a></h3> <p>Create and manage version-tracked references with real-time updates:</p> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>Pointer</span><span class=p>,</span><span class=w> </span><span class=nx>PointerOptions</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi&#39;</span><span class=p>;</span>
 
-      
-        
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
-          
-  
-    
-  
-  API Reference
+<span class=c1>// Create a pointer with metadata</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>metadata</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>createdAt</span><span class=o>:</span><span class=w> </span><span class=kt>new</span><span class=w> </span><span class=nb>Date</span><span class=p>(),</span>
+<span class=w>    </span><span class=nx>description</span><span class=o>:</span><span class=w> </span><span class=s1>&#39;Latest application state&#39;</span>
+<span class=p>};</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>pointer</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>createPointerWithMetadata</span><span class=p>(</span>
+<span class=w>    </span><span class=nx>targetAddress</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>metadata</span>
+<span class=p>);</span>
 
-        </a>
-      </li>
-    
-  
+<span class=c1>// Update pointer with version checking</span>
+<span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>updatePointer</span><span class=p>(</span><span class=nx>pointer</span><span class=p>.</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=nx>newTargetAddress</span><span class=p>);</span>
 
-      
-    </ul>
-  </div>
-</nav>
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+<span class=c1>// Subscribe to pointer updates</span>
+<span class=nx>client</span><span class=p>.</span><span class=nx>subscribeToPointer</span><span class=p>(</span><span class=nx>pointer</span><span class=p>.</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=p>(</span><span class=nx>update</span><span class=p>)</span><span class=w> </span><span class=p>=&gt;</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`New target: </span><span class=si>${</span><span class=nx>update</span><span class=p>.</span><span class=nx>target</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+<span class=p>});</span>
 
+<span class=c1>// Get pointer metadata and version history</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>metadata</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>getPointerMetadata</span><span class=p>(</span><span class=nx>pointer</span><span class=p>.</span><span class=nx>address</span><span class=p>);</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Version: </span><span class=si>${</span><span class=nx>metadata</span><span class=p>.</span><span class=nx>version</span><span class=si>}</span><span class=sb>, Updates: </span><span class=si>${</span><span class=nx>metadata</span><span class=p>.</span><span class=nx>updateCount</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</code></pre></div> <h3 id=linkedlist-transaction-chains>LinkedList - Transaction Chains<a class=headerlink href=#linkedlist-transaction-chains title="Permanent link">&para;</a></h3> <p>Build decentralized DAG structures with real-time synchronization:</p> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>LinkedList</span><span class=p>,</span><span class=w> </span><span class=nx>LinkedListConfig</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi&#39;</span><span class=p>;</span>
 
-  
+<span class=c1>// Create a new linked list with configuration</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>config</span><span class=o>:</span><span class=w> </span><span class=kt>LinkedListConfig</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>forkDetection</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>historyCompression</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>realtime</span><span class=o>:</span><span class=w> </span><span class=kt>true</span>
+<span class=p>};</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>list</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>createLinkedListWithConfig</span><span class=p>(</span><span class=nx>config</span><span class=p>);</span>
 
+<span class=c1>// Efficient batch appends</span>
+<span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>appendToListBatch</span><span class=p>(</span><span class=nx>list</span><span class=p>.</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=nx>items</span><span class=p>);</span>
 
-  
+<span class=c1>// Subscribe to list updates</span>
+<span class=nx>client</span><span class=p>.</span><span class=nx>subscribeToList</span><span class=p>(</span><span class=nx>list</span><span class=p>.</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=p>(</span><span class=nx>update</span><span class=p>)</span><span class=w> </span><span class=p>=&gt;</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`New item: </span><span class=si>${</span><span class=nx>update</span><span class=p>.</span><span class=nx>data</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+<span class=p>});</span>
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Autonomi Documentation" class="md-nav__button md-logo" aria-label="Autonomi Documentation" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+<span class=c1>// Advanced fork detection and resolution</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>forks</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>detectForksDetailed</span><span class=p>(</span><span class=nx>list</span><span class=p>.</span><span class=nx>address</span><span class=p>);</span>
+<span class=k>if</span><span class=w> </span><span class=p>(</span><span class=o>!</span><span class=nx>forks</span><span class=p>)</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;No forks detected&#39;</span><span class=p>);</span>
+<span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=kd>const</span><span class=w> </span><span class=nx>resolved</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>resolveForkAutomatically</span><span class=p>(</span><span class=nx>forks</span><span class=p>.</span><span class=nx>branches</span><span class=p>);</span>
+<span class=w>    </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Fork resolved: </span><span class=si>${</span><span class=nx>resolved</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=scratchpad-temporary-workspace>ScratchPad - Temporary Workspace<a class=headerlink href=#scratchpad-temporary-workspace title="Permanent link">&para;</a></h3> <p>Efficient unstructured data storage with real-time updates:</p> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>ScratchPad</span><span class=p>,</span><span class=w> </span><span class=nx>ContentType</span><span class=p>,</span><span class=w> </span><span class=nx>ScratchPadConfig</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi&#39;</span><span class=p>;</span>
 
-    </a>
-    Autonomi Documentation
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
+<span class=c1>// Create a scratchpad with custom configuration</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>config</span><span class=o>:</span><span class=w> </span><span class=kt>ScratchPadConfig</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>compression</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>encryption</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>realtime</span><span class=o>:</span><span class=w> </span><span class=kt>true</span>
+<span class=p>};</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>pad</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>createScratchpadWithConfig</span><span class=p>(</span>
+<span class=w>    </span><span class=nx>ContentType</span><span class=p>.</span><span class=nx>UserSettings</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>config</span>
+<span class=p>);</span>
 
-      </a>
-    </li>
-  
+<span class=c1>// Update with JSON data</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>settings</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>theme</span><span class=o>:</span><span class=w> </span><span class=s1>&#39;dark&#39;</span><span class=p>,</span><span class=w> </span><span class=nx>fontSize</span><span class=o>:</span><span class=w> </span><span class=kt>14</span><span class=w> </span><span class=p>};</span>
+<span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>updateScratchpadJson</span><span class=p>(</span><span class=nx>pad</span><span class=p>.</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=nx>settings</span><span class=p>);</span>
 
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Core Concepts
-  </span>
-  
+<span class=c1>// Subscribe to updates</span>
+<span class=nx>client</span><span class=p>.</span><span class=nx>subscribeToScratchpad</span><span class=p>(</span><span class=nx>pad</span><span class=p>.</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=p>(</span><span class=nx>update</span><span class=p>)</span><span class=w> </span><span class=p>=&gt;</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`New data: </span><span class=si>${</span><span class=nx>update</span><span class=p>.</span><span class=nx>data</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+<span class=p>});</span>
+</code></pre></div> <h2 id=file-system-operations>File System Operations<a class=headerlink href=#file-system-operations title="Permanent link">&para;</a></h2> <p>Modern file and directory operations with streaming support:</p> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>File</span><span class=p>,</span><span class=w> </span><span class=nx>Directory</span><span class=p>,</span><span class=w> </span><span class=nx>FileOptions</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi/fs&#39;</span><span class=p>;</span>
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            Core Concepts
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../guides/data_types/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Data Types
-  </span>
-  
+<span class=c1>// Store a file with custom options</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>options</span><span class=o>:</span><span class=w> </span><span class=kt>FileOptions</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>compression</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>encryption</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>redundancy</span><span class=o>:</span><span class=w> </span><span class=kt>3</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>chunkSize</span><span class=o>:</span><span class=w> </span><span class=s1>&#39;1MB&#39;</span>
+<span class=p>};</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>file</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>storeFileWithOptions</span><span class=p>(</span>
+<span class=w>    </span><span class=s1>&#39;example.txt&#39;</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>content</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>options</span>
+<span class=p>);</span>
 
-      </a>
-    </li>
-  
+<span class=c1>// Stream large files</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>writeStream</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>createFileWriteStream</span><span class=p>(</span><span class=s1>&#39;large-file.dat&#39;</span><span class=p>);</span>
+<span class=nx>sourceStream</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>writeStream</span><span class=p>);</span>
 
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../guides/client_modes/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Client Modes
-  </span>
-  
+<span class=c1>// Create a directory with metadata</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>dir</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>createDirectoryWithMetadata</span><span class=p>(</span>
+<span class=w>    </span><span class=s1>&#39;docs&#39;</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>metadata</span>
+<span class=p>);</span>
 
-      </a>
-    </li>
-  
+<span class=c1>// Subscribe to directory changes</span>
+<span class=nx>client</span><span class=p>.</span><span class=nx>subscribeToDirectory</span><span class=p>(</span><span class=nx>dir</span><span class=p>.</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=p>(</span><span class=nx>update</span><span class=p>)</span><span class=w> </span><span class=p>=&gt;</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Directory updated: </span><span class=si>${</span><span class=nx>update</span><span class=p>.</span><span class=kr>type</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+<span class=p>});</span>
+</code></pre></div> <h2 id=error-handling>Error Handling<a class=headerlink href=#error-handling title="Permanent link">&para;</a></h2> <p>Comprehensive error handling with TypeScript support:</p> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>ChunkError</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>PointerError</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>ListError</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>ScratchPadError</span>
+<span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi/errors&#39;</span><span class=p>;</span>
 
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
+<span class=c1>// Handle chunk operations with detailed errors</span>
+<span class=k>try</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=kd>const</span><span class=w> </span><span class=nx>data</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>getChunk</span><span class=p>(</span><span class=nx>address</span><span class=p>);</span>
+<span class=w>    </span><span class=nx>processData</span><span class=p>(</span><span class=nx>data</span><span class=p>);</span>
+<span class=p>}</span><span class=w> </span><span class=k>catch</span><span class=w> </span><span class=p>(</span><span class=nx>error</span><span class=p>)</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=k>if</span><span class=w> </span><span class=p>(</span><span class=nx>error</span><span class=w> </span><span class=ow>instanceof</span><span class=w> </span><span class=nx>ChunkError</span><span class=p>.</span><span class=nx>NotFound</span><span class=p>)</span><span class=w> </span><span class=p>{</span>
+<span class=w>        </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Chunk not found: </span><span class=si>${</span><span class=nx>error</span><span class=p>.</span><span class=nx>address</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+<span class=w>        </span><span class=nx>handleMissing</span><span class=p>();</span>
+<span class=w>    </span><span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=k>if</span><span class=w> </span><span class=p>(</span><span class=nx>error</span><span class=w> </span><span class=ow>instanceof</span><span class=w> </span><span class=nx>ChunkError</span><span class=p>.</span><span class=nx>NetworkError</span><span class=p>)</span><span class=w> </span><span class=p>{</span>
+<span class=w>        </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Network error: </span><span class=si>${</span><span class=nx>error</span><span class=p>.</span><span class=nx>message</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+<span class=w>        </span><span class=nx>handleNetworkError</span><span class=p>(</span><span class=nx>error</span><span class=p>);</span>
+<span class=w>    </span><span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=k>if</span><span class=w> </span><span class=p>(</span><span class=nx>error</span><span class=w> </span><span class=ow>instanceof</span><span class=w> </span><span class=nx>ChunkError</span><span class=p>.</span><span class=nx>ValidationError</span><span class=p>)</span><span class=w> </span><span class=p>{</span>
+<span class=w>        </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Validation failed: expected </span><span class=si>${</span><span class=nx>error</span><span class=p>.</span><span class=nx>expected</span><span class=si>}</span><span class=sb>, got </span><span class=si>${</span><span class=nx>error</span><span class=p>.</span><span class=nx>actual</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+<span class=w>        </span><span class=nx>handleValidationError</span><span class=p>();</span>
+<span class=w>    </span><span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=p>{</span>
+<span class=w>        </span><span class=nx>handleOtherError</span><span class=p>(</span><span class=nx>error</span><span class=p>);</span>
+<span class=w>    </span><span class=p>}</span>
+<span class=p>}</span>
 
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Developer Guides
-  </span>
-  
+<span class=c1>// Handle pointer updates with version conflicts</span>
+<span class=k>try</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>updatePointer</span><span class=p>(</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=nx>newTarget</span><span class=p>);</span>
+<span class=w>    </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;Update successful&#39;</span><span class=p>);</span>
+<span class=p>}</span><span class=w> </span><span class=k>catch</span><span class=w> </span><span class=p>(</span><span class=nx>error</span><span class=p>)</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=k>if</span><span class=w> </span><span class=p>(</span><span class=nx>error</span><span class=w> </span><span class=ow>instanceof</span><span class=w> </span><span class=nx>PointerError</span><span class=p>.</span><span class=nx>VersionConflict</span><span class=p>)</span><span class=w> </span><span class=p>{</span>
+<span class=w>        </span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Version conflict: current </span><span class=si>${</span><span class=nx>error</span><span class=p>.</span><span class=nx>current</span><span class=si>}</span><span class=sb>, attempted </span><span class=si>${</span><span class=nx>error</span><span class=p>.</span><span class=nx>attempted</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+<span class=w>        </span><span class=nx>handleConflict</span><span class=p>();</span>
+<span class=w>    </span><span class=p>}</span><span class=w> </span><span class=k>else</span><span class=w> </span><span class=p>{</span>
+<span class=w>        </span><span class=nx>handleOtherError</span><span class=p>(</span><span class=nx>error</span><span class=p>);</span>
+<span class=w>    </span><span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=advanced-usage>Advanced Usage<a class=headerlink href=#advanced-usage title="Permanent link">&para;</a></h2> <h3 id=web-integration>Web Integration<a class=headerlink href=#web-integration title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>WebClient</span><span class=p>,</span><span class=w> </span><span class=nx>WebClientConfig</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi/web&#39;</span><span class=p>;</span>
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            Developer Guides
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../guides/local_network/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Local Network Setup
-  </span>
-  
+<span class=c1>// Create a web-optimized client</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>config</span><span class=o>:</span><span class=w> </span><span class=kt>WebClientConfig</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>webSocket</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>compression</span><span class=o>:</span><span class=w> </span><span class=kt>true</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>cacheSize</span><span class=o>:</span><span class=w> </span><span class=s1>&#39;100MB&#39;</span>
+<span class=p>};</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>client</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>WebClient</span><span class=p>.</span><span class=nx>init</span><span class=p>(</span><span class=nx>config</span><span class=p>);</span>
 
-      </a>
-    </li>
-  
+<span class=c1>// Subscribe to real-time updates</span>
+<span class=nx>client</span><span class=p>.</span><span class=nx>subscribe</span><span class=p>(</span><span class=s1>&#39;updates&#39;</span><span class=p>,</span><span class=w> </span><span class=p>(</span><span class=nx>update</span><span class=p>)</span><span class=w> </span><span class=p>=&gt;</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>updateUI</span><span class=p>(</span><span class=nx>update</span><span class=p>);</span>
+<span class=p>});</span>
 
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../guides/data_storage/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Data Storage
-  </span>
-  
+<span class=c1>// Handle offline mode</span>
+<span class=nx>client</span><span class=p>.</span><span class=nx>onOffline</span><span class=p>(()</span><span class=w> </span><span class=p>=&gt;</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>enableOfflineMode</span><span class=p>();</span>
+<span class=p>});</span>
 
-      </a>
-    </li>
-  
+<span class=c1>// Sync when back online</span>
+<span class=nx>client</span><span class=p>.</span><span class=nx>onOnline</span><span class=p>(</span><span class=k>async</span><span class=w> </span><span class=p>()</span><span class=w> </span><span class=p>=&gt;</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>sync</span><span class=p>();</span>
+<span class=p>});</span>
+</code></pre></div> <h3 id=custom-types-with-zod>Custom Types with Zod<a class=headerlink href=#custom-types-with-zod title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>z</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;zod&#39;</span><span class=p>;</span>
 
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
+<span class=c1>// Define schema with validation</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>MyDataSchema</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=nx>z</span><span class=p>.</span><span class=nx>object</span><span class=p>({</span>
+<span class=w>    </span><span class=nx>field1</span><span class=o>:</span><span class=w> </span><span class=kt>z.string</span><span class=p>(),</span>
+<span class=w>    </span><span class=nx>field2</span><span class=o>:</span><span class=w> </span><span class=kt>z.number</span><span class=p>(),</span>
+<span class=w>    </span><span class=nx>timestamp</span><span class=o>:</span><span class=w> </span><span class=kt>z.date</span><span class=p>(),</span>
+<span class=w>    </span><span class=nx>metadata</span><span class=o>:</span><span class=w> </span><span class=kt>z.record</span><span class=p>(</span><span class=nx>z</span><span class=p>.</span><span class=kt>string</span><span class=p>()).</span><span class=nx>optional</span><span class=p>()</span>
+<span class=p>});</span>
 
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-    
-    
-      
-        
-        
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
-        
-          
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
-              
-  
-  <span class="md-ellipsis">
-    API Reference
-  </span>
-  
+<span class=kr>type</span><span class=w> </span><span class=nx>MyData</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=nx>z</span><span class=p>.</span><span class=nx>infer</span><span class=o>&lt;</span><span class=ow>typeof</span><span class=w> </span><span class=nx>MyDataSchema</span><span class=o>&gt;</span><span class=p>;</span>
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            API Reference
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Node.js
-  </span>
-  
+<span class=c1>// Store custom type with validation</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>data</span><span class=o>:</span><span class=w> </span><span class=kt>MyData</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>field1</span><span class=o>:</span><span class=w> </span><span class=s1>&#39;test&#39;</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>field2</span><span class=o>:</span><span class=w> </span><span class=kt>42</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>timestamp</span><span class=o>:</span><span class=w> </span><span class=kt>new</span><span class=w> </span><span class=nb>Date</span><span class=p>()</span>
+<span class=p>};</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>pad</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>createScratchpad</span><span class=p>(</span><span class=nx>ContentType</span><span class=p>.</span><span class=nx>Custom</span><span class=p>(</span><span class=s1>&#39;MyData&#39;</span><span class=p>));</span>
+<span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>updateScratchpadValidated</span><span class=p>(</span><span class=nx>pad</span><span class=p>.</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=nx>data</span><span class=p>,</span><span class=w> </span><span class=nx>MyDataSchema</span><span class=p>);</span>
+</code></pre></div> <h3 id=quantum-secure-encryption>Quantum-Secure Encryption<a class=headerlink href=#quantum-secure-encryption title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>encryptQuantumSecure</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>decryptQuantumSecure</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>generateKey</span>
+<span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi/crypto&#39;</span><span class=p>;</span>
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Node.js
-  </span>
-  
+<span class=c1>// Generate quantum-secure keys</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>key</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>generateQuantumSecureKey</span><span class=p>();</span>
 
-      </a>
-      
-        
+<span class=c1>// Encrypt data with quantum security</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>encrypted</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>encryptQuantumSecure</span><span class=p>(</span><span class=nx>data</span><span class=p>,</span><span class=w> </span><span class=nx>key</span><span class=p>);</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>pad</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>createScratchpad</span><span class=p>(</span><span class=nx>ContentType</span><span class=p>.</span><span class=nx>Encrypted</span><span class=p>);</span>
+<span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>updateScratchpad</span><span class=p>(</span><span class=nx>pad</span><span class=p>.</span><span class=nx>address</span><span class=p>,</span><span class=w> </span><span class=nx>encrypted</span><span class=p>);</span>
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-classes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Core Classes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Core Classes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Client
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linkedlist" class="md-nav__link">
-    <span class="md-ellipsis">
-      LinkedList
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pointer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pointer
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scratchpad" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scratchpad
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#self-encryption" class="md-nav__link">
-    <span class="md-ellipsis">
-      Self-Encryption
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#archive" class="md-nav__link">
-    <span class="md-ellipsis">
-      Archive
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#basic-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Basic Usage
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#error-handling_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Error Handling
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#best-practices" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practices
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
+<span class=c1>// Decrypt with quantum security</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>encrypted</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>getScratchpad</span><span class=p>(</span><span class=nx>pad</span><span class=p>.</span><span class=nx>address</span><span class=p>);</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>decrypted</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>decryptQuantumSecure</span><span class=p>(</span><span class=nx>encrypted</span><span class=p>,</span><span class=w> </span><span class=nx>key</span><span class=p>);</span>
+</code></pre></div> <h2 id=performance-optimization>Performance Optimization<a class=headerlink href=#performance-optimization title="Permanent link">&para;</a></h2> <h3 id=connection-pooling>Connection Pooling<a class=headerlink href=#connection-pooling title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>Pool</span><span class=p>,</span><span class=w> </span><span class=nx>PoolConfig</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi/pool&#39;</span><span class=p>;</span>
 
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../python/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Python
-  </span>
-  
+<span class=c1>// Create a connection pool</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>pool</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=ow>new</span><span class=w> </span><span class=nx>Pool</span><span class=p>({</span>
+<span class=w>    </span><span class=nx>minConnections</span><span class=o>:</span><span class=w> </span><span class=kt>5</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>maxConnections</span><span class=o>:</span><span class=w> </span><span class=kt>20</span><span class=p>,</span>
+<span class=w>    </span><span class=nx>idleTimeout</span><span class=o>:</span><span class=w> </span><span class=kt>30000</span>
+<span class=p>});</span>
 
-      </a>
-    </li>
-  
+<span class=c1>// Get a client from the pool</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>client</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>pool</span><span class=p>.</span><span class=nx>get</span><span class=p>();</span>
+<span class=k>try</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=k>await</span><span class=w> </span><span class=nx>processData</span><span class=p>(</span><span class=nx>client</span><span class=p>);</span>
+<span class=p>}</span><span class=w> </span><span class=k>finally</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=k>await</span><span class=w> </span><span class=nx>pool</span><span class=p>.</span><span class=nx>release</span><span class=p>(</span><span class=nx>client</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=batch-operations>Batch Operations<a class=headerlink href=#batch-operations title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1>// Batch chunk storage</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>chunks</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>storeChunksBatch</span><span class=p>(</span><span class=nx>dataList</span><span class=p>);</span>
 
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../rust/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Rust
-  </span>
-  
+<span class=c1>// Batch pointer updates</span>
+<span class=kd>const</span><span class=w> </span><span class=nx>updates</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=p>[</span>
+<span class=w>    </span><span class=ow>new</span><span class=w> </span><span class=nx>PointerUpdate</span><span class=p>(</span><span class=nx>addr1</span><span class=p>,</span><span class=w> </span><span class=nx>target1</span><span class=p>),</span>
+<span class=w>    </span><span class=ow>new</span><span class=w> </span><span class=nx>PointerUpdate</span><span class=p>(</span><span class=nx>addr2</span><span class=p>,</span><span class=w> </span><span class=nx>target2</span><span class=p>)</span>
+<span class=p>];</span>
+<span class=k>await</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>updatePointersBatch</span><span class=p>(</span><span class=nx>updates</span><span class=p>);</span>
+</code></pre></div> <h2 id=best-practices>Best Practices<a class=headerlink href=#best-practices title="Permanent link">&para;</a></h2> <ol> <li><strong>Web Integration</strong></li> <li>Use WebSocket for real-time updates</li> <li>Implement offline support</li> <li>Handle connection state</li> <li> <p>Cache frequently accessed data</p> </li> <li> <p><strong>Error Handling</strong></p> </li> <li>Use TypeScript for type safety</li> <li>Implement retry logic</li> <li>Handle version conflicts</li> <li> <p>Validate data integrity</p> </li> <li> <p><strong>Security</strong></p> </li> <li>Enable quantum security</li> <li>Use encryption for sensitive data</li> <li>Implement access control</li> <li> <p>Validate all inputs</p> </li> <li> <p><strong>Resource Management</strong></p> </li> <li>Use connection pools</li> <li>Clean up resources</li> <li>Monitor memory usage</li> <li>Handle backpressure</li> </ol> <h2 id=typescript-types>TypeScript Types<a class=headerlink href=#typescript-types title="Permanent link">&para;</a></h2> <p>The API is fully typed for better IDE support and code quality:</p> <div class=highlight><pre><span></span><code><span class=k>import</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>Address</span><span class=p>,</span><span class=w> </span><span class=nx>Data</span><span class=p>,</span><span class=w> </span><span class=nx>Metadata</span><span class=w> </span><span class=p>}</span><span class=w> </span><span class=kr>from</span><span class=w> </span><span class=s1>&#39;autonomi/types&#39;</span><span class=p>;</span>
 
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-<h1 id="nodejs-api-reference">Node.js API Reference</h1>
-<h2 id="installation">Installation</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npm<span class="w"> </span>install<span class="w"> </span>@autonomi/client
-</code></pre></div>
-<h2 id="core-classes">Core Classes</h2>
-<h3 id="client">Client</h3>
-<p>The main interface for interacting with the Autonomi network.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">class</span><span class="w"> </span><span class="nx">Client</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">config?</span><span class="o">:</span><span class="w"> </span><span class="kt">ClientConfig</span><span class="p">);</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="c1">// Linked List Operations</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">linkedListPut</span><span class="p">(</span><span class="nx">list</span><span class="o">:</span><span class="w"> </span><span class="kt">LinkedList</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">LinkedListAddress</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">linkedListGet</span><span class="p">(</span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="kt">LinkedListAddress</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">LinkedList</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="c1">// Pointer Operations</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">pointerPut</span><span class="p">(</span><span class="nx">pointer</span><span class="o">:</span><span class="w"> </span><span class="kt">Pointer</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">PointerAddress</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">pointerGet</span><span class="p">(</span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="kt">PointerAddress</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Pointer</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="c1">// Network Operations</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">connect</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">disconnect</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="linkedlist">LinkedList</h3>
-<p>Represents a linked list data structure.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">class</span><span class="w"> </span><span class="nx">LinkedList</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">();</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nx">append</span><span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nx">prepend</span><span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nx">remove</span><span class="p">(</span><span class="nx">index</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nx">get</span><span class="p">(</span><span class="nx">index</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">any</span><span class="p">;</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nx">toString</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="pointer">Pointer</h3>
-<p>Represents a pointer in the network.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">class</span><span class="w"> </span><span class="nx">Pointer</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">();</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nx">setTarget</span><span class="p">(</span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nx">getTarget</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nx">isValid</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="scratchpad">Scratchpad</h3>
-<p>Represents a mutable storage location with versioning and encryption.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">ScratchpadConfig</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nx">contentType</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">Uint8Array</span><span class="p">;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nx">secretKey</span><span class="o">:</span><span class="w"> </span><span class="kt">Uint8Array</span><span class="p">;</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="kd">class</span><span class="w"> </span><span class="nx">Scratchpad</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">config</span><span class="o">:</span><span class="w"> </span><span class="kt">ScratchpadConfig</span><span class="p">);</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="c1">// Get the network address</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="nx">getAddress</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="c1">// Get the current version counter</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span><span class="nx">getCounter</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">  </span><span class="c1">// Update the data and sign with secret key</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">  </span><span class="nx">update</span><span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">Uint8Array</span><span class="p">,</span><span class="w"> </span><span class="nx">secretKey</span><span class="o">:</span><span class="w"> </span><span class="kt">Uint8Array</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="p">;</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">  </span><span class="c1">// Verify the signature</span>
-<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">  </span><span class="nx">verify</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
-<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
-<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">  </span><span class="c1">// Decrypt the data using the secret key</span>
-<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">  </span><span class="nx">decrypt</span><span class="p">(</span><span class="nx">secretKey</span><span class="o">:</span><span class="w"> </span><span class="kt">Uint8Array</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Uint8Array</span><span class="p">;</span>
-<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="self-encryption">Self-Encryption</h3>
-<p>Utilities for data encryption and chunking.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">EncryptionResult</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nx">dataMap</span><span class="o">:</span><span class="w"> </span><span class="kt">DataMap</span><span class="p">;</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nx">chunks</span><span class="o">:</span><span class="w"> </span><span class="kt">Chunk</span><span class="p">[];</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">DataMap</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nx">chunks</span><span class="o">:</span><span class="w"> </span><span class="kt">ChunkInfo</span><span class="p">[];</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nx">totalSize</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">ChunkInfo</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="nx">hash</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="nx">size</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">  </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="p">}</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="kd">class</span><span class="w"> </span><span class="nx">SelfEncryption</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">encrypt</span><span class="p">(</span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="kt">Uint8Array</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">EncryptionResult</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">decrypt</span><span class="p">(</span><span class="nx">dataMap</span><span class="o">:</span><span class="w"> </span><span class="kt">DataMap</span><span class="p">,</span><span class="w"> </span><span class="nx">chunks</span><span class="o">:</span><span class="w"> </span><span class="kt">Chunk</span><span class="p">[])</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nb">Uint8Array</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="nx">packDataMap</span><span class="p">(</span><span class="nx">dataMap</span><span class="o">:</span><span class="w"> </span><span class="kt">DataMap</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">Chunk</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="p">}</span>
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
-<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="err">###</span><span class="w"> </span><span class="nx">Files</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="nx">Directories</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>
-<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="nx">Utilities</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">managing</span><span class="w"> </span><span class="nx">files</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="nx">directories</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">network</span><span class="p">.</span>
-<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
-<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="sb">```typescript</span>
-<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="sb">interface FileMetadata {</span>
-<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="sb">  name: string;</span>
-<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="sb">  size: number;</span>
-<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="sb">  created: Date;</span>
-<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="sb">  modified: Date;</span>
-<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="sb">  contentType: string;</span>
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="sb">}</span>
-<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>
-<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="sb">interface DirectoryEntry {</span>
-<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="sb">  name: string;</span>
-<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="sb">  type: &#39;file&#39; | &#39;directory&#39;;</span>
-<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="sb">  metadata?: FileMetadata;</span>
-<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="sb">}</span>
-<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>
-<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="sb">class File {</span>
-<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a><span class="sb">  constructor(name: string, data?: Uint8Array);</span>
-<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>
-<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="sb">  // Get file metadata</span>
-<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="sb">  getMetadata(): FileMetadata;</span>
-<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>
-<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="sb">  // Read file contents</span>
-<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a><span class="sb">  async read(): Promise&lt;Uint8Array&gt;;</span>
-<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>
-<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a><span class="sb">  // Write file contents</span>
-<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a><span class="sb">  async write(data: Uint8Array): Promise&lt;void&gt;;</span>
-<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a>
-<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a><span class="sb">  // Update file metadata</span>
-<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="sb">  async updateMetadata(metadata: Partial&lt;FileMetadata&gt;): Promise&lt;void&gt;;</span>
-<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a><span class="sb">}</span>
-<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a>
-<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a><span class="sb">class Directory {</span>
-<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="sb">  constructor(name: string);</span>
-<a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a>
-<a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="sb">  // List directory contents</span>
-<a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a><span class="sb">  async list(): Promise&lt;DirectoryEntry[]&gt;;</span>
-<a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a>
-<a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a><span class="sb">  // Create a new file</span>
-<a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a><span class="sb">  async createFile(name: string, data?: Uint8Array): Promise&lt;File&gt;;</span>
-<a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a>
-<a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a><span class="sb">  // Create a new subdirectory</span>
-<a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a><span class="sb">  async createDirectory(name: string): Promise&lt;Directory&gt;;</span>
-<a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a>
-<a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a><span class="sb">  // Get a file or directory by name</span>
-<a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a><span class="sb">  async get(name: string): Promise&lt;File | Directory&gt;;</span>
-<a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a>
-<a id="__codelineno-5-73" name="__codelineno-5-73" href="#__codelineno-5-73"></a><span class="sb">  // Delete a file or directory</span>
-<a id="__codelineno-5-74" name="__codelineno-5-74" href="#__codelineno-5-74"></a><span class="sb">  async delete(name: string): Promise&lt;void&gt;;</span>
-<a id="__codelineno-5-75" name="__codelineno-5-75" href="#__codelineno-5-75"></a><span class="sb">}</span>
-</code></pre></div>
-<h3 id="archive">Archive</h3>
-<p>Utilities for creating and managing archives.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">ArchiveOptions</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nx">compression</span><span class="o">?:</span><span class="w"> </span><span class="s1">&#39;none&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;gzip&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;bzip2&#39;</span><span class="p">;</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nx">encryption</span><span class="o">?:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nx">algorithm</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;aes-256-gcm&#39;</span><span class="p">;</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">Uint8Array</span><span class="p">;</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="p">};</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">}</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">ArchiveEntry</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="nx">size</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">  </span><span class="nx">compressed</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="nx">encrypted</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="p">}</span>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="kd">class</span><span class="w"> </span><span class="nx">Archive</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">options?</span><span class="o">:</span><span class="w"> </span><span class="kt">ArchiveOptions</span><span class="p">);</span>
-<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
-<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">  </span><span class="c1">// Add a file or directory to the archive</span>
-<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="kt">File</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">Directory</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
-<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">  </span><span class="c1">// Extract files from the archive</span>
-<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">extract</span><span class="p">(</span><span class="nx">destination</span><span class="o">:</span><span class="w"> </span><span class="kt">Directory</span><span class="p">,</span><span class="w"> </span><span class="nx">pattern?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
-<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">  </span><span class="c1">// List archive contents</span>
-<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">list</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">ArchiveEntry</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>
-<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="w">  </span><span class="c1">// Verify archive integrity</span>
-<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">verify</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">boolean</span><span class="o">&gt;</span><span class="p">;</span>
-<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="p">}</span>
-<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>
-<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="err">###</span><span class="w"> </span><span class="nx">Vault</span>
-<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
-<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="nx">Secure</span><span class="w"> </span><span class="nx">storage</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">sensitive</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span>
-<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>
-<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="sb">```typescript</span>
-<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="sb">interface VaultConfig {</span>
-<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="sb">  secretKey: Uint8Array;</span>
-<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="sb">  algorithm?: &#39;aes-256-gcm&#39; | &#39;xchacha20-poly1305&#39;;</span>
-<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="sb">  iterations?: number;</span>
-<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="sb">}</span>
-<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>
-<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a><span class="sb">interface VaultEntry {</span>
-<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a><span class="sb">  key: string;</span>
-<a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a><span class="sb">  created: Date;</span>
-<a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a><span class="sb">  modified: Date;</span>
-<a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a><span class="sb">  tags?: string[];</span>
-<a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a><span class="sb">}</span>
-<a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>
-<a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a><span class="sb">class Vault {</span>
-<a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a><span class="sb">  constructor(config: VaultConfig);</span>
-<a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a>
-<a id="__codelineno-6-53" name="__codelineno-6-53" href="#__codelineno-6-53"></a><span class="sb">  // Store encrypted data</span>
-<a id="__codelineno-6-54" name="__codelineno-6-54" href="#__codelineno-6-54"></a><span class="sb">  async put(key: string, data: Uint8Array, tags?: string[]): Promise&lt;void&gt;;</span>
-<a id="__codelineno-6-55" name="__codelineno-6-55" href="#__codelineno-6-55"></a>
-<a id="__codelineno-6-56" name="__codelineno-6-56" href="#__codelineno-6-56"></a><span class="sb">  // Retrieve and decrypt data</span>
-<a id="__codelineno-6-57" name="__codelineno-6-57" href="#__codelineno-6-57"></a><span class="sb">  async get(key: string): Promise&lt;Uint8Array&gt;;</span>
-<a id="__codelineno-6-58" name="__codelineno-6-58" href="#__codelineno-6-58"></a>
-<a id="__codelineno-6-59" name="__codelineno-6-59" href="#__codelineno-6-59"></a><span class="sb">  // List vault contents</span>
-<a id="__codelineno-6-60" name="__codelineno-6-60" href="#__codelineno-6-60"></a><span class="sb">  async list(tag?: string): Promise&lt;VaultEntry[]&gt;;</span>
-<a id="__codelineno-6-61" name="__codelineno-6-61" href="#__codelineno-6-61"></a>
-<a id="__codelineno-6-62" name="__codelineno-6-62" href="#__codelineno-6-62"></a><span class="sb">  // Delete data</span>
-<a id="__codelineno-6-63" name="__codelineno-6-63" href="#__codelineno-6-63"></a><span class="sb">  async delete(key: string): Promise&lt;void&gt;;</span>
-<a id="__codelineno-6-64" name="__codelineno-6-64" href="#__codelineno-6-64"></a>
-<a id="__codelineno-6-65" name="__codelineno-6-65" href="#__codelineno-6-65"></a><span class="sb">  // Rotate encryption key</span>
-<a id="__codelineno-6-66" name="__codelineno-6-66" href="#__codelineno-6-66"></a><span class="sb">  async rotateKey(newKey: Uint8Array): Promise&lt;void&gt;;</span>
-<a id="__codelineno-6-67" name="__codelineno-6-67" href="#__codelineno-6-67"></a><span class="sb">}</span>
-<a id="__codelineno-6-68" name="__codelineno-6-68" href="#__codelineno-6-68"></a>
-<a id="__codelineno-6-69" name="__codelineno-6-69" href="#__codelineno-6-69"></a><span class="sb">## Types</span>
-<a id="__codelineno-6-70" name="__codelineno-6-70" href="#__codelineno-6-70"></a>
-<a id="__codelineno-6-71" name="__codelineno-6-71" href="#__codelineno-6-71"></a><span class="sb">```</span><span class="nx">typescript</span>
-<a id="__codelineno-6-72" name="__codelineno-6-72" href="#__codelineno-6-72"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">ClientConfig</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-73" name="__codelineno-6-73" href="#__codelineno-6-73"></a><span class="w">  </span><span class="nx">networkUrl?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<a id="__codelineno-6-74" name="__codelineno-6-74" href="#__codelineno-6-74"></a><span class="w">  </span><span class="nx">timeout?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<a id="__codelineno-6-75" name="__codelineno-6-75" href="#__codelineno-6-75"></a><span class="w">  </span><span class="nx">retries?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
-<a id="__codelineno-6-76" name="__codelineno-6-76" href="#__codelineno-6-76"></a><span class="p">}</span>
-<a id="__codelineno-6-77" name="__codelineno-6-77" href="#__codelineno-6-77"></a>
-<a id="__codelineno-6-78" name="__codelineno-6-78" href="#__codelineno-6-78"></a><span class="kr">type</span><span class="w"> </span><span class="nx">LinkedListAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<a id="__codelineno-6-79" name="__codelineno-6-79" href="#__codelineno-6-79"></a><span class="kr">type</span><span class="w"> </span><span class="nx">PointerAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-</code></pre></div>
-<h2 id="error-handling">Error Handling</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">class</span><span class="w"> </span><span class="nx">AutonomiError</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="ne">Error</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">);</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">code</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="k">readonly</span><span class="w"> </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="examples">Examples</h2>
-<h3 id="basic-usage">Basic Usage</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Client</span><span class="p">,</span><span class="w"> </span><span class="nx">LinkedList</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@autonomi/client&#39;</span><span class="p">;</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">example</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Client</span><span class="p">();</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="c1">// Create and store a linked list</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">LinkedList</span><span class="p">();</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="nx">list</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">);</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="nx">list</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;World&quot;</span><span class="p">);</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">linkedListPut</span><span class="p">(</span><span class="nx">list</span><span class="p">);</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`List stored at: </span><span class="si">${</span><span class="nx">address</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">  </span><span class="c1">// Retrieve the list</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">retrieved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">linkedListGet</span><span class="p">(</span><span class="nx">address</span><span class="p">);</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">retrieved</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span><span class="w"> </span><span class="c1">// &quot;Hello World&quot;</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="error-handling_1">Error Handling</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Client</span><span class="p">();</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nx">AutonomiError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`Error code: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">code</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`Message: </span><span class="si">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="best-practices">Best Practices</h2>
-<ol>
-<li>Always use TypeScript for better type safety</li>
-<li>Handle errors appropriately</li>
-<li>Use async/await for all asynchronous operations</li>
-<li>Properly dispose of resources</li>
-<li>Follow the provided examples for memory management</li>
-</ol>
-
-
-
-
-
-
-
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 29, 2024</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Created">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 29, 2024</span>
-  </span>
-
-    
-    
-    
-  </aside>
-
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
-<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
-    </div>
-  </div>
-</footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-    
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-    
-    
-      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
-      
-    
-  </body>
-</html>
+<span class=kd>interface</span><span class=w> </span><span class=nx>Client</span><span class=w> </span><span class=p>{</span>
+<span class=w>    </span><span class=nx>storeChunk</span><span class=p>(</span><span class=nx>data</span><span class=o>:</span><span class=w> </span><span class=kt>Buffer</span><span class=p>)</span><span class=o>:</span><span class=w> </span><span class=nb>Promise</span><span class=o>&lt;</span><span class=nx>Address</span><span class=o>&gt;</span><span class=p>;</span>
+<span class=w>    </span><span class=nx>getChunk</span><span class=p>(</span><span class=nx>address</span><span class=o>:</span><span class=w> </span><span class=kt>Address</span><span class=p>)</span><span class=o>:</span><span class=w> </span><span class=nb>Promise</span><span class=o>&lt;</span><span class=nx>Buffer</span><span class=o>&gt;</span><span class=p>;</span>
+<span class=w>    </span><span class=nx>createPointer</span><span class=p>(</span><span class=nx>target</span><span class=o>:</span><span class=w> </span><span class=kt>Address</span><span class=p>)</span><span class=o>:</span><span class=w> </span><span class=nb>Promise</span><span class=o>&lt;</span><span class=nx>Pointer</span><span class=o>&gt;</span><span class=p>;</span>
+<span class=w>    </span><span class=nx>updatePointer</span><span class=p>(</span><span class=nx>address</span><span class=o>:</span><span class=w> </span><span class=kt>Address</span><span class=p>,</span><span class=w> </span><span class=nx>target</span><span class=o>:</span><span class=w> </span><span class=kt>Address</span><span class=p>)</span><span class=o>:</span><span class=w> </span><span class=nb>Promise</span><span class=o>&lt;</span><span class=ow>void</span><span class=o>&gt;</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=further-reading>Further Reading<a class=headerlink href=#further-reading title="Permanent link">&para;</a></h2> <ul> <li><a href=../guides/web_development.md>Web Development Guide</a></li> <li><a href=../guides/quantum_security.md>Quantum Security Details</a></li> <li><a href=../guides/error_handling.md>Advanced Error Handling</a></li> <li><a href=https://autonomi.dev/api>API Reference</a></li> <li><a href=https://github.com/autonomi/examples>Examples Repository</a></li> </ul> <aside class=md-source-file> <span class=md-source-file__fact> <span class=md-icon title="Last update"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg> </span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 29, 2024</span> </span> </aside> </article> </div> <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script> </div> <button type=button class="md-top md-icon" data-md-component=top hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg> Back to top </button> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-copyright> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> <div class=md-social> <a href=https://github.com/dirvine/autonomi target=_blank rel=noopener title=github.com class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg> </a> <a href=https://discord.gg/autonomi target=_blank rel=noopener title=discord.gg class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 640 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485 485 0 0 0 404.081 32.03a1.82 1.82 0 0 0-1.923.91 338 338 0 0 0-14.9 30.6 447.9 447.9 0 0 0-134.426 0 310 310 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.7 483.7 0 0 0-119.688 37.107 1.7 1.7 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.02 2.02 0 0 0 .765 1.375 487.7 487.7 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348 348 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321 321 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251 251 0 0 0 9.109-7.137 1.82 1.82 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.81 1.81 0 0 1 1.924.233 235 235 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.4 301.4 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391 391 0 0 0 30.014 48.815 1.86 1.86 0 0 0 2.063.7A486 486 0 0 0 610.7 405.729a1.88 1.88 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541M222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241m195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241"/></svg> </a> <a href=https://twitter.com/autonomi target=_blank rel=noopener title=twitter.com class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 512 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg> </a> <a href=https://linkedin.com/company/autonomi target=_blank rel=noopener title=linkedin.com class=md-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><!-- Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg> </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <div class=md-consent data-md-component=consent id=__consent hidden> <div class=md-consent__overlay></div> <aside class=md-consent__inner> <form class="md-consent__form md-grid md-typeset" name=consent> <h4>Cookie consent</h4> <p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better. </p> <input class=md-toggle type=checkbox id=__settings> <div class=md-consent__settings> <ul class=task-list> <li class=task-list-item> <label class=task-list-control> <input type=checkbox name=analytics checked> <span class=task-list-indicator></span> Google Analytics </label> </li> <li class=task-list-item> <label class=task-list-control> <input type=checkbox name=github checked> <span class=task-list-indicator></span> GitHub </label> </li> </ul> </div> <div class=md-consent__controls> <button class="md-button md-button--primary">Accept</button> <label class=md-button for=__settings>Manage settings</label> </div> </form> </aside> </div> <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script> <script id=__config type=application/json>{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script> <script src=../../assets/javascripts/bundle.88dd0f4e.min.js></script> </body> </html>
