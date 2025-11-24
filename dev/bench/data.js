@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1756937611682,
+  "lastUpdate": 1764011600533,
   "repoUrl": "https://github.com/dirvine/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -38,6 +38,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "ant files download",
             "value": 27.28108243573729,
+            "unit": "MiB/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "qi.ma@maidsafe.net",
+            "name": "maqi",
+            "username": "maqi"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b762a2e7aa97a7ba1a6c0bb637937578aa30377b",
+          "message": "Merge pull request #3316 from jacderida/chore-new_clippy_fixes\n\nchore: upgrade `assert_cmd` reference",
+          "timestamp": "2025-11-24T09:47:13Z",
+          "tree_id": "15379df4172a3270c7e0cfb4b6fa6eb14d765245",
+          "url": "https://github.com/dirvine/autonomi/commit/b762a2e7aa97a7ba1a6c0bb637937578aa30377b"
+        },
+        "date": 1764011600022,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "ant files upload 1mb",
+            "value": 1.1179669125867484,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files upload 10mb",
+            "value": 6.135528730103277,
+            "unit": "MiB/s"
+          },
+          {
+            "name": "ant files download",
+            "value": 7.028330181289412,
             "unit": "MiB/s"
           }
         ]
