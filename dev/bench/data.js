@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770307269951,
+  "lastUpdate": 1770307271565,
   "repoUrl": "https://github.com/dirvine/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -384,6 +384,45 @@ window.BENCHMARK_DATA = {
           {
             "name": "swarm_driver long handling total_time",
             "value": 20287,
+            "unit": "ms"
+          },
+          {
+            "name": "swarm_driver average long handling time",
+            "value": 1,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "david.irvine@maidsafe.net",
+            "name": "David Irvine",
+            "username": "dirvine"
+          },
+          "committer": {
+            "email": "david.irvine@maidsafe.net",
+            "name": "David Irvine",
+            "username": "dirvine"
+          },
+          "distinct": true,
+          "id": "ae9bced62809ec8cf1e097e9b782fc95a4f80dc4",
+          "message": "chore: add cargo-hakari workspace-hack for faster builds\n\nAdds workspace-hack crate to unify feature flags across workspace members,\nreducing redundant compilation during development and CI.\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-02-05T15:35:56Z",
+          "tree_id": "fe8e9407cbf17f64ce11c2729cda949ba74ddf5c",
+          "url": "https://github.com/dirvine/autonomi/commit/ae9bced62809ec8cf1e097e9b782fc95a4f80dc4"
+        },
+        "date": 1770307270949,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "swarm_driver long handling times",
+            "value": 10682,
+            "unit": "hits"
+          },
+          {
+            "name": "swarm_driver long handling total_time",
+            "value": 19957,
             "unit": "ms"
           },
           {
