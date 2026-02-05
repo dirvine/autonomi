@@ -105,6 +105,7 @@ tracing-subscriber = { version = "0.3.20", features = ["env-filter"] }
 walkdir = "~2.5.0"
 xor_name = "5.0.0"
 void = "1.0.2"
+workspace-hack = { version = "0.1", path = "../workspace-hack" }
 
 [dev-dependencies]
 ant-protocol = { path = "../ant-protocol", version = "1.0.11", features = ["rpc"] }

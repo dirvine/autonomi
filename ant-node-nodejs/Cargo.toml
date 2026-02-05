@@ -13,6 +13,7 @@ ant-node = { path = "../ant-node", version = "0.4.11" }
 hex = "0.4.3"
 napi = { version = "2.12.2", default-features = false, features = ["napi4", "napi6", "tokio_rt", "serde-json"] }
 napi-derive = "2.12.2"
+workspace-hack = { version = "0.1", path = "../workspace-hack" }
 
 [build-dependencies]
 napi-build = "2.0.1"

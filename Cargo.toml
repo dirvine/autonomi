@@ -21,6 +21,7 @@ members = [
     "autonomi-nodejs",
     "ant-node-nodejs",
     "test-utils",
+    "workspace-hack",
 ]
 
 [workspace.lints.rust]

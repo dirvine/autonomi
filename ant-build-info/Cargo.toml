@@ -23,3 +23,4 @@ workspace = true
 [dependencies]
 chrono = "0.4"
 tracing = { version = "~0.1.26" }
+workspace-hack = { version = "0.1", path = "../workspace-hack" }

@@ -79,6 +79,7 @@ tracing-error = "0.2.0"
 tracing-subscriber = { version = "0.3.20", features = ["env-filter", "serde"] }
 tui-input = "0.8.0"
 which = "6.0.1"
+workspace-hack = { version = "0.1", path = "../workspace-hack" }
 
 [target.'cfg(windows)'.dependencies]
 runas = "1.2.0"
