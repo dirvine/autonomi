@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1770307177004,
+  "lastUpdate": 1770307268180,
   "repoUrl": "https://github.com/dirvine/autonomi",
   "entries": {
     "`safe files` benchmarks": [
@@ -176,6 +176,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Peak memory w/ `safe` benchmarks",
             "value": 196,
+            "unit": "MB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "david.irvine@maidsafe.net",
+            "name": "David Irvine",
+            "username": "dirvine"
+          },
+          "committer": {
+            "email": "david.irvine@maidsafe.net",
+            "name": "David Irvine",
+            "username": "dirvine"
+          },
+          "distinct": true,
+          "id": "ae9bced62809ec8cf1e097e9b782fc95a4f80dc4",
+          "message": "chore: add cargo-hakari workspace-hack for faster builds\n\nAdds workspace-hack crate to unify feature flags across workspace members,\nreducing redundant compilation during development and CI.\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+          "timestamp": "2026-02-05T15:35:56Z",
+          "tree_id": "fe8e9407cbf17f64ce11c2729cda949ba74ddf5c",
+          "url": "https://github.com/dirvine/autonomi/commit/ae9bced62809ec8cf1e097e9b782fc95a4f80dc4"
+        },
+        "date": 1770307267786,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Peak memory w/ `safe` benchmarks",
+            "value": 224,
             "unit": "MB"
           }
         ]
